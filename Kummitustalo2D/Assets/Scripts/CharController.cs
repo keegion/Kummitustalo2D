@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class CharController : MonoBehaviour {
 
-    public float speed = 5f;
-    float someScale;
+	public float speed = 5f;
+	float someScale;
 
 	void Start()
 	{
@@ -23,7 +23,7 @@ public class CharController : MonoBehaviour {
 		float moveHorizontal = Input.GetAxis("Horizontal");
 		float moveVertical = Input.GetAxis("Vertical");
 
-        transform.Translate(moveHorizontal * Time.deltaTime * speed, moveVertical * Time.deltaTime * speed, 0);
+		transform.Translate(moveHorizontal * Time.deltaTime * speed, moveVertical * Time.deltaTime * speed, 0);
 
 		if (moveHorizontal > 0)
 		{
