@@ -5,11 +5,14 @@ using UnityEngine;
 public class CharController : MonoBehaviour {
 
 	public float speed = 5f;
-	float someScale;
+	//float someScale;
+	bool facingRight;
+	float input_x;
+	float input_y;
 
 	void Start()
 	{
-		someScale = transform.localScale.x;
+		//someScale = transform.localScale.x;
 	}
 
 	void Update()
@@ -20,20 +23,39 @@ public class CharController : MonoBehaviour {
 	void FixedUpdate()
 	{
 
-		float moveHorizontal = Input.GetAxis("Horizontal");
-		float moveVertical = Input.GetAxis("Vertical");
+		input_x = Input.GetAxis("Horizontal");
+		input_y = Input.GetAxis("Vertical");
 
-		transform.Translate(moveHorizontal * Time.deltaTime * speed, moveVertical * Time.deltaTime * speed, 0);
+		transform.Translate(input_x * Time.deltaTime * speed, input_y * Time.deltaTime * speed, 0);
 
-		if (moveHorizontal > 0)
+		//if (input_x > 0)
+		//{
+		//	transform.localScale = new Vector2(-someScale, transform.localScale.y);
+		//}
+		//if (input_x < 0)
+		//{
+		//	transform.localScale = new Vector2(someScale, transform.localScale.y);
+		//}
+
+
+		if (input_x < 0 && facingRight)
 		{
-			transform.localScale = new Vector2(-someScale, transform.localScale.y);
+			Flip();
+
 		}
-		if (moveHorizontal < 0)
+		else if (input_x > 0 && !facingRight)
 		{
-			transform.localScale = new Vector2(someScale, transform.localScale.y);
+			Flip();
+
 		}
 
+	}
+
+	void Flip()
+	{
+
+		facingRight = !facingRight;
+		transform.localScale = new Vector2(transform.localScale.x * -1, transform.localScale.y);
 	}
 
 }
