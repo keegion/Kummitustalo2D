@@ -7,12 +7,9 @@ public class CharController : MonoBehaviour {
     public float speed = 5f;
     float someScale;
 
-	//public Rigidbody2D playerRB;
-
 	void Start()
 	{
 		someScale = transform.localScale.x;
-		//playerRB = GetComponent<Rigidbody2D>();
 	}
 
 	void Update()
@@ -36,20 +33,6 @@ public class CharController : MonoBehaviour {
 		{
 			transform.localScale = new Vector2(someScale, transform.localScale.y);
 		}
-
-
-
-		//float moveHorizontal = Input.GetAxis("Horizontal");
-		//float moveVertical = Input.GetAxis("Vertical");
-
-		//Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
-		//playerRB.AddForce(movement * speed);
-
-		//if (playerRB.velocity.x >= 0) {
-		//    transform.localScale = new Vector2(someScale, transform.localScale.y);
-		//} else {
-		//    transform.localScale = new Vector2(-someScale, transform.localScale.y);
-		//}
 
 	}
 
