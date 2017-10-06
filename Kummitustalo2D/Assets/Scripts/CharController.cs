@@ -10,6 +10,9 @@ public class CharController : MonoBehaviour {
 	float input_x;
 	float input_y;
 
+    public Transform bulletInstantiator;
+    public GameObject bullet;
+
 	void Start()
 	{
 
@@ -17,7 +20,10 @@ public class CharController : MonoBehaviour {
 
 	void Update()
 	{
-
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Instantiate(bullet, bulletInstantiator, false);
+        }
 	}
 
 	void FixedUpdate()
