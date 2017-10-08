@@ -4,16 +4,19 @@ using UnityEngine;
 
 public class BulletController : MonoBehaviour {
 
-    public float thrust;
-    public Rigidbody2D rb;
+	//public float bulletSpeed;
+	//public Rigidbody2D rb;
 
-    void Start()
-    {
-        rb = GetComponent<Rigidbody2D>();
-    }
+	//public GameObject player;
 
-    void FixedUpdate()
-    {
-        rb.AddForce(new Vector2(1 * thrust, 0));
-    }
+	//void Start()
+	//{
+	//	rb = GetComponent<Rigidbody2D>();
+	//}
+
+	//void FixedUpdate()
+	//{
+	//	Debug.Log(player.GetComponent<CharController>().facingRight);
+	//	rb.AddForce(new Vector2(1 * bulletSpeed, 0));
+	//}
 }

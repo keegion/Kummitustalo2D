@@ -6,24 +6,37 @@ public class CharController : MonoBehaviour {
 
 	public float speed = 5f;
 
-	bool facingRight;
+	public bool facingRight;
 	float input_x;
 	float input_y;
 
-    public Transform bulletInstantiator;
-    public GameObject bullet;
+	public GameObject bulletPrefab;
+	public Transform bulletSpawn;
+	public float bulletSpeed;
+	public float bulletLifeTime;
+
+	Rigidbody2D CharacterRB;
+	Animator animator;
+	public float jumpForce;
 
 	void Start()
 	{
-
+		CharacterRB = GetComponent<Rigidbody2D>();
+		//animator = GetComponent<Animator>();
 	}
 
 	void Update()
 	{
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Instantiate(bullet, bulletInstantiator, false);
-        }
+		if (Input.GetButtonDown("Fire1"))
+		{
+			Fire();
+		}
+
+		if (Input.GetButtonDown("Jump"))
+		{
+			//animator.SetTrigger("Jump");
+			CharacterRB.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
+		}
 	}
 
 	void FixedUpdate()
@@ -41,6 +54,25 @@ public class CharController : MonoBehaviour {
 		{
 			Flip();
 		}
+	}
+
+	void Fire()
+	{
+		// Create the Bullet from the Bullet Prefab
+		var bullet = (GameObject)Instantiate(bulletPrefab, bulletSpawn.position, bulletSpawn.rotation);
+
+		Rigidbody2D bulletRB = bullet.GetComponent<Rigidbody2D>();
+		Vector3 bulletTransformHorizontal = bullet.transform.right;
+
+		// Add velocity to the bullet
+		if (facingRight) {
+			bulletRB.velocity = bulletTransformHorizontal * bulletSpeed;
+		} else {
+			bulletRB.velocity = -bulletTransformHorizontal * bulletSpeed;
+		}
+
+		// Destroy the bullet after 2 seconds
+		Destroy(bullet, bulletLifeTime);
 	}
 
 	void Flip()
