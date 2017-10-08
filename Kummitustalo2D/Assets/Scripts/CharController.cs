@@ -16,7 +16,7 @@ public class CharController : MonoBehaviour {
 	public float bulletLifeTime;
 
 	Rigidbody2D CharacterRB;
-	Animator animator;
+	//Animator animator;
 	public float jumpForce;
 
 	void Start()
@@ -27,16 +27,6 @@ public class CharController : MonoBehaviour {
 
 	void Update()
 	{
-		if (Input.GetButtonDown("Fire1"))
-		{
-			Fire();
-		}
-
-		if (Input.GetButtonDown("Jump"))
-		{
-			//animator.SetTrigger("Jump");
-			CharacterRB.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
-		}
 	}
 
 	void FixedUpdate()
@@ -54,6 +44,28 @@ public class CharController : MonoBehaviour {
 		{
 			Flip();
 		}
+
+		if (Input.GetButtonDown("Jump"))
+		{
+			Jump();
+		}
+
+		if (Input.GetButtonDown("Fire1"))
+		{
+			Fire();
+		}
+	}
+
+	void Flip()
+	{
+		facingRight = !facingRight;
+		transform.localScale = new Vector2(transform.localScale.x * -1, transform.localScale.y);
+	}
+
+	void Jump () 
+	{
+		//animator.SetTrigger("Jump");
+		CharacterRB.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
 	}
 
 	void Fire()
@@ -73,12 +85,6 @@ public class CharController : MonoBehaviour {
 
 		// Destroy the bullet after 2 seconds
 		Destroy(bullet, bulletLifeTime);
-	}
-
-	void Flip()
-	{
-		facingRight = !facingRight;
-		transform.localScale = new Vector2(transform.localScale.x * -1, transform.localScale.y);
 	}
 
 }
