@@ -70,20 +70,19 @@ public class CharController : MonoBehaviour {
 
 	void Fire()
 	{
-		// Create the Bullet from the Bullet Prefab
-		var bullet = (GameObject)Instantiate(bulletPrefab, bulletSpawn.position, bulletSpawn.rotation);
+		GameObject bullet = Instantiate(bulletPrefab, bulletSpawn.position, bulletSpawn.rotation);
 
 		Rigidbody2D bulletRB = bullet.GetComponent<Rigidbody2D>();
 		Vector3 bulletTransformHorizontal = bullet.transform.right;
 
-		// Add velocity to the bullet
 		if (facingRight) {
-			bulletRB.velocity = bulletTransformHorizontal * bulletSpeed;
+			//bulletRB.velocity = bulletTransformHorizontal * bulletSpeed;
+			bulletRB.AddForce(bulletTransformHorizontal * bulletSpeed);
 		} else {
-			bulletRB.velocity = -bulletTransformHorizontal * bulletSpeed;
+			//bulletRB.velocity = -bulletTransformHorizontal * bulletSpeed;
+			bulletRB.AddForce(-bulletTransformHorizontal * bulletSpeed);
 		}
 
-		// Destroy the bullet after 2 seconds
 		Destroy(bullet, bulletLifeTime);
 	}
 
