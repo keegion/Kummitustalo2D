@@ -185,7 +185,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4787262557437036, guid: 36aea1c22d5b74753b7c71b05775774d, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -1.76
+      value: -1.88
       objectReference: {fileID: 0}
     - target: {fileID: 4787262557437036, guid: 36aea1c22d5b74753b7c71b05775774d, type: 2}
       propertyPath: m_LocalPosition.z
@@ -215,7 +215,8 @@ Prefab:
       propertyPath: m_Name
       value: tiles_spritesheet_74 (2)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 61188061655501556, guid: 36aea1c22d5b74753b7c71b05775774d, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 36aea1c22d5b74753b7c71b05775774d, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &628130198
@@ -542,6 +543,36 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 36aea1c22d5b74753b7c71b05775774d, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1062558643 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1975470485682804, guid: 36aea1c22d5b74753b7c71b05775774d,
+    type: 2}
+  m_PrefabInternal: {fileID: 587987436}
+--- !u!61 &1062558644
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1062558643}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.7, y: 0.7}
+    newSize: {x: 0.7, y: 0.7}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.7, y: 0.7}
+  m_EdgeRadius: 0
 --- !u!1 &1322635330
 GameObject:
   m_ObjectHideFlags: 0
@@ -676,6 +707,36 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4730979290373004, guid: 59cbb8b34abfd42a7aa4ad3a38f99d8f, type: 2}
       propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 212030398576116958, guid: 59cbb8b34abfd42a7aa4ad3a38f99d8f,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114181921004026662, guid: 59cbb8b34abfd42a7aa4ad3a38f99d8f,
+        type: 2}
+      propertyPath: speed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 50404417141965584, guid: 59cbb8b34abfd42a7aa4ad3a38f99d8f,
+        type: 2}
+      propertyPath: m_UseAutoMass
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 50404417141965584, guid: 59cbb8b34abfd42a7aa4ad3a38f99d8f,
+        type: 2}
+      propertyPath: m_Mass
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 50404417141965584, guid: 59cbb8b34abfd42a7aa4ad3a38f99d8f,
+        type: 2}
+      propertyPath: m_GravityScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 50404417141965584, guid: 59cbb8b34abfd42a7aa4ad3a38f99d8f,
+        type: 2}
+      propertyPath: m_Simulated
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

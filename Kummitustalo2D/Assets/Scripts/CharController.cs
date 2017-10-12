@@ -6,21 +6,12 @@ using UnityEngine;
 
 public class CharController : MonoBehaviour {
 
-	public float speed = 5f;
-
-	public bool facingRight;
-	float input_x;
-	float input_y;
-
+	public float speed = 5f, input_x, input_y, jumpForce, bulletSpeed, bulletLifeTime;
+	public bool facingRight, isGrounded;
 	public GameObject bulletPrefab;
 	public Transform bulletSpawn;
-	public float bulletSpeed;
-	public float bulletLifeTime;
-
 	Rigidbody2D rb;
 	//Animator animator;
-	public float jumpForce;
-	public bool isGrounded;
 
 	void Start()
 	{
@@ -35,9 +26,10 @@ public class CharController : MonoBehaviour {
 	void FixedUpdate()
 	{
 		input_x = Input.GetAxis("Horizontal");
-		input_y = Input.GetAxis("Vertical");
+		input_y = 0; //Input.GetAxis("Vertical");
 
 		transform.Translate(input_x * Time.deltaTime * speed, input_y * Time.deltaTime * speed, 0);
+		//rb.AddForce(new Vector2(input_x * speed, input_y * speed));
 
 		if (input_x < 0 && facingRight)
 		{
@@ -74,7 +66,7 @@ public class CharController : MonoBehaviour {
 
 	void OnCollisionEnter2D(Collision2D collision)
 	{
-		// Todo: varmaan joku tsekkaus mihin osui
+		// Todo: varmaan joku tsekkaus mihin osui ja mistä päin?
 		isGrounded = true;
 	}
 
