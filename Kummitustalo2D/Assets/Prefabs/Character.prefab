@@ -37,6 +37,7 @@ GameObject:
   - component: {fileID: 212030398576116958}
   - component: {fileID: 95208631631137216}
   - component: {fileID: 50404417141965584}
+  - component: {fileID: 70240827577778026}
   - component: {fileID: 114181921004026662}
   m_Layer: 0
   m_Name: Character
@@ -86,12 +87,27 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 0
+  m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
+--- !u!70 &70240827577778026
+CapsuleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1683934380118680}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.14558358, y: 0.047714137}
+  m_Size: {x: 1.6709958, y: 1.152337}
+  m_Direction: 1
 --- !u!95 &95208631631137216
 Animator:
   serializedVersion: 3
@@ -124,10 +140,11 @@ MonoBehaviour:
   facingRight: 0
   bulletPrefab: {fileID: 1059405554659672, guid: f454f2ca774378a44b73cd94aca2f1d1,
     type: 2}
-  bulletSpawn: {fileID: 4730979290373004}
-  bulletSpeed: 10
+  bulletSpawn: {fileID: 4513722689374938}
+  bulletSpeed: 500
   bulletLifeTime: 1
-  jumpForce: 10
+  jumpForce: 6.7
+  isGrounded: 0
 --- !u!212 &212030398576116958
 SpriteRenderer:
   m_ObjectHideFlags: 1
