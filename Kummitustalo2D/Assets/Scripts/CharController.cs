@@ -42,6 +42,7 @@ public class CharController : MonoBehaviour {
 			Flip();
 		}
 
+		// Todo: pitää pystyä hyppäämään esineiden reunoiltakin... useampi Linecast, vai miten?
 		isGrounded = Physics2D.Linecast(transform.position, tagGround.position, playerMask);
 
 		if (Input.GetButtonDown("Jump") && isGrounded)
@@ -68,6 +69,7 @@ public class CharController : MonoBehaviour {
 	//	isGrounded = true;
 	//}
 
+	// Tapahtuu myös osuessa esineisiin sivuilta, mikä ei hyvä juttu
 	//void OnCollisionEnter2D(Collision2D collision)
 	//{
 	//	// Todo: varmaan joku tsekkaus mihin osui ja mistä päin?
