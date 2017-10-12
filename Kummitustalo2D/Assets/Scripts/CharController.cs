@@ -9,9 +9,10 @@ public class CharController : MonoBehaviour {
 	public float speed = 5f, input_x, input_y, jumpForce, bulletSpeed, bulletLifeTime;
 	public bool facingRight, isGrounded;
 	public GameObject bulletPrefab;
-	public Transform bulletSpawn;
+	public Transform bulletSpawn, tagGround;
 	Rigidbody2D rb;
 	//Animator animator;
+	public LayerMask playerMask;
 
 	void Start()
 	{
@@ -28,6 +29,7 @@ public class CharController : MonoBehaviour {
 		input_x = Input.GetAxis("Horizontal");
 		input_y = 0; //Input.GetAxis("Vertical");
 
+		// Liikkuminen addForcella? (Vaikuttaisko random-hyppybugeihin?)
 		transform.Translate(input_x * Time.deltaTime * speed, input_y * Time.deltaTime * speed, 0);
 		//rb.AddForce(new Vector2(input_x * speed, input_y * speed));
 
@@ -39,6 +41,8 @@ public class CharController : MonoBehaviour {
 		{
 			Flip();
 		}
+
+		isGrounded = Physics2D.Linecast(transform.position, tagGround.position, playerMask);
 
 		if (Input.GetButtonDown("Jump") && isGrounded)
 		{
@@ -64,11 +68,11 @@ public class CharController : MonoBehaviour {
 	//	isGrounded = true;
 	//}
 
-	void OnCollisionEnter2D(Collision2D collision)
-	{
-		// Todo: varmaan joku tsekkaus mihin osui ja mistä päin?
-		isGrounded = true;
-	}
+	//void OnCollisionEnter2D(Collision2D collision)
+	//{
+	//	// Todo: varmaan joku tsekkaus mihin osui ja mistä päin?
+	//	isGrounded = true;
+	//}
 
 	void Jump () 
 	{
