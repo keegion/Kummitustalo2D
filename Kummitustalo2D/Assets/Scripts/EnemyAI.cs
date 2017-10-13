@@ -16,6 +16,8 @@ public class EnemyAI : MonoBehaviour {
     public Transform rayRange;
     public bool seeEnemy = false;
     bool spotted = false;
+    public bool facingRight;
+    bool shooting;
 
     void Start () {
 
@@ -27,7 +29,7 @@ public class EnemyAI : MonoBehaviour {
 
     void Update()
     {
-
+        if (!shooting)
         CheckPos();
         currentSpeed = CurrentSpeed();
         anim.SetFloat("speed", currentSpeed);
@@ -50,12 +52,12 @@ public class EnemyAI : MonoBehaviour {
         if (LastPOS.x < NextPOS.x)
         {
             transform.forward = new Vector3(0f, 0f, -1f);
-
+            facingRight = true;
         }
         else
         {
             transform.forward = new Vector3(0f, 0f, 1f);
-
+            facingRight = false;
         }
         LastPOS.x = NextPOS.x;
 
@@ -84,9 +86,14 @@ public class EnemyAI : MonoBehaviour {
         if (spotted)
         {
 
-            Debug.Log("found");
             seeEnemy = true;
+            shooting = true;
 
+        }
+        if (!spotted)
+        {
+            seeEnemy = false;
+            shooting = false;
         }
 
     }
