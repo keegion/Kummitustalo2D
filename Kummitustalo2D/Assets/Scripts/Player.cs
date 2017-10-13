@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour {
     public float hp;
@@ -24,7 +25,7 @@ public class Player : MonoBehaviour {
     void Die()
     {
         Debug.Log("You have died");
-        
+        SceneManager.LoadScene("Test_scene", LoadSceneMode.Single);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

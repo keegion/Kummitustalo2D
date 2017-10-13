@@ -54,7 +54,7 @@ public class EnemyAI : MonoBehaviour {
             transform.forward = new Vector3(0f, 0f, -1f);
             facingRight = true;
         }
-        else
+        else 
         {
             transform.forward = new Vector3(0f, 0f, 1f);
             facingRight = false;

@@ -32,7 +32,7 @@ public class EnemyBullet : MonoBehaviour {
     {
         if(collision.tag !="Enemy")
        Destroy(gameObject);
-        GameObject temps = (GameObject)Instantiate(particle,collision.transform.position,collision.transform.rotation);
+       // GameObject temps = (GameObject)Instantiate(particle,collision.transform.position,collision.transform.rotation);
         
 
     }
