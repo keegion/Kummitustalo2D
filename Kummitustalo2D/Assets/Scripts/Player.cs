@@ -24,5 +24,13 @@ public class Player : MonoBehaviour {
     void Die()
     {
         Debug.Log("You have died");
+        
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.tag =="EnemyBullet")
+        {
+            hp -= 10;
+        }
     }
 }

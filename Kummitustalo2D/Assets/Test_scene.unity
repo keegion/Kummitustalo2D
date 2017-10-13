@@ -1816,6 +1816,7 @@ GameObject:
   - component: {fileID: 1136430285}
   - component: {fileID: 1136430286}
   - component: {fileID: 1136430287}
+  - component: {fileID: 1136430288}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -1842,7 +1843,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!58 &1136430282
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1946,6 +1947,7 @@ MonoBehaviour:
   spot2: {fileID: 447833752}
   rayRange: {fileID: 1767793336}
   seeEnemy: 0
+  facingRight: 0
 --- !u!114 &1136430287
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1958,6 +1960,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 50
+--- !u!114 &1136430288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1136430280}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8769208289e0ce41b8e48a257a75453, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyBullet: {fileID: 1443276908489178, guid: c9991cc1d66ce7345a342edd4d61f31f,
+    type: 2}
 --- !u!1 &1216252718
 GameObject:
   m_ObjectHideFlags: 0
@@ -2905,6 +2920,7 @@ GameObject:
   - component: {fileID: 1802518585}
   - component: {fileID: 1802518584}
   - component: {fileID: 1802518583}
+  - component: {fileID: 1802518588}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2953,7 +2969,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 10
+  orthographic size: 5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -2976,12 +2992,24 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1802518582}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.5799999, y: 0, z: -10}
+  m_LocalPosition: {x: -2.37, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1802518588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1802518582}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d208729b01eff844bddec4bf67a9a66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1136430280}
 --- !u!1 &1805560168
 GameObject:
   m_ObjectHideFlags: 0
