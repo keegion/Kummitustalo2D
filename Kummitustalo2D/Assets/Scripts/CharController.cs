@@ -9,19 +9,43 @@ public class CharController : MonoBehaviour {
 	public float speed = 5f, input_x, input_y, jumpForce, bulletSpeed, bulletLifeTime;
 	public bool facingRight, isGrounded;
 	public GameObject bulletPrefab;
-	public Transform bulletSpawn, tagGround;
+	public Transform bulletSpawn; //, tagGround;
 	Rigidbody2D rb;
+	Collider2D col;
 	//Animator animator;
+
 	public LayerMask playerMask;
+
+	public Transform GroundCheck1; // Put the prefab of the ground here
+	public LayerMask groundLayer; // Insert the layer here.
 
 	void Start()
 	{
 		rb = GetComponent<Rigidbody2D>();
+		col = GetComponent<Collider2D>();
 		//animator = GetComponent<Animator>();
 	}
 
 	void Update()
 	{
+		////isGrounded = Physics2D.Linecast(transform.position, tagGround.position, playerMask);
+		//if (Physics2D.Linecast(transform.position, tagGround.position, playerMask) || rb.velocity.y == 0)
+		//{
+		//    isGrounded = true;
+		//}
+		//else
+		//{
+		//    isGrounded = false;
+		//}
+		////Debug.Log(Physics2D.Linecast(transform.position, tagGround.position, playerMask).transform);
+
+		isGrounded = Physics2D.OverlapCircle(GroundCheck1.position, 0.15f, groundLayer); // checks if you are within 0.15 position in the Y of the ground
+		//Debug.Log(isGrounded);
+
+		if (Input.GetButtonDown("Jump") && isGrounded)
+		{
+			Jump();
+		}
 	}
 
 	void FixedUpdate()
@@ -29,9 +53,7 @@ public class CharController : MonoBehaviour {
 		input_x = Input.GetAxis("Horizontal");
 		input_y = 0; //Input.GetAxis("Vertical");
 
-		// Liikkuminen addForcella? (Vaikuttaisko random-hyppybugeihin?)
 		transform.Translate(input_x * Time.deltaTime * speed, input_y * Time.deltaTime * speed, 0);
-		//rb.AddForce(new Vector2(input_x * speed, input_y * speed));
 
 		if (input_x < 0 && facingRight)
 		{
@@ -40,14 +62,6 @@ public class CharController : MonoBehaviour {
 		else if (input_x > 0 && !facingRight)
 		{
 			Flip();
-		}
-
-		// Todo: pitää pystyä hyppäämään esineiden reunoiltakin... useampi Linecast, vai miten?
-		isGrounded = Physics2D.Linecast(transform.position, tagGround.position, playerMask);
-
-		if (Input.GetButtonDown("Jump") && isGrounded)
-		{
-			Jump();
 		}
 
 		if (Input.GetButtonDown("Fire1"))
@@ -72,7 +86,6 @@ public class CharController : MonoBehaviour {
 	// Tapahtuu myös osuessa esineisiin sivuilta, mikä ei hyvä juttu
 	//void OnCollisionEnter2D(Collision2D collision)
 	//{
-	//	// Todo: varmaan joku tsekkaus mihin osui ja mistä päin?
 	//	isGrounded = true;
 	//}
 
