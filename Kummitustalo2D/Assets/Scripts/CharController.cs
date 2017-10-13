@@ -14,7 +14,7 @@ public class CharController : MonoBehaviour {
 	Collider2D col;
 	//Animator animator;
 
-	public LayerMask playerMask;
+	//public LayerMask playerMask;
 
 	public Transform GroundCheck1; // Put the prefab of the ground here
 	public LayerMask groundLayer; // Insert the layer here.
@@ -40,7 +40,6 @@ public class CharController : MonoBehaviour {
 		////Debug.Log(Physics2D.Linecast(transform.position, tagGround.position, playerMask).transform);
 
 		isGrounded = Physics2D.OverlapCircle(GroundCheck1.position, 0.15f, groundLayer); // checks if you are within 0.15 position in the Y of the ground
-		//Debug.Log(isGrounded);
 
 		if (Input.GetButtonDown("Jump") && isGrounded)
 		{
