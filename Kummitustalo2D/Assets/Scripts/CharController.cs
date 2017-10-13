@@ -6,49 +6,63 @@ using UnityEngine;
 
 public class CharController : MonoBehaviour {
 
-	public float speed = 5f, input_x, input_y, jumpForce, bulletSpeed, bulletLifeTime;
-	public bool facingRight, isGrounded;
-	public GameObject bulletPrefab;
-	public Transform bulletSpawn, tagGround;
-	Rigidbody2D rb;
-	//Animator animator;
-	public LayerMask playerMask;
+    public float speed = 5f, input_x, input_y, jumpForce, bulletSpeed, bulletLifeTime;
+    public bool facingRight, isGrounded;
+    public GameObject bulletPrefab;
+    public Transform bulletSpawn; //, tagGround;
+    Rigidbody2D rb;
+    Collider2D col;
+    //Animator animator;
+    
+    public LayerMask playerMask;
 
-	void Start()
-	{
-		rb = GetComponent<Rigidbody2D>();
-		//animator = GetComponent<Animator>();
-	}
+    public Transform GroundCheck1; // Put the prefab of the ground here
+    public LayerMask groundLayer; // Insert the layer here.
 
-	void Update()
-	{
-	}
+    void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+        col = GetComponent<Collider2D>();
+        //animator = GetComponent<Animator>();
+    }
 
-	void FixedUpdate()
-	{
-		input_x = Input.GetAxis("Horizontal");
-		input_y = 0; //Input.GetAxis("Vertical");
+    void Update()
+    {
+        ////isGrounded = Physics2D.Linecast(transform.position, tagGround.position, playerMask);
+        //if (Physics2D.Linecast(transform.position, tagGround.position, playerMask) || rb.velocity.y == 0)
+        //{
+        //    isGrounded = true;
+        //}
+        //else
+        //{
+        //    isGrounded = false;
+        //}
+        ////Debug.Log(Physics2D.Linecast(transform.position, tagGround.position, playerMask).transform);
 
-		// Liikkuminen addForcella? (Vaikuttaisko random-hyppybugeihin?)
-		transform.Translate(input_x * Time.deltaTime * speed, input_y * Time.deltaTime * speed, 0);
-		//rb.AddForce(new Vector2(input_x * speed, input_y * speed));
+        isGrounded = Physics2D.OverlapCircle(GroundCheck1.position, 0.15f, groundLayer); // checks if you are within 0.15 position in the Y of the ground
+        //Debug.Log(isGrounded);
 
-		if (input_x < 0 && facingRight)
-		{
-			Flip();
-		}
-		else if (input_x > 0 && !facingRight)
-		{
-			Flip();
-		}
+        if (Input.GetButtonDown("Jump") && isGrounded)
+        {
+            Jump();
+        }
+    }
 
-		// Todo: pitää pystyä hyppäämään esineiden reunoiltakin... useampi Linecast, vai miten?
-		isGrounded = Physics2D.Linecast(transform.position, tagGround.position, playerMask);
+    void FixedUpdate()
+    {
+        input_x = Input.GetAxis("Horizontal");
+        input_y = 0; //Input.GetAxis("Vertical");
 
-		if (Input.GetButtonDown("Jump") && isGrounded)
-		{
-			Jump();
-		}
+        transform.Translate(input_x * Time.deltaTime * speed, input_y * Time.deltaTime * speed, 0);
+
+        if (input_x < 0 && facingRight)
+        {
+            Flip();
+        }
+        else if (input_x > 0 && !facingRight)
+        {
+            Flip();
+        }
 
 		if (Input.GetButtonDown("Fire1"))
 		{
@@ -72,7 +86,6 @@ public class CharController : MonoBehaviour {
 	// Tapahtuu myös osuessa esineisiin sivuilta, mikä ei hyvä juttu
 	//void OnCollisionEnter2D(Collision2D collision)
 	//{
-	//	// Todo: varmaan joku tsekkaus mihin osui ja mistä päin?
 	//	isGrounded = true;
 	//}
 

@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4787262557437036}
   - component: {fileID: 212904837815094094}
   - component: {fileID: 61188061655501556}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: tiles_spritesheet_74
   m_TagString: Untagged
   m_Icon: {fileID: 0}
