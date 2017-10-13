@@ -2,22 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour {
-
-    public float hp;
+public class Shooting : MonoBehaviour {
+    EnemyAI enemyAI;
 	// Use this for initialization
 	void Start () {
-		
+        enemyAI = GetComponent<EnemyAI>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        if (hp <= 0)
-            Die();
+		
+        if(enemyAI.seeEnemy)
+        {
+            Debug.Log("Shooting");
+        }
 	}
     
-    void Die()
-    {
-        Destroy(gameObject);
-    }
+
 }
