@@ -101,6 +101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   enemy: {fileID: 0}
+  particle: {fileID: 1234706625129696, guid: a7257c0e0be7752409b628989a30d44a, type: 2}
 --- !u!212 &212775810577612556
 SpriteRenderer:
   m_ObjectHideFlags: 1

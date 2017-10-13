@@ -7,6 +7,7 @@ public class EnemyBullet : MonoBehaviour {
     public float speed;
     // public GameObject player;
     public EnemyAI enemy;
+    public GameObject particle;
 
 
     void Start()
@@ -31,7 +32,8 @@ public class EnemyBullet : MonoBehaviour {
     {
         if(collision.tag !="Enemy")
        Destroy(gameObject);
-
+        GameObject temps = (GameObject)Instantiate(particle,collision.transform.position,collision.transform.rotation);
+        
 
     }
 
