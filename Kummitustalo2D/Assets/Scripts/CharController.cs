@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Rigidbody))]
 
@@ -11,7 +12,6 @@ public class CharController : MonoBehaviour {
 	public GameObject bulletPrefab;
 	public Transform bulletSpawn; //, tagGround;
 	Rigidbody2D rb;
-	Collider2D col;
 	//Animator animator;
 
 	//public LayerMask playerMask;
@@ -22,7 +22,6 @@ public class CharController : MonoBehaviour {
 	void Start()
 	{
 		rb = GetComponent<Rigidbody2D>();
-		col = GetComponent<Collider2D>();
 		//animator = GetComponent<Animator>();
 	}
 
@@ -44,6 +43,26 @@ public class CharController : MonoBehaviour {
 		if (Input.GetButtonDown("Jump") && isGrounded)
 		{
 			Jump();
+		}
+
+		// test dying
+
+		// starting game from the beginning (when no more lives left)
+		if (transform.position.y < -4f)
+		{
+			Debug.Log("Die motherfucker die");
+			SceneManager.LoadScene("Test_start_scene", LoadSceneMode.Single);
+		}
+
+		// reloading level (when still some lives left)
+		if (Input.GetButtonDown("Fire2"))
+		{
+			gameObject.GetComponent<Player>().hp -= 10f;
+			Debug.Log(gameObject.GetComponent<Player>().hp);
+			if (gameObject.GetComponent<Player>().hp <= 0)
+			{
+				SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+			}
 		}
 	}
 
@@ -86,7 +105,7 @@ public class CharController : MonoBehaviour {
 	//void OnCollisionEnter2D(Collision2D collision)
 	//{
 	//	isGrounded = true;
-	//}
+	//}§
 
 	void Jump () 
 	{
