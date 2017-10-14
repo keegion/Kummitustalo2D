@@ -119,15 +119,13 @@ public class CharController : MonoBehaviour {
 		GameObject bullet = Instantiate(bulletPrefab, bulletSpawn.position, bulletSpawn.rotation);
 
 		Rigidbody2D bulletRB = bullet.GetComponent<Rigidbody2D>();
-		Vector3 bulletTransformHorizontal = bullet.transform.right;
+		Vector3 bulletTFRight = bullet.transform.right;
+		Vector2 bulletTFLocalScale = bullet.transform.localScale;
 
-		if (facingRight) {
-			//bulletRB.velocity = bulletTransformHorizontal * bulletSpeed;
-			bulletRB.AddForce(bulletTransformHorizontal * bulletSpeed);
-		} else {
-			//bulletRB.velocity = -bulletTransformHorizontal * bulletSpeed;
-			bulletRB.AddForce(-bulletTransformHorizontal * bulletSpeed);
-		}
+		bullet.transform.localScale = new Vector2(bulletTFLocalScale.x * (facingRight ? -1 : 1), bulletTFLocalScale.y);
+
+		bulletRB.AddForce(bulletTFRight * bulletSpeed * (facingRight ? 1 : -1));
+		//bulletRB.velocity = bulletTFRight * bulletSpeed * (facingRight? 1 : -1 );
 
 		Destroy(bullet, bulletLifeTime);
 	}
