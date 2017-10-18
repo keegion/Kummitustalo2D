@@ -7,8 +7,8 @@ using UnityEngine.SceneManagement;
 
 public class CharController : MonoBehaviour {
 
-	public float speed = 5f, input_x, input_y, jumpForce, bulletSpeed, bulletLifeTime;
-	public bool facingRight, isGrounded;
+	public float speed = 5f, input_x, input_y, jumpForce, bulletSpeed, bulletLifeTime, bulletCDTime = 1f, bulletCDTimestamp = 0;
+	public bool facingRight, isGrounded; //, bulletCD;
 	public GameObject bulletPrefab;
 	public Transform bulletSpawn; //, tagGround;
 	Rigidbody2D rb;
@@ -116,18 +116,34 @@ public class CharController : MonoBehaviour {
 
 	void Fire()
 	{
-		GameObject bullet = Instantiate(bulletPrefab, bulletSpawn.position, bulletSpawn.rotation);
+		if (bulletCDTimestamp <= Time.time)
+		//if (!bulletCD)
+		{
+			GameObject bullet = Instantiate(bulletPrefab, bulletSpawn.position, bulletSpawn.rotation);
 
-		Rigidbody2D bulletRB = bullet.GetComponent<Rigidbody2D>();
-		Vector3 bulletTFRight = bullet.transform.right;
-		Vector2 bulletTFLocalScale = bullet.transform.localScale;
+			Rigidbody2D bulletRB = bullet.GetComponent<Rigidbody2D>();
+			Vector3 bulletTFRight = bullet.transform.right;
+			Vector2 bulletTFLocalScale = bullet.transform.localScale;
 
-		bullet.transform.localScale = new Vector2(bulletTFLocalScale.x * (facingRight ? -1 : 1), bulletTFLocalScale.y);
+			bullet.transform.localScale = new Vector2(bulletTFLocalScale.x * (facingRight ? -1 : 1), bulletTFLocalScale.y);
 
-		bulletRB.AddForce(bulletTFRight * bulletSpeed * (facingRight ? 1 : -1));
-		//bulletRB.velocity = bulletTFRight * bulletSpeed * (facingRight? 1 : -1 );
+			bulletRB.AddForce(bulletTFRight * bulletSpeed * (facingRight ? 1 : -1));
+			//bulletRB.velocity = bulletTFRight * bulletSpeed * (facingRight? 1 : -1 );
 
-		Destroy(bullet, bulletLifeTime);
+			Destroy(bullet, bulletLifeTime);
+
+			bulletCDTimestamp = Time.time + bulletCDTime;
+
+		//	bulletCD = true;
+		//	StartCoroutine(BulletCDRoutine(bulletCDTime));
+
+		}
 	}
+
+	//IEnumerator BulletCDRoutine(float waitTime)
+	//{
+	//	yield return new WaitForSeconds(waitTime);
+	//	bulletCD = false;
+	//}
 
 }
