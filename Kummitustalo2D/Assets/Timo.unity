@@ -2044,6 +2044,12 @@ Prefab:
       propertyPath: GroundCheck1
       value: 
       objectReference: {fileID: 321337881}
+    - target: {fileID: 114181921004026662, guid: 59cbb8b34abfd42a7aa4ad3a38f99d8f,
+        type: 2}
+      propertyPath: bulletPrefab
+      value: 
+      objectReference: {fileID: 1411341833975288, guid: d71cff70a0464471685a4f1bbca3fa93,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 59cbb8b34abfd42a7aa4ad3a38f99d8f, type: 2}
   m_IsPrefabParent: 0
