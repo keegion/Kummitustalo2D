@@ -6,7 +6,7 @@ public class EnemyBullet : MonoBehaviour {
 
     public float speed;
     // public GameObject player;
-    public EnemyAI enemy;
+
     public GameObject particle;
 
 
@@ -14,13 +14,12 @@ public class EnemyBullet : MonoBehaviour {
     {
 
 
-        enemy = FindObjectOfType<EnemyAI>();
 
-        if (!enemy.facingRight)
-        {
-            speed = -speed;
-        }
-      
+
+        if (transform.rotation.y == 0)
+            speed = speed * -1;
+
+
 
     }
 
