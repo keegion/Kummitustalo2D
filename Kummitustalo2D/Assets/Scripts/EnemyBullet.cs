@@ -31,7 +31,7 @@ public class EnemyBullet : MonoBehaviour {
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag !="Enemy" && collision.tag !="spot1" && collision.tag != "spot2")
+        if(collision.tag !="Enemy" && collision.tag !="spot1" && collision.tag != "spot2" && collision.tag != "Tikkaat")
        Destroy(gameObject);
        // GameObject temps = (GameObject)Instantiate(particle,collision.transform.position,collision.transform.rotation);
         

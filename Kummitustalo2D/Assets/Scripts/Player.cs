@@ -25,7 +25,7 @@ public class Player : MonoBehaviour {
     void Die()
     {
         Debug.Log("You have died");
-        SceneManager.LoadScene("Test_scene", LoadSceneMode.Single);
+        SceneManager.LoadScene("Main", LoadSceneMode.Single);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

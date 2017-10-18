@@ -8,6 +8,8 @@ TagManager:
   - spot2
   - Enemy
   - EnemyBullet
+  - PlayerBullet
+  - Tikkaat
   layers:
   - Default
   - TransparentFX
