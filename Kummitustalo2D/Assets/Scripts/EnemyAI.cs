@@ -64,7 +64,6 @@ public class EnemyAI : MonoBehaviour {
        
     }
 
-
     //Check current walking speed and return value as float.
     float CurrentSpeed()
     {

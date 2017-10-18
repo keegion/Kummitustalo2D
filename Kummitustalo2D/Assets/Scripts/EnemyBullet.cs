@@ -20,6 +20,7 @@ public class EnemyBullet : MonoBehaviour {
         {
             speed = -speed;
         }
+      
 
     }
 
@@ -30,7 +31,7 @@ public class EnemyBullet : MonoBehaviour {
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag !="Enemy")
+        if(collision.tag !="Enemy" && collision.tag !="spot1" && collision.tag != "spot2")
        Destroy(gameObject);
        // GameObject temps = (GameObject)Instantiate(particle,collision.transform.position,collision.transform.rotation);
         
