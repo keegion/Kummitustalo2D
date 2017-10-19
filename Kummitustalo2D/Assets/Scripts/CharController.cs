@@ -44,26 +44,6 @@ public class CharController : MonoBehaviour {
 		{
 			Jump();
 		}
-
-		// test dying
-
-		// starting game from the beginning (when no more lives left)
-		if (transform.position.y < -4f)
-		{
-			Debug.Log("Die motherfucker die");
-			SceneManager.LoadScene("Test_start_scene", LoadSceneMode.Single);
-		}
-
-		// reloading level (when still some lives left)
-		if (Input.GetButtonDown("Fire2"))
-		{
-			gameObject.GetComponent<Player>().hp -= 10f;
-			Debug.Log(gameObject.GetComponent<Player>().hp);
-			if (gameObject.GetComponent<Player>().hp <= 0)
-			{
-				SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-			}
-		}
 	}
 
 	void FixedUpdate()
