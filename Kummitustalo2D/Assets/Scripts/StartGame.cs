@@ -4,16 +4,19 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class StartGame : MonoBehaviour {
+    private GameObject GameManager;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 		
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		if (Input.anyKey) {
-			SceneManager.LoadScene("Main");
+            GameManager = GameObject.Find("GameManager(Clone)");
+            GameManager.GetComponent<GameManager>().livesLeft = GameManager.GetComponent<GameManager>().lives;
+            SceneManager.LoadScene("Main");
 		}
 	}
 }

@@ -34,12 +34,12 @@ public class Player : MonoBehaviour {
 
     void Die()
     {
-		if (GameManager.GetComponent<GameManager>().lives < 1)
+		if (GameManager.GetComponent<GameManager>().livesLeft < 1)
 		{
 			Debug.Log("Game over man");
 			SceneManager.LoadScene("Test_start_scene", LoadSceneMode.Single);
 		} else {
-			GameManager.GetComponent<GameManager>().lives--;
+			GameManager.GetComponent<GameManager>().livesLeft--;
 			Debug.Log("You have died");
 			SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 		}
@@ -54,7 +54,7 @@ public class Player : MonoBehaviour {
 
 	void OnGUI()
 	{
-		GUI.Label(new Rect(75, 30, 40, 30), "x " + GameManager.GetComponent<GameManager>().lives, myGUIStyle);
+		GUI.Label(new Rect(75, 30, 40, 30), "x " + GameManager.GetComponent<GameManager>().livesLeft, myGUIStyle);
 		GUI.Label(new Rect(145, 30, 100, 30), "Health: " + hp, myGUIStyle);
 	}
 }
