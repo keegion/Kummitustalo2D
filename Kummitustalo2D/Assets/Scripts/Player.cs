@@ -53,6 +53,7 @@ public class Player : MonoBehaviour {
         if(collision.tag =="Muistisiru")
         {
             Destroy(collision.gameObject);
+            GameManager.GetComponent<GameManager>().shards++;
         }
     }
 
@@ -60,5 +61,6 @@ public class Player : MonoBehaviour {
 	{
 		GUI.Label(new Rect(75, 30, 40, 30), "x " + GameManager.GetComponent<GameManager>().livesLeft, myGUIStyle);
 		GUI.Label(new Rect(145, 30, 100, 30), "Health: " + hp, myGUIStyle);
-	}
+        GUI.Label(new Rect(320, 30, 40, 30), "x " + GameManager.GetComponent<GameManager>().shards, myGUIStyle);
+    }
 }

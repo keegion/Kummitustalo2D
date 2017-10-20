@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour {
 	public int lives;
     internal int livesLeft;
+    public int shards;
 
     void Awake()
 	{
