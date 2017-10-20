@@ -5,6 +5,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour {
 
     public float hp;
+    public GameObject muistisiru;
 	// Use this for initialization
 	void Start () {
 		
@@ -18,7 +19,10 @@ public class Enemy : MonoBehaviour {
     
     void Die()
     {
+        Instantiate(muistisiru,transform.position,transform.rotation);
         Destroy(gameObject);
+
+      
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
