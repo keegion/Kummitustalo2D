@@ -50,6 +50,10 @@ public class Player : MonoBehaviour {
         {
             hp -= 10;
         }
+        if(collision.tag =="Muistisiru")
+        {
+            Destroy(collision.gameObject);
+        }
     }
 
 	void OnGUI()
