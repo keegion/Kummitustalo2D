@@ -12,6 +12,7 @@ public class CharController : MonoBehaviour {
 	public GameObject bulletPrefab;
 	public Transform bulletSpawn; //, tagGround;
 	Rigidbody2D rb;
+    Player player;
 	//Animator animator;
 
 	//public LayerMask playerMask;
@@ -21,6 +22,7 @@ public class CharController : MonoBehaviour {
 
 	void Start()
 	{
+        player = GetComponent<Player>();
 		rb = GetComponent<Rigidbody2D>();
 		//animator = GetComponent<Animator>();
 	}
@@ -49,9 +51,10 @@ public class CharController : MonoBehaviour {
 	void FixedUpdate()
 	{
 		input_x = Input.GetAxis("Horizontal");
-		input_y = 0; //Input.GetAxis("Vertical");
+        input_y = Input.GetAxis("Vertical");
+		//input_y = 0; //Input.GetAxis("Vertical");
 
-		transform.Translate(input_x * Time.deltaTime * speed, input_y * Time.deltaTime * speed, 0);
+		transform.Translate(input_x * Time.deltaTime * speed, 0, 0);
 
 		if (input_x < 0 && facingRight)
 		{
@@ -66,6 +69,12 @@ public class CharController : MonoBehaviour {
 		{
 			Fire();
 		}
+        if(player.OnStairs)
+        {
+            transform.Translate(input_x * Time.deltaTime * speed, input_y * Time.deltaTime * speed, 0);
+        }
+   
+        
 	}
 
 	void Flip()
@@ -89,7 +98,7 @@ public class CharController : MonoBehaviour {
 
 	void Jump () 
 	{
-		//animator.SetTrigger("Jump");
+        //animator.SetTrigger("Jump");
 		rb.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
 		isGrounded = false;
 	}
@@ -119,6 +128,7 @@ public class CharController : MonoBehaviour {
 
 		}
 	}
+    
 
 	//IEnumerator BulletCDRoutine(float waitTime)
 	//{
