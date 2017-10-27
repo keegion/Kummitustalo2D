@@ -362,7 +362,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0132635b56dc30b4da351b87edee9268, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 50
+  hp: 13
   myGUIStyle:
     m_Name: 
     m_Normal:
@@ -430,8 +430,11 @@ MonoBehaviour:
     m_FixedHeight: 0
     m_StretchWidth: 1
     m_StretchHeight: 0
+  healthMeter: {fileID: 114309881108870506, guid: 287a6949cfd6ff34abaadd505f55524c,
+    type: 2}
   GameManagerPrefab: {fileID: 1982315783445720, guid: b4b88e3ec87264574b7cb010ec4174f4,
     type: 2}
+  OnStairs: 0
 --- !u!212 &212030398576116958
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -441,6 +444,7 @@ SpriteRenderer:
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -456,6 +460,7 @@ SpriteRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 0
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5

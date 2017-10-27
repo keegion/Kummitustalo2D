@@ -2,15 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour {
-    public float hp;
+    public int hp;
 	public GUIStyle myGUIStyle;
+    public Image healthMeter;
 	public GameObject GameManagerPrefab;
 	private GameObject GameManager;
     Rigidbody2D rb;
     public bool OnStairs = false;
     CharController charctr;
+
+    public Texture healthImage;
+    public Material healthMaterial;
+
+
 	// Use this for initialization
 	void Start () {
         charctr = GetComponent<CharController>();
@@ -22,7 +29,20 @@ public class Player : MonoBehaviour {
 		if (GameManager == null){
 			GameManager = Instantiate(GameManagerPrefab);
 		}
-	}
+
+        healthMaterial = GetComponent<Renderer>().material;
+
+        //Debug.Log(healthMeter.GetComponent<Image>().sprite);
+
+        //healthMeter.GetComponent<Image>().sprite = healthMeter.GetComponent<HealthImage>().pieces[2];
+
+        //Debug.Log(healthMeter.GetComponent<HealthImage>().pieces[10]);
+
+        //Debug.Log(GameObject.Find("Health").GetComponent<SpriteRenderer>().sprite);
+
+        
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -52,7 +72,16 @@ public class Player : MonoBehaviour {
     {
         if(collision.tag =="EnemyBullet")
         {
-            hp -= 10;
+            Debug.Log("Health" + hp);
+            hp -= 1;
+            healthMeter.GetComponent<Image>().sprite = healthMeter.GetComponent<HealthImage>().pieces[hp];
+            Debug.Log(healthMeter.GetComponent<HealthImage>().pieces[hp]);
+
+           // healthImage = textureFromSprite(healthMeter.GetComponent<HealthImage>().pieces[hp]);
+
+          //  healthMaterial.SetTexture("_MainTex", healthImage);
+
+
         }
         if(collision.tag =="Muistisiru")
         {
@@ -80,4 +109,22 @@ public class Player : MonoBehaviour {
 		GUI.Label(new Rect(145, 30, 100, 30), "Health: " + hp, myGUIStyle);
         GUI.Label(new Rect(320, 30, 40, 30), "x " + GameManager.GetComponent<GameManager>().shards, myGUIStyle);
     }
+
+    public static Texture2D textureFromSprite(Sprite sprite)
+    {
+        if (sprite.rect.width != sprite.texture.width)
+        {
+            Texture2D newText = new Texture2D((int)sprite.rect.width, (int)sprite.rect.height);
+            Color[] newColors = sprite.texture.GetPixels((int)sprite.textureRect.x,
+                                                         (int)sprite.textureRect.y,
+                                                         (int)sprite.textureRect.width,
+                                                         (int)sprite.textureRect.height);
+            newText.SetPixels(newColors);
+            newText.Apply();
+            return newText;
+        }
+        else
+            return sprite.texture;
+    }
+
 }
