@@ -3569,7 +3569,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 814087787}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 687, y: 256, z: 0}
+  m_LocalPosition: {x: 761, y: 371.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1310857885}
@@ -3882,7 +3882,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 898032858}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -387, y: 211, z: 0}
+  m_LocalPosition: {x: -461, y: 326.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 814087791}
@@ -5754,7 +5754,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1310857884}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -642, y: 211, z: 0}
+  m_LocalPosition: {x: -716, y: 326.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 814087791}
@@ -6377,6 +6377,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1464714172}
   - component: {fileID: 1464714173}
+  - component: {fileID: 1464714174}
   m_Layer: 0
   m_Name: wallpaper_
   m_TagString: Untagged
@@ -6441,6 +6442,23 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!95 &1464714174
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1464714171}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 796deec71fd6b044e83fee963e9bd800, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &1627786033
 GameObject:
   m_ObjectHideFlags: 0
@@ -6545,6 +6563,19 @@ GameObject:
   m_PrefabParentObject: {fileID: 1683934380118680, guid: 59cbb8b34abfd42a7aa4ad3a38f99d8f,
     type: 2}
   m_PrefabInternal: {fileID: 1340551518}
+--- !u!114 &1655977400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1655977391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70272eb0c5d8f604d9772b56a7f64fed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxShards: 2
+  portal: {fileID: 1198815098949786, guid: 64584c665a43e89418b8d222e0c60d0e, type: 2}
 --- !u!1 &1703022257
 GameObject:
   m_ObjectHideFlags: 0

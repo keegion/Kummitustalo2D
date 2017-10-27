@@ -9,11 +9,15 @@ public class Player : MonoBehaviour {
 	public GameObject GameManagerPrefab;
 	private GameObject GameManager;
     Rigidbody2D rb;
-    public bool OnStairs = false;
+    public bool OnStairs, portalSummoned = false;
     CharController charctr;
+    PortalSummon summonPortal;
+    
+  
 	// Use this for initialization
 	void Start () {
         charctr = GetComponent<CharController>();
+        summonPortal = GetComponent<PortalSummon>();
 		myGUIStyle.fontSize = 24;
 		myGUIStyle.normal.textColor = Color.white;
 		// create GameManager if one doesn't exist in scene
@@ -36,7 +40,7 @@ public class Player : MonoBehaviour {
             Die();
     }
 
-    void Die()
+    public void Die()
     {
 		if (GameManager.GetComponent<GameManager>().livesLeft < 1)
 		{
@@ -56,13 +60,18 @@ public class Player : MonoBehaviour {
         }
         if(collision.tag =="Muistisiru")
         {
-            Destroy(collision.gameObject);
             GameManager.GetComponent<GameManager>().shards++;
+            summonPortal.CheckIfSummonPortal(GameManager.GetComponent<GameManager>().shards);
+            Destroy(collision.gameObject);
         }
         if (collision.tag == "Tikkaat" && charctr.isGrounded)
         {
             rb.isKinematic = true;
             OnStairs = true;
+        }
+        if (collision.tag =="Portal")
+        {
+            portalSummoned = true;
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
@@ -72,8 +81,12 @@ public class Player : MonoBehaviour {
             rb.isKinematic = false;
             OnStairs = false;
         }
+        if (collision.tag == "Portal")
+        {
+            portalSummoned = false;
+        }
     }
-
+   
     void OnGUI()
 	{
 		GUI.Label(new Rect(75, 30, 40, 30), "x " + GameManager.GetComponent<GameManager>().livesLeft, myGUIStyle);

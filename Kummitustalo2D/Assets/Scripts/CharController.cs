@@ -73,6 +73,18 @@ public class CharController : MonoBehaviour {
         {
             transform.Translate(input_x * Time.deltaTime * speed, input_y * Time.deltaTime * speed, 0);
         }
+
+        // tarkistaa onko pelaaja kosketuksessa portaaliin ja jos painaa nuolinäppäintä ylös tai w näppäintä aloittaa uuden tason.
+        if(player.portalSummoned)
+        {
+
+            if(Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))
+            {
+                //tähän seuraava taso(väliaikaisesti kuolee eli aloittaa tason uudelleen)
+                player.Die();
+            }
+
+        }
    
         
 	}
