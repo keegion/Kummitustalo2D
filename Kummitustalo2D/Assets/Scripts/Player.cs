@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour {
     public float hp;
-    public float maxhp;
+    public float maxHp;
 	public GUIStyle myGUIStyle;
     public Image healthMeter;
 	public GameObject GameManagerPrefab;
@@ -15,7 +15,7 @@ public class Player : MonoBehaviour {
     public bool OnStairs, portalSummoned = false;
     CharController charctr;
 
-    public Animator animator;
+    Animator animator;
 
     PortalSummon summonPortal;
     
@@ -32,23 +32,9 @@ public class Player : MonoBehaviour {
 			GameManager = Instantiate(GameManagerPrefab);
 		}
 
-
-
-
         animator = healthMeter.GetComponent<Animator>();
         animator.Play("HealthBar", 0, 1);
         animator.speed = 0;
-       
-        //Debug.Log(healthMeter.GetComponent<Image>().sprite);
-
-        //healthMeter.GetComponent<Image>().sprite = healthMeter.GetComponent<HealthImage>().pieces[2];
-
-        //Debug.Log(healthMeter.GetComponent<HealthImage>().pieces[10]);
-
-        //Debug.Log(GameObject.Find("Health").GetComponent<SpriteRenderer>().sprite);
-
-
-
     }
 	
 	// Update is called once per frame
@@ -79,25 +65,15 @@ public class Player : MonoBehaviour {
     {
         if(collision.tag =="EnemyBullet")
         {
-            Debug.Log("Health" + hp/maxhp);
+            Debug.Log("Health" + hp/maxHp);
             hp -= 1;
 
-
-            //float roundedHealth = Mathf.Round((hp / maxhp) * 100) / 10;
-            float roundedHealth = hp / maxhp;
+            //float roundedHealth = Mathf.Round((hp / maxHp) * 100) / 10;
+            float roundedHealth = hp / maxHp;
 
             Debug.Log("rounded: " + roundedHealth);
             animator.Play("HealthBar", -1, roundedHealth);
             animator.speed = 0;
-            //animation["MyAnimation"].time = 5.0;
-            //healthMeter.GetComponent<Image>().sprite = healthMeter.GetComponent<HealthImage>().pieces[hp];
-            // Debug.Log(healthMeter.GetComponent<HealthImage>().pieces[hp]);
-
-            // healthImage = textureFromSprite(healthMeter.GetComponent<HealthImage>().pieces[hp]);
-
-            //  healthMaterial.SetTexture("_MainTex", healthImage);
-
-
         }
         if(collision.tag =="Muistisiru")
         {
@@ -134,22 +110,4 @@ public class Player : MonoBehaviour {
 		GUI.Label(new Rect(145, 30, 100, 30), "Health: " + hp, myGUIStyle);
         GUI.Label(new Rect(320, 30, 40, 30), "x " + GameManager.GetComponent<GameManager>().shards, myGUIStyle);
     }
-
-    public static Texture2D textureFromSprite(Sprite sprite)
-    {
-        if (sprite.rect.width != sprite.texture.width)
-        {
-            Texture2D newText = new Texture2D((int)sprite.rect.width, (int)sprite.rect.height);
-            Color[] newColors = sprite.texture.GetPixels((int)sprite.textureRect.x,
-                                                         (int)sprite.textureRect.y,
-                                                         (int)sprite.textureRect.width,
-                                                         (int)sprite.textureRect.height);
-            newText.SetPixels(newColors);
-            newText.Apply();
-            return newText;
-        }
-        else
-            return sprite.texture;
-    }
-
 }
