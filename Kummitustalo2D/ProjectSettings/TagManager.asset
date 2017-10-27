@@ -11,6 +11,8 @@ TagManager:
   - PlayerBullet
   - Tikkaat
   - Muistisiru
+  - ScriptHolder
+  - Portal
   layers:
   - Default
   - TransparentFX
