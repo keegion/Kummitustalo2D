@@ -5,7 +5,8 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Player : MonoBehaviour {
-    public int hp;
+    public float hp;
+    public float maxhp;
 	public GUIStyle myGUIStyle;
     public Image healthMeter;
 	public GameObject GameManagerPrefab;
@@ -14,8 +15,7 @@ public class Player : MonoBehaviour {
     public bool OnStairs, portalSummoned = false;
     CharController charctr;
 
-    public Texture healthImage;
-    public Material healthMaterial;
+    public Animator animator;
 
     PortalSummon summonPortal;
     
@@ -32,8 +32,13 @@ public class Player : MonoBehaviour {
 			GameManager = Instantiate(GameManagerPrefab);
 		}
 
-        healthMaterial = GetComponent<Renderer>().material;
 
+
+
+        animator = healthMeter.GetComponent<Animator>();
+        animator.Play("HealthBar", 0, 1);
+        animator.speed = 0;
+       
         //Debug.Log(healthMeter.GetComponent<Image>().sprite);
 
         //healthMeter.GetComponent<Image>().sprite = healthMeter.GetComponent<HealthImage>().pieces[2];
@@ -42,7 +47,7 @@ public class Player : MonoBehaviour {
 
         //Debug.Log(GameObject.Find("Health").GetComponent<SpriteRenderer>().sprite);
 
-        
+
 
     }
 	
@@ -74,14 +79,23 @@ public class Player : MonoBehaviour {
     {
         if(collision.tag =="EnemyBullet")
         {
-            Debug.Log("Health" + hp);
+            Debug.Log("Health" + hp/maxhp);
             hp -= 1;
-            healthMeter.GetComponent<Image>().sprite = healthMeter.GetComponent<HealthImage>().pieces[hp];
-            Debug.Log(healthMeter.GetComponent<HealthImage>().pieces[hp]);
 
-           // healthImage = textureFromSprite(healthMeter.GetComponent<HealthImage>().pieces[hp]);
 
-          //  healthMaterial.SetTexture("_MainTex", healthImage);
+            //float roundedHealth = Mathf.Round((hp / maxhp) * 100) / 10;
+            float roundedHealth = hp / maxhp;
+
+            Debug.Log("rounded: " + roundedHealth);
+            animator.Play("HealthBar", -1, roundedHealth);
+            animator.speed = 0;
+            //animation["MyAnimation"].time = 5.0;
+            //healthMeter.GetComponent<Image>().sprite = healthMeter.GetComponent<HealthImage>().pieces[hp];
+            // Debug.Log(healthMeter.GetComponent<HealthImage>().pieces[hp]);
+
+            // healthImage = textureFromSprite(healthMeter.GetComponent<HealthImage>().pieces[hp]);
+
+            //  healthMaterial.SetTexture("_MainTex", healthImage);
 
 
         }
