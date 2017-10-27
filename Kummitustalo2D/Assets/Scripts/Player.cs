@@ -33,7 +33,7 @@ public class Player : MonoBehaviour {
 		}
 
         animator = healthMeter.GetComponent<Animator>();
-        animator.Play("HealthBar", 0, 1);
+        animator.Play("HealthBar", 0, 0.99f);
         animator.speed = 0;
     }
 	
@@ -65,13 +65,10 @@ public class Player : MonoBehaviour {
     {
         if(collision.tag =="EnemyBullet")
         {
-            Debug.Log("Health" + hp/maxHp);
+            //Debug.Log("Health" + hp/maxHp);
             hp -= 1;
-
-            //float roundedHealth = Mathf.Round((hp / maxHp) * 100) / 10;
             float roundedHealth = hp / maxHp;
-
-            Debug.Log("rounded: " + roundedHealth);
+            //Debug.Log("rounded: " + roundedHealth);
             animator.Play("HealthBar", -1, roundedHealth);
             animator.speed = 0;
         }
@@ -106,8 +103,8 @@ public class Player : MonoBehaviour {
    
     void OnGUI()
 	{
-		GUI.Label(new Rect(75, 30, 40, 30), "x " + GameManager.GetComponent<GameManager>().livesLeft, myGUIStyle);
-		GUI.Label(new Rect(145, 30, 100, 30), "Health: " + hp, myGUIStyle);
-        GUI.Label(new Rect(320, 30, 40, 30), "x " + GameManager.GetComponent<GameManager>().shards, myGUIStyle);
+		GUI.Label(new Rect(85, 30, 100, 30), "Health: " + hp, myGUIStyle);
+		GUI.Label(new Rect(275, 30, 40, 30), "x " + GameManager.GetComponent<GameManager>().livesLeft, myGUIStyle);
+        GUI.Label(new Rect(420, 30, 40, 30), "x " + GameManager.GetComponent<GameManager>().shards, myGUIStyle);
     }
 }
