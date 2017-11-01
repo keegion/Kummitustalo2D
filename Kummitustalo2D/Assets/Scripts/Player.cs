@@ -7,8 +7,10 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour {
     public float hp;
     public float maxHp;
+	public int maxShards;
 	public GUIStyle myGUIStyle;
     public Image healthMeter;
+	public Transform memories;
 	public GameObject GameManagerPrefab;
 	private GameObject GameManager;
     Rigidbody2D rb;
@@ -21,13 +23,14 @@ public class Player : MonoBehaviour {
     
 	// Use this for initialization
 	void Start () {
+		rb = GetComponent<Rigidbody2D>();
         charctr = GetComponent<CharController>();
         summonPortal = GetComponent<PortalSummon>();
 		myGUIStyle.fontSize = 24;
 		myGUIStyle.normal.textColor = Color.white;
 		// create GameManager if one doesn't exist in scene
 		GameManager = GameObject.Find("GameManager(Clone)");
-        rb = GetComponent<Rigidbody2D>();
+
 		if (GameManager == null){
 			GameManager = Instantiate(GameManagerPrefab);
 		}
@@ -35,12 +38,14 @@ public class Player : MonoBehaviour {
         animator = healthMeter.GetComponent<Animator>();
         animator.Play("HealthBar", 0, 0.99f);
         animator.speed = 0;
+
+		//Debug.Log(memories.GetChild(0).Find("shards").GetChild(0));
+		//Transform[] shards;
     }
 	
 	// Update is called once per frame
 	void Update () {
         CheckHP();
-       
 	}
 
     void CheckHP()
@@ -61,6 +66,18 @@ public class Player : MonoBehaviour {
 			SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 		}
     }
+
+	private void AddShard()
+	{
+		int shardCount = GameManager.GetComponent<GameManager>().shards;
+		if (shardCount < maxShards)
+		{
+			memories.GetChild(0).Find("shards").GetChild(shardCount).gameObject.SetActive(false);
+		}
+
+		GameManager.GetComponent<GameManager>().shards++;
+	}
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.tag =="EnemyBullet")
@@ -74,7 +91,8 @@ public class Player : MonoBehaviour {
         }
         if(collision.tag =="Muistisiru")
         {
-            GameManager.GetComponent<GameManager>().shards++;
+			AddShard();
+
             summonPortal.CheckIfSummonPortal(GameManager.GetComponent<GameManager>().shards);
             Destroy(collision.gameObject);
         }

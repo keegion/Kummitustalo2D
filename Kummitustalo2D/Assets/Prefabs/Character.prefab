@@ -112,7 +112,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1683934380118680}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.41, y: 1.824, z: 0}
+  m_LocalPosition: {x: 0, y: -0.49, z: 0}
   m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_Children:
   - {fileID: 4513722689374938}
@@ -320,6 +320,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 7
   maxHp: 7
+  maxShards: 4
   myGUIStyle:
     m_Name: 
     m_Normal:
@@ -388,6 +389,7 @@ MonoBehaviour:
     m_StretchWidth: 1
     m_StretchHeight: 0
   healthMeter: {fileID: 0}
+  memories: {fileID: 0}
   GameManagerPrefab: {fileID: 1982315783445720, guid: b4b88e3ec87264574b7cb010ec4174f4,
     type: 2}
   OnStairs: 0
