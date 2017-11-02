@@ -8,10 +8,10 @@ public class Player : MonoBehaviour
 {
 	public float hp;
 	public float maxHp;
-	public int maxShards;
 	public GUIStyle myGUIStyle;
 	public Image healthMeter;
 	public Transform memories;
+	GameObject[] shardArray = new GameObject[15];
 	public GameObject GameManagerPrefab;
 	private GameObject GameManager;
 	Rigidbody2D rb;
@@ -42,8 +42,8 @@ public class Player : MonoBehaviour
 		animator.Play("HealthBar", 0, 0.99f);
 		animator.speed = 0;
 
+		shardArray = GameObject.FindGameObjectsWithTag("shardInUI");
 		UpdateShardsOnStart();
-		//Transform[] shards;
 	}
 
 	// Update is called once per frame
@@ -75,23 +75,19 @@ public class Player : MonoBehaviour
 
 	private void UpdateShardsOnStart(){
 		int shardCount = GameManager.GetComponent<GameManager>().shards;
-		Transform shardsInUI = memories.GetChild(0).Find("shards");
-
-		int children = shardsInUI.childCount;
-		for (int i = 0; i < children && i < shardCount; ++i)
+		for (int i = 0; i < shardCount && i < shardArray.Length; i++)
 		{
-			shardsInUI.GetChild(i).gameObject.SetActive(false);
+			shardArray[i].SetActive(false);
 		}
 	}
 
 	private void AddShard()
 	{
 		int shardCount = GameManager.GetComponent<GameManager>().shards;
-		if (shardCount < maxShards)
+		if (shardCount < shardArray.Length)
 		{
-			memories.GetChild(0).Find("shards").GetChild(shardCount).gameObject.SetActive(false);
+			shardArray[shardCount].SetActive(false);
 		}
-
 		GameManager.GetComponent<GameManager>().shards++;
 	}
 

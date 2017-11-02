@@ -13,6 +13,7 @@ TagManager:
   - Muistisiru
   - ScriptHolder
   - Portal
+  - shardInUI
   layers:
   - Default
   - TransparentFX

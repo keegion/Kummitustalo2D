@@ -291,7 +291,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 7
   maxHp: 7
-  maxShards: 4
+  maxShards: 16
   myGUIStyle:
     m_Name: 
     m_Normal:
