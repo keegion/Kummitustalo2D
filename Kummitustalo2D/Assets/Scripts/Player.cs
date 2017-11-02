@@ -42,7 +42,7 @@ public class Player : MonoBehaviour
 		animator.Play("HealthBar", 0, 0.99f);
 		animator.speed = 0;
 
-		//Debug.Log(memories.GetChild(0).Find("shards").GetChild(0));
+		UpdateShardsOnStart();
 		//Transform[] shards;
 	}
 
@@ -74,9 +74,13 @@ public class Player : MonoBehaviour
 	}
 
 	private void UpdateShardsOnStart(){
-		foreach (Transform child in transform)
+		int shardCount = GameManager.GetComponent<GameManager>().shards;
+		Transform shardsInUI = memories.GetChild(0).Find("shards");
+
+		int children = shardsInUI.childCount;
+		for (int i = 0; i < children && i < shardCount; ++i)
 		{
-			print("Foreach loop: " + child);
+			shardsInUI.GetChild(i).gameObject.SetActive(false);
 		}
 	}
 
