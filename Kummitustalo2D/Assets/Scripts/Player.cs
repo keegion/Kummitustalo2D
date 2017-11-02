@@ -4,68 +4,81 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class Player : MonoBehaviour {
-    public float hp;
-    public float maxHp;
+public class Player : MonoBehaviour
+{
+	public float hp;
+	public float maxHp;
 	public int maxShards;
 	public GUIStyle myGUIStyle;
-    public Image healthMeter;
+	public Image healthMeter;
 	public Transform memories;
 	public GameObject GameManagerPrefab;
 	private GameObject GameManager;
-    Rigidbody2D rb;
-    public bool OnStairs, portalSummoned = false;
-    CharController charctr;
+	Rigidbody2D rb;
+	public bool OnStairs, portalSummoned = false;
+	CharController charctr;
 
-    Animator animator;
+	Animator animator;
 
-    PortalSummon summonPortal;
-    
+	PortalSummon summonPortal;
+
 	// Use this for initialization
-	void Start () {
+	void Start()
+	{
 		rb = GetComponent<Rigidbody2D>();
-        charctr = GetComponent<CharController>();
-        summonPortal = GetComponent<PortalSummon>();
+		charctr = GetComponent<CharController>();
+		summonPortal = GetComponent<PortalSummon>();
 		myGUIStyle.fontSize = 24;
 		myGUIStyle.normal.textColor = Color.white;
 		// create GameManager if one doesn't exist in scene
 		GameManager = GameObject.Find("GameManager(Clone)");
 
-		if (GameManager == null){
+		if (GameManager == null)
+		{
 			GameManager = Instantiate(GameManagerPrefab);
 		}
 
-        animator = healthMeter.GetComponent<Animator>();
-        animator.Play("HealthBar", 0, 0.99f);
-        animator.speed = 0;
+		animator = healthMeter.GetComponent<Animator>();
+		animator.Play("HealthBar", 0, 0.99f);
+		animator.speed = 0;
 
 		//Debug.Log(memories.GetChild(0).Find("shards").GetChild(0));
 		//Transform[] shards;
-    }
-	
-	// Update is called once per frame
-	void Update () {
-        CheckHP();
 	}
 
-    void CheckHP()
-    {
-        if (hp <= 0)
-            Die();
-    }
+	// Update is called once per frame
+	void Update()
+	{
+		CheckHP();
+	}
 
-    public void Die()
-    {
+	void CheckHP()
+	{
+		if (hp <= 0)
+			Die();
+	}
+
+	public void Die()
+	{
 		if (GameManager.GetComponent<GameManager>().livesLeft < 1)
 		{
 			Debug.Log("Game over man");
 			SceneManager.LoadScene("Test_start_scene", LoadSceneMode.Single);
-		} else {
+		}
+		else
+		{
 			GameManager.GetComponent<GameManager>().livesLeft--;
 			Debug.Log("You have died");
 			SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 		}
-    }
+	}
+
+	private void UpdateShardsOnStart(){
+		foreach (Transform child in transform)
+		{
+			print("Foreach loop: " + child);
+		}
+	}
 
 	private void AddShard()
 	{
