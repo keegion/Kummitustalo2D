@@ -15,8 +15,8 @@ public class CharController : MonoBehaviour {
     Player player;
 	//Animator animator;
 
-	public Transform GroundCheck1; // Put the prefab of the ground here
-	public LayerMask groundLayer; // Insert the layer here.
+	public Transform GroundCheck;
+	public LayerMask groundLayer;
 
 	void Start()
 	{
@@ -27,7 +27,7 @@ public class CharController : MonoBehaviour {
 
 	void Update()
 	{
-		isGrounded = Physics2D.OverlapCircle(GroundCheck1.position, 0.15f, groundLayer); // checks if you are within 0.15 position in the Y of the ground
+		isGrounded = Physics2D.OverlapCircle(GroundCheck.position, 0.15f, groundLayer); // checks if you are within 0.15 position in the Y of the ground
 
 		if (Input.GetButtonDown("Jump") && isGrounded)
 		{
@@ -39,7 +39,6 @@ public class CharController : MonoBehaviour {
 	{
 		input_x = Input.GetAxis("Horizontal");
         input_y = Input.GetAxis("Vertical");
-		//input_y = 0; //Input.GetAxis("Vertical");
 
 		transform.Translate(input_x * Time.deltaTime * speed, 0, 0);
 

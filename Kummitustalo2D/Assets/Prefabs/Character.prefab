@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4960448461892970}
   m_Layer: 9
-  m_Name: Groundcheck1
+  m_Name: Groundcheck
   m_TagString: Untagged
   m_Icon: {fileID: 419385456094870383, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -261,7 +261,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 1411341833975288, guid: d71cff70a0464471685a4f1bbca3fa93,
     type: 2}
   bulletSpawn: {fileID: 4513722689374938}
-  GroundCheck1: {fileID: 4960448461892970}
+  GroundCheck: {fileID: 4960448461892970}
   groundLayer:
     serializedVersion: 2
     m_Bits: 1024
