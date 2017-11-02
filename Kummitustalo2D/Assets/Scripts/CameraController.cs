@@ -6,6 +6,7 @@ public class CameraController : MonoBehaviour {
 
 	public GameObject player;
 	private Vector3 offset;
+	public float smoothing = 5f;
 
 	void Start()
 	{
@@ -14,6 +15,7 @@ public class CameraController : MonoBehaviour {
 
 	void LateUpdate()
 	{
-		transform.position = player.transform.position + offset;
+		Vector3 targetCamPos = player.transform.position + offset;
+		transform.position = Vector3.Lerp(transform.position, targetCamPos, smoothing * Time.deltaTime);
 	}
 }
