@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -30,21 +31,28 @@ public class Player : MonoBehaviour
 		summonPortal = GetComponent<PortalSummon>();
 		myGUIStyle.fontSize = 24;
 		myGUIStyle.normal.textColor = Color.white;
+
 		// create GameManager if one doesn't exist in scene
 		GameManager = GameObject.Find("GameManager(Clone)");
-
 		if (GameManager == null)
 		{
 			GameManager = Instantiate(GameManagerPrefab);
-
 		}
 
-        shardArray = GameObject.FindGameObjectsWithTag("shardInUI");
 		animator = healthMeter.GetComponent<Animator>();
 		animator.Play("HealthBar", 0, 0.99f);
 		animator.speed = 0;
 
+		shardArray = GameObject.FindGameObjectsWithTag("shardInUI");
+		// Sortataan array nimien mukaan, koska FindGameObjectsWithTag palauttaa gameobjectit "random" järjestyksessä
+		Array.Sort(shardArray, CompareObNames);
+
 		UpdateShardsOnStart();
+	}
+
+	int CompareObNames(GameObject a, GameObject b)
+	{
+		return string.Compare(a.name, b.name, StringComparison.CurrentCulture);
 	}
 
 	// Update is called once per frame
@@ -135,8 +143,8 @@ public class Player : MonoBehaviour
    
     void OnGUI()
 	{
-		GUI.Label(new Rect(85, 30, 100, 30), "Health: " + hp, myGUIStyle);
-		GUI.Label(new Rect(275, 30, 40, 30), "x " + GameManager.GetComponent<GameManager>().livesLeft, myGUIStyle);
-        GUI.Label(new Rect(420, 30, 40, 30), "x " + GameManager.GetComponent<GameManager>().shards, myGUIStyle);
+		GUI.Label(new Rect(215, 30, 100, 30), "Health: " + hp, myGUIStyle);
+		GUI.Label(new Rect(375, 30, 100, 30), "Lives: " + GameManager.GetComponent<GameManager>().livesLeft, myGUIStyle);
+		GUI.Label(new Rect(520, 30, 100, 30), "Shards: " + GameManager.GetComponent<GameManager>().shards, myGUIStyle);
     }
 }
