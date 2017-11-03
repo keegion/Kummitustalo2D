@@ -36,13 +36,14 @@ public class Player : MonoBehaviour
 		if (GameManager == null)
 		{
 			GameManager = Instantiate(GameManagerPrefab);
+
 		}
 
+        shardArray = GameObject.FindGameObjectsWithTag("shardInUI");
 		animator = healthMeter.GetComponent<Animator>();
 		animator.Play("HealthBar", 0, 0.99f);
 		animator.speed = 0;
 
-		shardArray = GameObject.FindGameObjectsWithTag("shardInUI");
 		UpdateShardsOnStart();
 	}
 
