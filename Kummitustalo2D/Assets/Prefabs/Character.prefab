@@ -85,7 +85,7 @@ Transform:
   m_GameObject: {fileID: 1683934380118680}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -0.48, z: 0}
-  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_Children:
   - {fileID: 4513722689374938}
   - {fileID: 4960448461892970}
@@ -99,7 +99,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1486634769338044}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.13, y: -1.16, z: 0}
+  m_LocalPosition: {x: -0.63, y: -5.13, z: 0}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_Children: []
   m_Father: {fileID: 4730979290373004}
@@ -137,8 +137,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.10497075, y: 0.013999701}
-  m_Size: {x: 1.2712911, y: 2.3699844}
+  m_Offset: {x: -0.37105918, y: 0.22821188}
+  m_Size: {x: 5.745973, y: 10.224481}
   m_Direction: 0
 --- !u!82 &82427294100804798
 AudioSource:
@@ -251,7 +251,7 @@ MonoBehaviour:
   speed: 5
   input_x: 0
   input_y: 0
-  jumpForce: 16
+  jumpForce: 14.5
   bulletSpeed: 500
   bulletLifeTime: 5
   bulletCDTime: 1
@@ -291,7 +291,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 7
   maxHp: 7
-  maxShards: 16
   myGUIStyle:
     m_Name: 
     m_Normal:
@@ -399,7 +398,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: 21300000, guid: c81b59bad73e54997897909c6a3081c7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d9d0be6d734687342b823930ed689d7a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
