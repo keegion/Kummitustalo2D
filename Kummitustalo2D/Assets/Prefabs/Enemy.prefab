@@ -244,8 +244,7 @@ MonoBehaviour:
   frontRayRange: {fileID: 4327321591774816}
   backRayRange: {fileID: 4818123187420268}
   seeEnemy: 0
-  waypoint1: {fileID: 0}
-  waypoint2: {fileID: 0}
+  wayPointCount: 0
 --- !u!114 &114807217343049658
 MonoBehaviour:
   m_ObjectHideFlags: 1

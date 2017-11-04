@@ -16,13 +16,16 @@ public class EnemyAI : MonoBehaviour {
     bool shooting;
     bool atWayPoint;
     bool right = true;
-    public GameObject waypoint0, waypoint1, waypoint2;
-    GameObject[] waypoints;
-    public int wayPointCount;
+    GameObject waypoint0;
+    GameObject[] waypoints, temp;
+    
 
 
     void Start () {
-        waypoints = new GameObject[wayPointCount];
+
+        waypoint0 = GameObject.FindGameObjectWithTag("TempLocation");
+        temp = GameObject.FindGameObjectsWithTag("Waypoints");
+        waypoints = new GameObject[temp.Length];
         waypoints = GameObject.FindGameObjectsWithTag("Waypoints");
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();

@@ -15,6 +15,7 @@ TagManager:
   - Portal
   - shardInUI
   - Waypoints
+  - TempLocation
   layers:
   - Default
   - TransparentFX
