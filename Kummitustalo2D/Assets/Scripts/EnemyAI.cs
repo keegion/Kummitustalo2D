@@ -9,19 +9,27 @@ public class EnemyAI : MonoBehaviour {
     Vector3 previous;
     Animator anim;
     Rigidbody2D rb;
-    Transform temp;
     public  float walkingSpeed = 3;
-    public Transform spot1, spot2, frontRayRange, backRayRange;
+    public Transform frontRayRange, backRayRange;
     public bool seeEnemy = false;
-    bool spotted, spottedBackside = false;
+    bool readyToTP, teleportCD, spotted, spottedBackside = false;
     bool shooting;
     bool atWayPoint;
+    bool right = true;
+    GameObject waypoint0;
+    GameObject[] waypoints, temp;
+    
+
 
     void Start () {
 
+        waypoint0 = GameObject.FindGameObjectWithTag("TempLocation");
+        temp = GameObject.FindGameObjectsWithTag("Waypoints");
+        waypoints = new GameObject[temp.Length];
+        waypoints = GameObject.FindGameObjectsWithTag("Waypoints");
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
-        temp = spot1;
+        StartCoroutine(WaypointCountDown());
 	}
 
 
@@ -31,10 +39,12 @@ public class EnemyAI : MonoBehaviour {
         CheckPos();
         currentSpeed = CurrentSpeed();
         anim.SetFloat("speed", currentSpeed);
-        if (!seeEnemy)
-            transform.position += (temp.transform.position - transform.position).normalized * walkingSpeed * Time.deltaTime;
+        if (!seeEnemy && right)
+            transform.position += Vector3.right * walkingSpeed * Time.deltaTime;
+        if (!seeEnemy && !right)
+            transform.position += Vector3.left * walkingSpeed * Time.deltaTime;
 
-        
+
         Raycasting();
         Behaviours();
 
@@ -97,22 +107,28 @@ public class EnemyAI : MonoBehaviour {
         }
         if(spottedBackside && !atWayPoint)
         {
-            
-           
-            if (temp == spot2)
-            {
-                temp = spot1;
-                
-            }
-                
-            if (temp == spot1)
-            {
-                temp = spot2;
-            }
+            transform.forward = new Vector3(0f, 0f, transform.forward.z * -1);
+            right = !right;
+            seeEnemy = true;
+            shooting = true;
+
+
 
         }
     
 
+
+    }
+    IEnumerator WaypointCountDown()
+    {
+        yield return new WaitForSeconds(Random.Range(15f,40f));
+        readyToTP = true;
+    }
+    IEnumerator TeleportCountDown()
+    {
+        yield return new WaitForSeconds(2f);
+        transform.position = waypoints[Random.Range(0,waypoints.Length)].transform.position;
+        StartCoroutine(WaypointCountDown());
 
     }
     void OnTriggerEnter2D(Collider2D collision)
@@ -120,15 +136,28 @@ public class EnemyAI : MonoBehaviour {
         
         if(collision.tag=="spot1")
         {
-
-            temp = spot2;
-            atWayPoint = true;
+            right = true;
+            
         }
         if (collision.tag == "spot2")
         {
-            temp = spot1;
-            atWayPoint = true;
+            right = false;
         }
+        if (collision.GetComponent<Collider2D>().gameObject.layer == 14)
+        {
+            if(readyToTP)
+            {
+                readyToTP = false;
+                transform.position = waypoint0.transform.position;
+                StartCoroutine(TeleportCountDown());
+
+            }
+        }
+
+    }
+  
+    void AddTransforms()
+    {
 
     }
     private void OnTriggerExit2D(Collider2D collision)

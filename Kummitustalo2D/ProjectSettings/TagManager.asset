@@ -14,6 +14,8 @@ TagManager:
   - ScriptHolder
   - Portal
   - shardInUI
+  - Waypoints
+  - TempLocation
   layers:
   - Default
   - TransparentFX
@@ -27,9 +29,9 @@ TagManager:
   - Player
   - Ground
   - Bullet
-  - 
-  - 
-  - 
+  - Wallpaper
+  - Window
+  - Waypoint
   - 
   - 
   - 

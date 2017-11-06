@@ -112,6 +112,7 @@ public class CharController : MonoBehaviour {
 
 		}
 	}
+
     
 
 	//IEnumerator BulletCDRoutine(float waitTime)
