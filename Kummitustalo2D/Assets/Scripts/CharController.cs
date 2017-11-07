@@ -33,12 +33,9 @@ public class CharController : MonoBehaviour {
 		{
 			Jump();
 		}
-	}
 
-	void FixedUpdate()
-	{
 		input_x = Input.GetAxis("Horizontal");
-        input_y = Input.GetAxis("Vertical");
+		input_y = Input.GetAxis("Vertical");
 
 		transform.Translate(input_x * Time.deltaTime * speed, 0, 0);
 
