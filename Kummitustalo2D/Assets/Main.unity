@@ -2787,30 +2787,6 @@ Prefab:
       propertyPath: m_Name
       value: Enemy (2)
       objectReference: {fileID: 0}
-    - target: {fileID: 114603758433462292, guid: 799fb127b12cffa4190e4ce277b6094e,
-        type: 2}
-      propertyPath: waypoint1
-      value: 
-      objectReference: {fileID: 1869176221}
-    - target: {fileID: 114603758433462292, guid: 799fb127b12cffa4190e4ce277b6094e,
-        type: 2}
-      propertyPath: waypoint2
-      value: 
-      objectReference: {fileID: 4331545}
-    - target: {fileID: 114603758433462292, guid: 799fb127b12cffa4190e4ce277b6094e,
-        type: 2}
-      propertyPath: waypoint0
-      value: 
-      objectReference: {fileID: 247325060}
-    - target: {fileID: 114603758433462292, guid: 799fb127b12cffa4190e4ce277b6094e,
-        type: 2}
-      propertyPath: wayPointCount
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1254245141642390, guid: 799fb127b12cffa4190e4ce277b6094e, type: 2}
-      propertyPath: m_TagString
-      value: Enemy
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 799fb127b12cffa4190e4ce277b6094e, type: 2}
   m_IsPrefabParent: 0
@@ -5066,7 +5042,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
---- !u!1001 &1027408619
+--- !u!1001 &1025118852
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2

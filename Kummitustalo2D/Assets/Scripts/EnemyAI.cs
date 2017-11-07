@@ -11,13 +11,14 @@ public class EnemyAI : MonoBehaviour {
     Rigidbody2D rb;
     public  float walkingSpeed = 3;
     public Transform frontRayRange, backRayRange;
-    public bool seeEnemy = false;
-    bool readyToTP, teleportCD, spotted, spottedBackside = false;
+    public bool spotted = false;
+    bool readyToTP, teleportCD, spottedBackside = false;
     bool shooting;
     bool atWayPoint;
     bool right = true;
     GameObject waypoint0;
     GameObject[] waypoints, temp;
+    
     
 
 
@@ -38,10 +39,10 @@ public class EnemyAI : MonoBehaviour {
         if (!shooting)
         CheckPos();
         currentSpeed = CurrentSpeed();
-        anim.SetFloat("speed", currentSpeed);
-        if (!seeEnemy && right)
+       // anim.SetFloat("speed", currentSpeed);
+        if (!spotted && right)
             transform.position += Vector3.right * walkingSpeed * Time.deltaTime;
-        if (!seeEnemy && !right)
+        if (!spotted && !right)
             transform.position += Vector3.left * walkingSpeed * Time.deltaTime;
 
 
@@ -95,25 +96,19 @@ public class EnemyAI : MonoBehaviour {
     {
         if (spotted)
         {
-
-            seeEnemy = true;
             shooting = true;
 
         }
         if (!spotted)
         {
-            seeEnemy = false;
             shooting = false;
+
         }
-        if(spottedBackside && !atWayPoint)
+        if (spottedBackside && !atWayPoint)
         {
             transform.forward = new Vector3(0f, 0f, transform.forward.z * -1);
             right = !right;
-            seeEnemy = true;
             shooting = true;
-
-
-
         }
     
 
@@ -131,6 +126,8 @@ public class EnemyAI : MonoBehaviour {
         StartCoroutine(WaypointCountDown());
 
     }
+
+
     void OnTriggerEnter2D(Collider2D collision)
     {
         

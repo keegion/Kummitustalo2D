@@ -102,7 +102,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1331172027118736}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.3167162, y: -4.818734, z: 0}
+  m_LocalPosition: {x: -2.25, y: 0.93, z: 0}
   m_LocalScale: {x: 0.29999998, y: 0.29999998, z: 0.29999998}
   m_Children:
   - {fileID: 4746606168273970}
@@ -183,7 +183,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 7
 --- !u!70 &70791947423492460
 CapsuleCollider2D:
   m_ObjectHideFlags: 1
@@ -243,8 +243,7 @@ MonoBehaviour:
   walkingSpeed: 3
   frontRayRange: {fileID: 4327321591774816}
   backRayRange: {fileID: 4818123187420268}
-  seeEnemy: 0
-  wayPointCount: 0
+  spotted: 0
 --- !u!114 &114807217343049658
 MonoBehaviour:
   m_ObjectHideFlags: 1
