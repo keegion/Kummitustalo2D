@@ -89,7 +89,7 @@ public class EnemyAI : MonoBehaviour {
 
         Debug.DrawLine(transform.position, backRayRange.position, Color.red);
         spottedBackside = Physics2D.Linecast(transform.position, backRayRange.position, 1 << LayerMask.NameToLayer("Player"));
-
+      
     }
     //What happens when enemy is found
     void Behaviours()
