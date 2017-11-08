@@ -7,13 +7,13 @@ public class StartGame : MonoBehaviour {
     private GameObject GameManager;
 
     void Start () {
+		GameManager = GameObject.Find("GameManager(Clone)");
         // reset all player stuff
-        Destroy(GameObject.Find("GameManager(Clone)"));
+		Destroy(GameManager);
     }
 	
 	void Update () {
 		if (Input.anyKey) {
-            GameManager = GameObject.Find("GameManager(Clone)");
             //GameManager.GetComponent<GameManager>().livesLeft = GameManager.GetComponent<GameManager>().lives;
             SceneManager.LoadScene("Main");
 		}

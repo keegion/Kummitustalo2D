@@ -40,7 +40,7 @@ public class Player : MonoBehaviour
 		}
 
 		animator = healthMeter.GetComponent<Animator>();
-		animator.Play("HealthBar", 0, 0.99f);
+		ResetHealthBarAnimation();
 		animator.speed = 0;
 
 		shardArray = GameObject.FindGameObjectsWithTag("shardInUI");
@@ -67,6 +67,11 @@ public class Player : MonoBehaviour
 			Die();
 	}
 
+	void ResetHealthBarAnimation ()
+	{
+		animator.Play("HealthBar", 0, 0.99f);
+	}
+
 	public void Die()
 	{
 		if (GameManager.GetComponent<GameManager>().livesLeft < 1)
@@ -78,7 +83,10 @@ public class Player : MonoBehaviour
 		{
 			GameManager.GetComponent<GameManager>().livesLeft--;
 			Debug.Log("You have died");
-			SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+			transform.position = new Vector3(1f, 1.5f, 0);
+			hp = maxHp;
+			ResetHealthBarAnimation();
+			//SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 		}
 	}
 

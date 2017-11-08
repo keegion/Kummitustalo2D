@@ -10,7 +10,7 @@ public class CharController : MonoBehaviour {
 	public float speed = 5f, input_x, input_y, jumpForce, bulletSpeed, bulletLifeTime, bulletCDTime = 1f, bulletCDTimestamp = 0;
 	public bool facingRight, isGrounded; //, bulletCD;
 	public GameObject bulletPrefab;
-	public Transform bulletSpawn; //, tagGround;
+	public Transform bulletSpawn;
 	Rigidbody2D rb;
     Player player;
 	//Animator animator;
