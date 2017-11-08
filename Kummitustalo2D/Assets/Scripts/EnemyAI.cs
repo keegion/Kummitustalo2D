@@ -39,7 +39,7 @@ public class EnemyAI : MonoBehaviour {
         if (!shooting)
         CheckPos();
         currentSpeed = CurrentSpeed();
-       // anim.SetFloat("speed", currentSpeed);
+        anim.SetFloat("speed", currentSpeed);
         if (!spotted && right)
             transform.position += Vector3.right * walkingSpeed * Time.deltaTime;
         if (!spotted && !right)
