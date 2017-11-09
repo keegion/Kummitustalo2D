@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
 	public float maxHp;
 	public GUIStyle myGUIStyle;
 	public Image healthMeter;
-	public Transform memories;
+	public Transform memories, playerSpawnPoint;
 	GameObject[] shardArray = new GameObject[15];
 	public GameObject GameManagerPrefab;
 	private GameObject GameManager;
@@ -83,7 +83,15 @@ public class Player : MonoBehaviour
 		{
 			GameManager.GetComponent<GameManager>().livesLeft--;
 			Debug.Log("You have died");
-			transform.position = new Vector3(1f, 1.5f, 0);
+			if (playerSpawnPoint)
+			{
+				transform.position = playerSpawnPoint.position;
+			} 
+			else 
+			{
+				// fixed fallback if spawn point not added to scene
+				transform.position = new Vector3(1f, 1.5f, 0);
+			}
 			hp = maxHp;
 			ResetHealthBarAnimation();
 			//SceneManager.LoadScene(SceneManager.GetActiveScene().name);
