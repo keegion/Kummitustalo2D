@@ -682,7 +682,7 @@ AudioListener:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1739700080294140}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!95 &95409234709003838
 Animator:
   serializedVersion: 3
@@ -1418,7 +1418,7 @@ Behaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1739700080294140}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!222 &222009543156652430
 CanvasRenderer:
   m_ObjectHideFlags: 1
