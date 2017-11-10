@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4456100071150792}
   - component: {fileID: 212526162201271758}
   - component: {fileID: 61754192311010000}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Floor_stone_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34,8 +34,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1108099902916918}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 58.46777, y: -0.4403321, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 57.5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
