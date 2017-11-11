@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class PortalSummon : MonoBehaviour {
     public int MaxShards;
-    private GameObject gm;
+    //private GameObject gm;
     public GameObject portal;
 
 	// Use this for initialization
 	void Start () {
-        gm = GameObject.Find("GameManager(Clone)");
-
+        //gm = GameObject.Find("GameManager(Clone)");
     }
 	
 	// Update is called once per frame

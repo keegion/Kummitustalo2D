@@ -8,7 +8,7 @@ public class EnemyAI : MonoBehaviour {
     float velocity, currentSpeed;
     Vector3 previous;
     Animator anim;
-    Rigidbody2D rb;
+    //Rigidbody2D rb;
     public  float walkingSpeed = 3;
     public Transform frontRayRange, backRayRange;
     public bool spotted = false;
@@ -29,7 +29,7 @@ public class EnemyAI : MonoBehaviour {
         waypoints = new GameObject[temp.Length];
         waypoints = GameObject.FindGameObjectsWithTag("Waypoints");
         anim = GetComponent<Animator>();
-        rb = GetComponent<Rigidbody2D>();
+        //rb = GetComponent<Rigidbody2D>();
         StartCoroutine(WaypointCountDown());
 	}
 
@@ -39,7 +39,10 @@ public class EnemyAI : MonoBehaviour {
         if (!shooting)
         CheckPos();
         currentSpeed = CurrentSpeed();
-        anim.SetFloat("speed", currentSpeed);
+		if (anim.runtimeAnimatorController != null)
+		{
+			anim.SetFloat("speed", currentSpeed);
+		}
         if (!spotted && right)
             transform.position += Vector3.right * walkingSpeed * Time.deltaTime;
         if (!spotted && !right)
