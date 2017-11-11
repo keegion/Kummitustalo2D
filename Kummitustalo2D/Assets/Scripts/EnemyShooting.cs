@@ -6,6 +6,7 @@ public class EnemyShooting : MonoBehaviour {
     EnemyAI enemyAI;
     public GameObject enemyBullet;
 	public Transform bulletSpawn;
+	public float bulletCDTime = 1;
     bool bulletOnCD;
 	// Use this for initialization
 	void Start () {
@@ -26,7 +27,7 @@ public class EnemyShooting : MonoBehaviour {
     IEnumerator BulletCD()
     {
 
-        yield return new WaitForSeconds(1f);
+		yield return new WaitForSeconds(bulletCDTime);
         bulletOnCD = false;
     }
     
