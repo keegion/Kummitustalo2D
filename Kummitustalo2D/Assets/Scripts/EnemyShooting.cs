@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyShooting : MonoBehaviour {
     EnemyAI enemyAI;
     public GameObject enemyBullet;
+	public Transform bulletSpawn;
     bool bulletOnCD;
 	// Use this for initialization
 	void Start () {
@@ -17,7 +18,7 @@ public class EnemyShooting : MonoBehaviour {
         if(enemyAI.spotted && !bulletOnCD)
         {
             bulletOnCD = true;
-            GameObject temps = (GameObject)Instantiate(enemyBullet, transform.position, transform.rotation);
+			GameObject temps = (GameObject)Instantiate(enemyBullet, bulletSpawn.position, transform.rotation);
             Destroy(temps, 5f);
             StartCoroutine(BulletCD());
         }

@@ -27,7 +27,7 @@ public class CharController : MonoBehaviour {
 
 	void Update()
 	{
-		isGrounded = Physics2D.OverlapCircle(GroundCheck.position, 0.15f, groundLayer); // checks if you are within 0.15 position in the Y of the ground
+		isGrounded = Physics2D.OverlapCircle(GroundCheck.position, 0.15f, groundLayer);
 
 		if (Input.GetButtonDown("Jump") && isGrounded)
 		{
