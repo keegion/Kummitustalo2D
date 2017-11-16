@@ -16,7 +16,7 @@ public class EnemyShooting : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		
-        if(enemyAI.spotted && !bulletOnCD)
+        if(enemyAI.shooting && !bulletOnCD)
         {
             bulletOnCD = true;
 			GameObject temps = (GameObject)Instantiate(enemyBullet, bulletSpawn.position, transform.rotation);

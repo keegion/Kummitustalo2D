@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyAI : MonoBehaviour
+public class EnemyAI2 : MonoBehaviour
 {
 
     Vector3 LastPOS, NextPOS;
@@ -12,11 +12,12 @@ public class EnemyAI : MonoBehaviour
     public float walkingSpeed = 3;
     public Transform frontRayRange, backRayRange;
     public bool shooting = false;
-    bool readyToTP, teleportCD, spottedBackside, atWayPoint, spotted;
+    bool readyToTP, teleportCD, spottedBackside, atWayPoint, spotted, changingDirection;
     bool right = true;
     GameObject waypoint0;
     GameObject[] waypoints, temp;
     Transform player;
+   
 
 
 
@@ -31,21 +32,21 @@ public class EnemyAI : MonoBehaviour
         anim = GetComponent<Animator>();
         StartCoroutine(WaypointCountDown());
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        GetComponent<SpriteRenderer>().color = Color.red;
     }
 
 
     void Update()
     {
-        if (!shooting)
             CheckPos();
         currentSpeed = CurrentSpeed();
         if (anim.runtimeAnimatorController != null)
         {
             anim.SetFloat("speed", currentSpeed);
         }
-        if (!shooting && right)
+        if (right)
             transform.position += Vector3.right * walkingSpeed * Time.deltaTime;
-        if (!shooting && !right)
+        if (!right)
             transform.position += Vector3.left * walkingSpeed * Time.deltaTime;
 
 
@@ -107,11 +108,13 @@ public class EnemyAI : MonoBehaviour
             shooting = false;
 
         }
-        if (spottedBackside && !atWayPoint && PlayerHiddenByObstacles())
+        if (spottedBackside && !atWayPoint && PlayerHiddenByObstacles()&&!changingDirection)
         {
+            changingDirection = true;
             transform.forward = new Vector3(0f, 0f, transform.forward.z * -1);
             right = !right;
             shooting = true;
+            StartCoroutine(ChangingDirectionCD());
         }
 
 
@@ -129,6 +132,12 @@ public class EnemyAI : MonoBehaviour
         StartCoroutine(WaypointCountDown());
 
     }
+    IEnumerator ChangingDirectionCD()
+    {
+        yield return new WaitForSeconds(1f);
+        changingDirection = false;
+    }
+          
 
 
     void OnTriggerEnter2D(Collider2D collision)

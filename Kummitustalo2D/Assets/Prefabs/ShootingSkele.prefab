@@ -58,12 +58,12 @@ GameObject:
   m_Component:
   - component: {fileID: 4198557619396754}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: ShootingSkele
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1472093026665934
 GameObject:
   m_ObjectHideFlags: 1
@@ -150,7 +150,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1331172027118736}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.6, y: -1.39, z: 0}
+  m_LocalPosition: {x: 3.3167162, y: -0.74, z: 0}
   m_LocalScale: {x: 0.6, y: 0.6, z: 1}
   m_Children:
   - {fileID: 4746606168273970}
@@ -356,6 +356,7 @@ MonoBehaviour:
   enemyBullet: {fileID: 1443276908489178, guid: c9991cc1d66ce7345a342edd4d61f31f,
     type: 2}
   bulletSpawn: {fileID: 4947390568695606}
+  bulletCDTime: 1
 --- !u!114 &114603758433462292
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -370,7 +371,7 @@ MonoBehaviour:
   walkingSpeed: 3
   frontRayRange: {fileID: 4327321591774816}
   backRayRange: {fileID: 4818123187420268}
-  spotted: 0
+  shooting: 0
 --- !u!114 &114807217343049658
 MonoBehaviour:
   m_ObjectHideFlags: 1
