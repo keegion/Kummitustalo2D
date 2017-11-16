@@ -48,7 +48,8 @@ public class EnemyBullet : MonoBehaviour {
 			Destroy(gameObject, 2f);
 		}
 		// pitäiskö tuhoutua edes kun osuu pelaajaan?
-		// pitäiskö palautuessaan jäädä heppamiehen käteen tai "päähän"?
+		// tai pitäiskö muuttaa ettei oo triggeri, vaan kopauttaa pelaajaa?
+		// pitäiskö palautuessaan jäädä heppamiehen käteen tai "päähän"? Lerpillä esim. loppumatka?
 
 		// vanha tapa velocityllä:
         //GetComponent<Rigidbody2D>().velocity = new Vector2(speed, GetComponent<Rigidbody2D>().velocity.y);
