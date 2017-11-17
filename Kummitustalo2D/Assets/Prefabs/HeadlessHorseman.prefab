@@ -68,9 +68,10 @@ GameObject:
   - component: {fileID: 50477037232903712}
   - component: {fileID: 114134290221663094}
   - component: {fileID: 114343309881246184}
-  - component: {fileID: 114941165481948048}
+  - component: {fileID: 114739463184796014}
   - component: {fileID: 58743036288498686}
   - component: {fileID: 95283428568081584}
+  - component: {fileID: 61923309860400312}
   m_Layer: 8
   m_Name: headlesshorseman
   m_TagString: Enemy
@@ -104,7 +105,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4952853824658940}
   m_Layer: 8
-  m_Name: BulletSpawn
+  m_Name: BoomerangPoint
   m_TagString: Untagged
   m_Icon: {fileID: -982381405332843317, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -147,7 +148,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1337227829560332}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.32, y: -4.21, z: 0}
+  m_LocalPosition: {x: -3.6, y: -4.21, z: 0}
   m_LocalScale: {x: 0.2, y: 0.2, z: 1}
   m_Children:
   - {fileID: 4031446335373900}
@@ -234,7 +235,7 @@ CircleCollider2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1460684339485350}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -243,6 +244,31 @@ CircleCollider2D:
   m_Offset: {x: 0.55686474, y: 2.419753}
   serializedVersion: 2
   m_Radius: 7.4618483
+--- !u!61 &61923309860400312
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1460684339485350}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.06755257, y: 0.8782015}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 20, y: 15}
+    newSize: {x: 20, y: 15}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 16.352077, y: 11.171942}
+  m_EdgeRadius: 0
 --- !u!95 &95283428568081584
 Animator:
   serializedVersion: 3
@@ -288,7 +314,7 @@ MonoBehaviour:
   frontRayRange: {fileID: 4397518633243472}
   backRayRange: {fileID: 4802740701102904}
   spotted: 0
---- !u!114 &114941165481948048
+--- !u!114 &114739463184796014
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -296,13 +322,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1460684339485350}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8769208289e0ce41b8e48a257a75453, type: 3}
+  m_Script: {fileID: 11500000, guid: 14bc7041d05024737a48d18d9e990bb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyBullet: {fileID: 1581981321906808, guid: 97131d477248a41519e1df35aeab89a5,
+  boomerangPrefab: {fileID: 1581981321906808, guid: 97131d477248a41519e1df35aeab89a5,
     type: 2}
-  bulletSpawn: {fileID: 4952853824658940}
-  bulletCDTime: 2
+  boomerangPoint: {fileID: 4952853824658940}
+  boomerangCDTime: 2
+  boomerangSmoothing: 10
 --- !u!212 &212071122176171492
 SpriteRenderer:
   m_ObjectHideFlags: 1

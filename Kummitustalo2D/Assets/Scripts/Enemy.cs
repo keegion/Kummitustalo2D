@@ -6,9 +6,11 @@ public class Enemy : MonoBehaviour {
 
     public float hp;
     public GameObject muistisiru;
+	EnemyBoomeranging boomerangingController;
+
 	// Use this for initialization
 	void Start () {
-		
+		boomerangingController = GetComponent<EnemyBoomeranging>();
 	}
 	
 	// Update is called once per frame
@@ -21,7 +23,9 @@ public class Enemy : MonoBehaviour {
     {
         Instantiate(muistisiru,transform.position,transform.rotation);
         Destroy(gameObject);
-
+		if (boomerangingController){
+			Destroy(boomerangingController.boomerang);
+		}
       
     }
     private void OnTriggerEnter2D(Collider2D collision)

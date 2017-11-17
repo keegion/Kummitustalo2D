@@ -33,8 +33,9 @@ public class Player : MonoBehaviour
 		myGUIStyle.normal.textColor = Color.white;
 
 		// create GameManager if one doesn't exist in scene
-		GameManager = GameObject.Find("GameManager(Clone)");
-		if (GameManager == null)
+		//GameManager = GameObject.Find("GameManager(Clone)");
+		//if (GameManager == null)
+		if (!FindObjectOfType(typeof(GameManager)))
 		{
 			GameManager = Instantiate(GameManagerPrefab);
 		}
@@ -116,7 +117,18 @@ public class Player : MonoBehaviour
 		GameManager.GetComponent<GameManager>().shards++;
 	}
 
-    private void OnTriggerEnter2D(Collider2D collision)
+	private void OnCollisionEnter2D(Collision2D collision)
+	{
+		if (collision.collider.tag == "EnemyBullet")
+		{
+			hp -= 1;
+			float roundedHealth = hp / maxHp;
+			animator.Play("HealthBar", -1, roundedHealth);
+			animator.speed = 0;
+		}
+	}
+
+	private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.tag =="EnemyBullet")
         {

@@ -22,9 +22,9 @@ GameObject:
   - component: {fileID: 212197023648777062}
   - component: {fileID: 50127781023908166}
   - component: {fileID: 58880705413023158}
-  - component: {fileID: 114478722688652714}
-  m_Layer: 11
-  m_Name: HorsemanBullet
+  - component: {fileID: 114728799453699126}
+  m_Layer: 15
+  m_Name: HorsemanBoomerang
   m_TagString: EnemyBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -72,13 +72,13 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0.07028937}
   serializedVersion: 2
   m_Radius: 1.4951956
---- !u!114 &114478722688652714
+--- !u!114 &114728799453699126
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -86,12 +86,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1581981321906808}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7d1bfd79ebc0e44294cf816f4668c5e, type: 3}
+  m_Script: {fileID: 11500000, guid: e1509321577854259bf2bb164997c50c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 15
-  particle: {fileID: 0}
-  isBoomerang: 1
+  EnemyBoomeranging: {fileID: 0}
+  horseBoy: {fileID: 0}
+  boomerangPoint: {fileID: 0}
+  boomerangCDTime: 2
+  boomerangSmoothing: 10
 --- !u!212 &212197023648777062
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -12,13 +12,13 @@ public class EnemyBullet : MonoBehaviour {
 
 	void Start()
 	{
+		rb = GetComponent<Rigidbody2D>();
+
 		if (transform.rotation.y == 0)
 		{
 			//speed = speed * -1;
 			direction = -1;
 		}
-
-		rb = GetComponent<Rigidbody2D>();
 
 		if (isBoomerang)
 		{
@@ -47,8 +47,7 @@ public class EnemyBullet : MonoBehaviour {
 			rb.transform.Rotate(0, 0, 7);
 			Destroy(gameObject, 2f);
 		}
-		// pitäiskö tuhoutua edes kun osuu pelaajaan?
-		// tai pitäiskö muuttaa ettei oo triggeri, vaan kopauttaa pelaajaa?
+
 		// pitäiskö palautuessaan jäädä heppamiehen käteen tai "päähän"? Lerpillä esim. loppumatka?
 
 		// vanha tapa velocityllä:
@@ -56,8 +55,10 @@ public class EnemyBullet : MonoBehaviour {
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag !="Enemy" && collision.tag !="spot1" && collision.tag != "spot2" && collision.tag != "Tikkaat" && collision.tag != "Muistisiru")
+		if (collision.tag != "Enemy" && collision.tag != "spot1" && collision.tag != "spot2" && collision.tag != "Tikkaat" && collision.tag != "Muistisiru")
+		{
 			Destroy(gameObject);
+		}
 		
        // GameObject temps = (GameObject)Instantiate(particle,collision.transform.position,collision.transform.rotation);
     }
