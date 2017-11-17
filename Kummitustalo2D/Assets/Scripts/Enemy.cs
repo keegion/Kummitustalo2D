@@ -29,7 +29,7 @@ public class Enemy : MonoBehaviour {
     {
         dead = true;
         Instantiate(muistisiru,transform.position,transform.rotation);
-        if (gameObject.tag == "RunningSkele")
+        if (gameObject.tag == "RunningSkele" || gameObject.tag == "ShootingSkele" )
         {
             anim.SetBool("dead", true);
             coll.offset = new Vector2(0f, -1.8f);
@@ -39,7 +39,7 @@ public class Enemy : MonoBehaviour {
             
            // transform.position = new Vector3(transform.position.x, transform.position.y + 3f, +0);
         }
-        if (gameObject.tag != "RunningSkele")
+        if (gameObject.tag == "Enemy")
             Destroy(gameObject);
 		if (boomerangingController){
 			Destroy(boomerangingController.boomerang);

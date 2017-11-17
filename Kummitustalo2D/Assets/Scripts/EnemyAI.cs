@@ -109,7 +109,7 @@ public class EnemyAI : MonoBehaviour
             shooting = false;
 
         }
-        if (spottedBackside && !atWayPoint && PlayerHiddenByObstacles())
+        if (spottedBackside && !atWayPoint && PlayerHiddenByObstacles() && !enemy.dead)
         {
             transform.forward = new Vector3(0f, 0f, transform.forward.z * -1);
             right = !right;
@@ -181,7 +181,7 @@ public class EnemyAI : MonoBehaviour
         foreach (RaycastHit2D hit in hits)
         {
             // ignore the enemy's own colliders (and other enemies)
-            if (hit.transform.tag == "Enemy" || hit.transform.tag == "RunningSkele" || hit.transform.tag == "Waypoints")
+            if (hit.transform.tag == "Enemy" || hit.transform.tag == "RunningSkele" || hit.transform.tag == "Waypoints" || hit.transform.tag == "ShootingSkele")
                 continue;
 
             if (hit.transform.tag != "Player")

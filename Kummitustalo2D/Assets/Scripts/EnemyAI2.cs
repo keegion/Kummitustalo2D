@@ -191,7 +191,7 @@ public class EnemyAI2 : MonoBehaviour
         foreach (RaycastHit2D hit in hits)
         {
             // ignore the enemy's own colliders (and other enemies)
-            if (hit.transform.tag == "Enemy" || hit.transform.tag == "RunningSkele" || hit.transform.tag == "Waypoints")
+            if (hit.transform.tag == "Enemy" || hit.transform.tag == "RunningSkele" || hit.transform.tag == "Waypoints" || hit.transform.tag == "ShootingSkele")
                 continue;
 
             if (hit.transform.tag != "Player")

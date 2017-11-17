@@ -43,8 +43,8 @@ GameObject:
   - component: {fileID: 114580837179585666}
   - component: {fileID: 70791947423492460}
   m_Layer: 8
-  m_Name: Enemy
-  m_TagString: Enemy
+  m_Name: ShootingSkele
+  m_TagString: ShootingSkele
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -386,7 +386,7 @@ MonoBehaviour:
   hp: 50
   muistisiru: {fileID: 1990239948703530, guid: 859326b2366cf8849908a7ed6be5423b, type: 2}
   dead: 0
-  particle: {fileID: 0}
+  particle: {fileID: 1884172013015284}
 --- !u!198 &198091580116498832
 ParticleSystem:
   m_ObjectHideFlags: 1

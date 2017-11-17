@@ -8,15 +8,17 @@ public class EnemyShooting : MonoBehaviour {
 	public Transform bulletSpawn;
 	public float bulletCDTime = 1;
     bool bulletOnCD;
+    Enemy enemy;
 	// Use this for initialization
 	void Start () {
         enemyAI = GetComponent<EnemyAI>();
+        enemy = GetComponent<Enemy>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		
-        if(enemyAI.shooting && !bulletOnCD)
+        if(enemyAI.shooting && !bulletOnCD && !enemy.dead)
         {
             bulletOnCD = true;
 			GameObject temps = (GameObject)Instantiate(enemyBullet, bulletSpawn.position, transform.rotation);
