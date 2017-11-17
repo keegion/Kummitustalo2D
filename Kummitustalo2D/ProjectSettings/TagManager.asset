@@ -17,6 +17,7 @@ TagManager:
   - Waypoints
   - TempLocation
   - RunningSkele
+  - ShootingSkele
   layers:
   - Default
   - TransparentFX
