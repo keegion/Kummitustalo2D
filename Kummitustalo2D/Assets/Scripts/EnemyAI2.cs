@@ -17,7 +17,8 @@ public class EnemyAI2 : MonoBehaviour
     GameObject waypoint0;
     GameObject[] waypoints, temp;
     Transform player;
-   
+    Enemy enemy;
+
 
 
 
@@ -33,20 +34,22 @@ public class EnemyAI2 : MonoBehaviour
         StartCoroutine(WaypointCountDown());
         player = GameObject.FindGameObjectWithTag("Player").transform;
         GetComponent<SpriteRenderer>().color = Color.red;
+        enemy = GetComponent<Enemy>();
     }
 
 
     void Update()
     {
+        if(!enemy.dead)
             CheckPos();
         currentSpeed = CurrentSpeed();
         if (anim.runtimeAnimatorController != null)
         {
             anim.SetFloat("speed", currentSpeed);
         }
-        if (right)
+        if (right && !enemy.dead)
             transform.position += Vector3.right * walkingSpeed * Time.deltaTime;
-        if (!right)
+        if (!right && !enemy.dead)
             transform.position += Vector3.left * walkingSpeed * Time.deltaTime;
 
 
@@ -108,7 +111,7 @@ public class EnemyAI2 : MonoBehaviour
             shooting = false;
 
         }
-        if (spottedBackside && !atWayPoint && PlayerHiddenByObstacles()&&!changingDirection)
+        if (spottedBackside && !atWayPoint && PlayerHiddenByObstacles()&&!changingDirection && !enemy.dead)
         {
             changingDirection = true;
             transform.forward = new Vector3(0f, 0f, transform.forward.z * -1);

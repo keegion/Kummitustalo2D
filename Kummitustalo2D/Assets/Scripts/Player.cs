@@ -19,6 +19,7 @@ public class Player : MonoBehaviour
 	public bool OnStairs, portalSummoned,dmgOnCD;
 	CharController charctr;
     public GameObject dmgText;
+  
 
 	Animator animator;
 
@@ -48,6 +49,7 @@ public class Player : MonoBehaviour
 		// Sortataan array nimien mukaan, koska FindGameObjectsWithTag palauttaa gameobjectit "random" järjestyksessä
 		Array.Sort(shardArray, CompareObNames);
 		UpdateShardsOnStart();
+
 	}
 
 	int CompareObNames(GameObject a, GameObject b)
@@ -178,12 +180,15 @@ public class Player : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-        if (!dmgOnCD && collision.gameObject.name == "RunningSkele")
+        if (!dmgOnCD && collision.gameObject.name == "RunningSkele" && !collision.gameObject.GetComponent<Enemy>().dead)
         {
             dmgOnCD = true;
             hp -= 1;
             StartCoroutine(RunningSkeleCD());
             addDmgText();
+            float roundedHealth = hp / maxHp;
+            animator.Play("HealthBar", -1, roundedHealth);
+            animator.speed = 0;
         }
     }
     void addDmgText()

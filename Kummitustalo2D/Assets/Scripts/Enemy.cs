@@ -7,26 +7,44 @@ public class Enemy : MonoBehaviour {
     public float hp;
     public GameObject muistisiru;
 	EnemyBoomeranging boomerangingController;
+    Animator anim;
+    public bool dead;
+    CapsuleCollider2D coll;
+    public GameObject particle;
 
 	// Use this for initialization
 	void Start () {
 		boomerangingController = GetComponent<EnemyBoomeranging>();
+        anim = GetComponent<Animator>();
+        coll = GetComponent<CapsuleCollider2D>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        if (hp <= 0)
+        if (hp <= 0 && !dead)
             Die();
 	}
     
     void Die()
     {
+        dead = true;
         Instantiate(muistisiru,transform.position,transform.rotation);
-        Destroy(gameObject);
+        if (gameObject.tag == "RunningSkele")
+        {
+            anim.SetBool("dead", true);
+            coll.offset = new Vector2(0f, -1.8f);
+            coll.size = new Vector2(0.1f, 0.1f);
+            particle.SetActive(false);
+            
+            
+           // transform.position = new Vector3(transform.position.x, transform.position.y + 3f, +0);
+        }
+        if (gameObject.tag != "RunningSkele")
+            Destroy(gameObject);
 		if (boomerangingController){
 			Destroy(boomerangingController.boomerang);
 		}
-      
+        
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

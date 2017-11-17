@@ -17,6 +17,7 @@ public class EnemyAI : MonoBehaviour
     GameObject waypoint0;
     GameObject[] waypoints, temp;
     Transform player;
+    Enemy enemy;
 
 
 
@@ -31,21 +32,22 @@ public class EnemyAI : MonoBehaviour
         anim = GetComponent<Animator>();
         StartCoroutine(WaypointCountDown());
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        enemy = GetComponent<Enemy>();
     }
 
 
     void Update()
     {
-        if (!shooting)
+        if (!shooting && !enemy.dead)
             CheckPos();
         currentSpeed = CurrentSpeed();
         if (anim.runtimeAnimatorController != null)
         {
             anim.SetFloat("speed", currentSpeed);
         }
-        if (!shooting && right)
+        if (!shooting && right && !enemy.dead)
             transform.position += Vector3.right * walkingSpeed * Time.deltaTime;
-        if (!shooting && !right)
+        if (!shooting && !right && !enemy.dead)
             transform.position += Vector3.left * walkingSpeed * Time.deltaTime;
 
 
