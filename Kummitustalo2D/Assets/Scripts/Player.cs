@@ -16,8 +16,9 @@ public class Player : MonoBehaviour
 	public GameObject GameManagerPrefab;
 	private GameObject GameManager;
 	Rigidbody2D rb;
-	public bool OnStairs, portalSummoned = false;
+	public bool OnStairs, portalSummoned,dmgOnCD;
 	CharController charctr;
+    public GameObject dmgText;
 
 	Animator animator;
 
@@ -94,6 +95,7 @@ public class Player : MonoBehaviour
 				transform.position = new Vector3(1f, 1.5f, 0);
 			}
 			hp = maxHp;
+
 			ResetHealthBarAnimation();
 			//SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 		}
@@ -116,6 +118,11 @@ public class Player : MonoBehaviour
 		}
 		GameManager.GetComponent<GameManager>().shards++;
 	}
+    IEnumerator RunningSkeleCD()
+    {
+        yield return new WaitForSeconds(1f);
+        dmgOnCD = false;
+    }
 
 	private void OnCollisionEnter2D(Collision2D collision)
 	{
@@ -128,12 +135,13 @@ public class Player : MonoBehaviour
 		}
 	}
 
-	private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.tag =="EnemyBullet")
         {
             //Debug.Log("Health" + hp/maxHp);
             hp -= 1;
+            addDmgText();
             float roundedHealth = hp / maxHp;
             //Debug.Log("rounded: " + roundedHealth);
             animator.Play("HealthBar", -1, roundedHealth);
@@ -155,6 +163,10 @@ public class Player : MonoBehaviour
         {
             portalSummoned = true;
         }
+        if(collision.tag =="RunningSkele")
+        {
+
+        }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
@@ -168,7 +180,22 @@ public class Player : MonoBehaviour
             portalSummoned = false;
         }
     }
-   
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (!dmgOnCD && collision.gameObject.name == "RunningSkele")
+        {
+            dmgOnCD = true;
+            hp -= 1;
+            StartCoroutine(RunningSkeleCD());
+            addDmgText();
+        }
+    }
+    void addDmgText()
+    {
+        GameObject temp = (GameObject)Instantiate(dmgText, transform.position, transform.rotation);
+        Destroy(temp, 0.5f);
+    }
     void OnGUI()
 	{
 		GUI.Label(new Rect(215, 30, 100, 30), "Health: " + hp, myGUIStyle);
@@ -176,3 +203,4 @@ public class Player : MonoBehaviour
 		GUI.Label(new Rect(520, 30, 100, 30), "Shards: " + GameManager.GetComponent<GameManager>().shards, myGUIStyle);
     }
 }
+

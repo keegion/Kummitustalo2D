@@ -16,6 +16,7 @@ TagManager:
   - shardInUI
   - Waypoints
   - TempLocation
+  - RunningSkele
   layers:
   - Default
   - TransparentFX

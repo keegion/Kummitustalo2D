@@ -31,7 +31,7 @@ public class EnemyBoomerang : MonoBehaviour {
     void Update()
     {
 
-		if (enemyAI.spotted && !boomerangOnCD)
+		if (enemyAI.shooting && !boomerangOnCD)
 		{
 			boomerangOnCD = true;
 			StartCoroutine(BoomerangCD());
