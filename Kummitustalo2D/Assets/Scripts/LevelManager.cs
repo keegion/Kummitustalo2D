@@ -9,7 +9,8 @@ public class LevelManager : MonoBehaviour {
     public Text leveltxt;
 	// Use this for initialization
 	void Start () {
-       // leveltxt.text = SceneManager.;
+       leveltxt.text = SceneManager.GetActiveScene().name;
+        StartCoroutine(TextCD());
 	}
 	
 	// Update is called once per frame
@@ -34,5 +35,10 @@ public class LevelManager : MonoBehaviour {
     public void Exit()
     {
         Application.Quit();
+    }
+    IEnumerator TextCD ()
+    {
+        yield return new WaitForSeconds(1f);
+        leveltxt.text = "";
     }
 }

@@ -6088,6 +6088,11 @@ Prefab:
       propertyPath: m_LocalPosition.y
       value: 655.44055
       objectReference: {fileID: 0}
+    - target: {fileID: 114059802422167106, guid: e733a8a441d6f4b4ca7f4e9266134f68,
+        type: 2}
+      propertyPath: leveltxt
+      value: 
+      objectReference: {fileID: 2038000913}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e733a8a441d6f4b4ca7f4e9266134f68, type: 2}
   m_IsPrefabParent: 0
@@ -9104,6 +9109,12 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!114 &2038000913 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114431984301874730, guid: e733a8a441d6f4b4ca7f4e9266134f68,
+    type: 2}
+  m_PrefabInternal: {fileID: 1332493245}
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &2049776243
 GameObject:
   m_ObjectHideFlags: 0
