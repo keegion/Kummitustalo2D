@@ -6068,6 +6068,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 13
       objectReference: {fileID: 0}
+    - target: {fileID: 224505109726449580, guid: e733a8a441d6f4b4ca7f4e9266134f68,
+        type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -12
+      objectReference: {fileID: 0}
+    - target: {fileID: 224505109726449580, guid: e733a8a441d6f4b4ca7f4e9266134f68,
+        type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 41.7
+      objectReference: {fileID: 0}
     - target: {fileID: 224157851841943922, guid: e733a8a441d6f4b4ca7f4e9266134f68,
         type: 2}
       propertyPath: m_LocalPosition.x
@@ -6729,7 +6739,7 @@ GameObject:
   - component: {fileID: 1464714172}
   - component: {fileID: 1464714173}
   - component: {fileID: 1464714174}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: wallpaper_
   m_TagString: Untagged
   m_Icon: {fileID: 0}

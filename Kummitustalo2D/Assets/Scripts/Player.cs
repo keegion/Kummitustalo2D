@@ -44,11 +44,9 @@ public class Player : MonoBehaviour
 		animator = healthMeter.GetComponent<Animator>();
 		ResetHealthBarAnimation();
 		animator.speed = 0;
-
 		shardArray = GameObject.FindGameObjectsWithTag("shardInUI");
 		// Sortataan array nimien mukaan, koska FindGameObjectsWithTag palauttaa gameobjectit "random" järjestyksessä
 		Array.Sort(shardArray, CompareObNames);
-
 		UpdateShardsOnStart();
 	}
 

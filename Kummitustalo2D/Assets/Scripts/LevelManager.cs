@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
-public class PauseMenu : MonoBehaviour {
+public class LevelManager : MonoBehaviour {
     public GameObject pauseMenu;
+    public Text leveltxt;
 	// Use this for initialization
 	void Start () {
-		
+       // leveltxt.text = SceneManager.;
 	}
 	
 	// Update is called once per frame
