@@ -33,10 +33,10 @@ public class Player : MonoBehaviour
 		myGUIStyle.fontSize = 24;
 		myGUIStyle.normal.textColor = Color.white;
 
-		// create GameManager if one doesn't exist in scene
-		//GameManager = GameObject.Find("GameManager(Clone)");
-		//if (GameManager == null)
-		if (!FindObjectOfType(typeof(GameManager)))
+        // create GameManager if one doesn't exist in scene
+        GameManager = GameObject.Find("GameManager(Clone)");
+        if (GameManager == null)
+		//if (!FindObjectOfType(typeof(GameManager)))
 		{
 			GameManager = Instantiate(GameManagerPrefab);
 		}
