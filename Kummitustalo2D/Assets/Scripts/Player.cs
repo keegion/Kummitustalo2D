@@ -163,10 +163,7 @@ public class Player : MonoBehaviour
         {
             portalSummoned = true;
         }
-        if(collision.tag =="RunningSkele")
-        {
-
-        }
+      
     }
     private void OnTriggerExit2D(Collider2D collision)
     {

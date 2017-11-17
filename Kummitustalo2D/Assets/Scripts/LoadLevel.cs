@@ -17,6 +17,7 @@ public class LoadLevel : MonoBehaviour {
     public void Loadlvl (string level)
     {
         SceneManager.LoadScene(level);
+        Time.timeScale = 1;
     }
     public void Quit()
     {
