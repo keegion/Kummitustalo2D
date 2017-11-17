@@ -208,7 +208,7 @@ Transform:
   m_GameObject: {fileID: 1132013115295224}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -2.26, y: 4.99, z: 0}
-  m_LocalScale: {x: 0.6, y: 0.6, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4145132288515086}
   m_Father: {fileID: 0}
@@ -285,8 +285,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.11406231, y: -0.009219885}
-  m_Size: {x: 1.2777424, y: 2.786364}
+  m_Offset: {x: 0.03695762, y: -0.035870314}
+  m_Size: {x: 0.9757025, y: 1.8091741}
   m_Direction: 0
 --- !u!95 &95324201229192642
 Animator:
@@ -369,6 +369,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 50
   muistisiru: {fileID: 1990239948703530, guid: 859326b2366cf8849908a7ed6be5423b, type: 2}
+  dead: 0
+  particle: {fileID: 1936058541685830}
 --- !u!198 &198014400523413826
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -7133,12 +7135,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: 21300000, guid: 51d236bed3e8b944da4c3f915e37a391, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 33828cb1d699d0d42a70f4cfef0b8e64, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 3.35, y: 4.2}
+  m_Size: {x: 1.25, y: 1.99}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
