@@ -34,7 +34,7 @@ public class EnemyBoomerang : MonoBehaviour {
     void Update()
     {
 
-		if (enemyAI.shooting && !boomerangOnCD)
+		if (enemyAI.shooting && !boomerangOnCD && !enemy.dead)
 		{
 			boomerangOnCD = true;
 			StartCoroutine(BoomerangCD());

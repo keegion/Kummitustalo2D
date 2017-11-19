@@ -47,9 +47,9 @@ public class Enemy : MonoBehaviour {
             boxcoll.offset = new Vector2(0f, -4.7f);
             boxcoll.size = new Vector2(0.1f, 0.1f);
         }
-		if (boomerangingController){
-			Destroy(boomerangingController.boomerang);
-		}
+		//if (boomerangingController){
+		//	Destroy(boomerangingController.boomerang);
+		//}
         
     }
     private void OnTriggerEnter2D(Collider2D collision)

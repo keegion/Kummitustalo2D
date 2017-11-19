@@ -2866,7 +2866,7 @@ GameObject:
   - component: {fileID: 491703551}
   - component: {fileID: 491703550}
   m_Layer: 5
-  m_Name: FinnishPanel
+  m_Name: FinishPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6415,7 +6415,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114589085749828094, guid: 59cbb8b34abfd42a7aa4ad3a38f99d8f,
         type: 2}
-      propertyPath: FinnishMenu
+      propertyPath: FinishMenu
       value: 
       objectReference: {fileID: 491703548}
     - target: {fileID: 114726150381283966, guid: 59cbb8b34abfd42a7aa4ad3a38f99d8f,
