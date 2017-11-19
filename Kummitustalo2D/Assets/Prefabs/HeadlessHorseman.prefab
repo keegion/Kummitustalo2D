@@ -74,7 +74,7 @@ GameObject:
   - component: {fileID: 61923309860400312}
   m_Layer: 8
   m_Name: headlesshorseman
-  m_TagString: Enemy
+  m_TagString: HorseBoy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -148,7 +148,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1337227829560332}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 26, y: 2, z: 0}
+  m_LocalPosition: {x: 3.54, y: -0.7, z: 0}
   m_LocalScale: {x: 0.2, y: 0.2, z: 1}
   m_Children:
   - {fileID: 4031446335373900}
@@ -278,7 +278,7 @@ Animator:
   m_GameObject: {fileID: 1460684339485350}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e831161a4060f824da9c74396e1ba7f6, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -299,6 +299,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 50
   muistisiru: {fileID: 1990239948703530, guid: 859326b2366cf8849908a7ed6be5423b, type: 2}
+  dead: 0
+  particle: {fileID: 0}
 --- !u!114 &114343309881246184
 MonoBehaviour:
   m_ObjectHideFlags: 1

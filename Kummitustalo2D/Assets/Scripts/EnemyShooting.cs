@@ -9,10 +9,12 @@ public class EnemyShooting : MonoBehaviour {
 	public float bulletCDTime = 1;
     bool bulletOnCD;
     Enemy enemy;
+    Animator anim;
 	// Use this for initialization
 	void Start () {
         enemyAI = GetComponent<EnemyAI>();
         enemy = GetComponent<Enemy>();
+        anim = GetComponent<Animator>();
 	}
 	
 	// Update is called once per frame
@@ -20,6 +22,9 @@ public class EnemyShooting : MonoBehaviour {
 		
         if(enemyAI.shooting && !bulletOnCD && !enemy.dead)
         {
+            if(gameObject.tag=="Enemy")
+            anim.SetBool("Attack", true);
+
             bulletOnCD = true;
 			GameObject temps = (GameObject)Instantiate(enemyBullet, bulletSpawn.position, transform.rotation);
             Destroy(temps, 5f);

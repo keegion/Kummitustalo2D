@@ -11,15 +11,18 @@ public class EnemyBoomerang : MonoBehaviour {
 	public GameObject horseBoy;
 	public Transform boomerangPoint;
 	EnemyAI enemyAI;
+    Enemy enemy;
 	public float boomerangCDTime = 2;
 	bool boomerangOnCD;
 	public float boomerangSmoothing = 10;
+    Animator anim;
 
 	void Start()
 	{
 		enemyAI = horseBoy.GetComponent<EnemyAI>();
 		EnemyBoomeranging = horseBoy.GetComponent<EnemyBoomeranging>();
-
+        anim = GetComponent<Animator>();
+        enemy = horseBoy.GetComponent<Enemy>();
 		//Debug.Log(horseBoy);
 		//Debug.Log(boomerangPoint);
 		//Debug.Log(EnemyBoomeranging);
@@ -75,6 +78,13 @@ public class EnemyBoomerang : MonoBehaviour {
 		}
 
 		//// pitäiskö palautuessaan jäädä heppamiehen käteen tai "päähän"? Lerpillä esim. loppumatka?
+
+        if(enemy.dead)
+        {
+            anim.SetBool("dead", true);
+            Debug.Log("deadhead");
+        }
+
     }
 
 	IEnumerator BoomerangCD()

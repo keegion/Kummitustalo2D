@@ -18,6 +18,7 @@ TagManager:
   - TempLocation
   - RunningSkele
   - ShootingSkele
+  - HorseBoy
   layers:
   - Default
   - TransparentFX

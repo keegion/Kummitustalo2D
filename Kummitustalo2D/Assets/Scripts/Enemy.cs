@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour {
     Animator anim;
     public bool dead;
     CapsuleCollider2D coll;
+    BoxCollider2D boxcoll;
     public GameObject particle;
 
 	// Use this for initialization
@@ -17,6 +18,7 @@ public class Enemy : MonoBehaviour {
 		boomerangingController = GetComponent<EnemyBoomeranging>();
         anim = GetComponent<Animator>();
         coll = GetComponent<CapsuleCollider2D>();
+        boxcoll = GetComponent<BoxCollider2D>();
 	}
 	
 	// Update is called once per frame
@@ -32,15 +34,19 @@ public class Enemy : MonoBehaviour {
         if (gameObject.tag == "RunningSkele" || gameObject.tag == "ShootingSkele" )
         {
             anim.SetBool("dead", true);
-            coll.offset = new Vector2(0f, -1.8f);
+            coll.offset = new Vector2(0f, -1.7f);
             coll.size = new Vector2(0.1f, 0.1f);
             particle.SetActive(false);
             
             
            // transform.position = new Vector3(transform.position.x, transform.position.y + 3f, +0);
         }
-        if (gameObject.tag == "Enemy")
-            Destroy(gameObject);
+        if (gameObject.tag == "HorseBoy")
+        {
+            anim.SetBool("dead", true);
+            boxcoll.offset = new Vector2(0f, -4.7f);
+            boxcoll.size = new Vector2(0.1f, 0.1f);
+        }
 		if (boomerangingController){
 			Destroy(boomerangingController.boomerang);
 		}

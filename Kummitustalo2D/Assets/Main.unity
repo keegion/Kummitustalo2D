@@ -3813,10 +3813,6 @@ Prefab:
       propertyPath: m_Name
       value: HeadlessHorseman (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 1337227829560332, guid: ce07b6f25fe206647b156de7e2a4209c, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ce07b6f25fe206647b156de7e2a4209c, type: 2}
   m_IsPrefabParent: 0
@@ -4901,6 +4897,10 @@ Prefab:
     - target: {fileID: 4409997170481572, guid: ce07b6f25fe206647b156de7e2a4209c, type: 2}
       propertyPath: m_RootOrder
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1337227829560332, guid: ce07b6f25fe206647b156de7e2a4209c, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ce07b6f25fe206647b156de7e2a4209c, type: 2}
@@ -7125,6 +7125,10 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4198557619396754, guid: 799fb127b12cffa4190e4ce277b6094e, type: 2}
       propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1331172027118736, guid: 799fb127b12cffa4190e4ce277b6094e, type: 2}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
