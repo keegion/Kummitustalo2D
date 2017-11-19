@@ -278,6 +278,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxShards: 2
   portal: {fileID: 1198815098949786, guid: 64584c665a43e89418b8d222e0c60d0e, type: 2}
+  levels: 1
+  FinishMenu: {fileID: 0}
 --- !u!114 &114726150381283966
 MonoBehaviour:
   m_ObjectHideFlags: 1
