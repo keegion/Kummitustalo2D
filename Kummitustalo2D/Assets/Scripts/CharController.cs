@@ -13,16 +13,19 @@ public class CharController : MonoBehaviour {
 	public Transform bulletSpawn;
 	Rigidbody2D rb;
     Player player;
-	//Animator animator;
+	Animator animator;
 
 	public Transform GroundCheck;
 	public LayerMask groundLayer;
+
+	bool isRunning;
+	bool isJumping;
 
 	void Start()
 	{
         player = GetComponent<Player>();
 		rb = GetComponent<Rigidbody2D>();
-		//animator = GetComponent<Animator>();
+		animator = GetComponent<Animator>();
 	}
 
 	void Update()
@@ -32,6 +35,11 @@ public class CharController : MonoBehaviour {
 		if (Input.GetButtonDown("Jump") && isGrounded)
 		{
 			Jump();
+		}
+
+		if (isGrounded && isJumping){
+			animator.SetBool("Jump", false);
+			isJumping = false;
 		}
 
 		input_x = Input.GetAxis("Horizontal");
@@ -46,6 +54,14 @@ public class CharController : MonoBehaviour {
 		else if (input_x > 0 && !facingRight)
 		{
 			Flip();
+		}
+
+		if (input_x != 0 && !isRunning){
+			animator.SetBool("Run", true);
+			isRunning = true;
+		} else if (input_x == 0 && isRunning) {
+			animator.SetBool("Run", false);
+			isRunning = false;
 		}
 
 		if (Input.GetButtonDown("Fire1"))
@@ -79,9 +95,10 @@ public class CharController : MonoBehaviour {
 
 	void Jump () 
 	{
-        //animator.SetTrigger("Jump");
+        animator.SetBool("Jump", true);
 		rb.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
 		isGrounded = false;
+		isJumping = true;
 	}
 
 	void Fire()
