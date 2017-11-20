@@ -39,7 +39,6 @@ public class CharController : MonoBehaviour {
 			animator.SetBool("Jump", true);
 		}
 
-		//menee hetki kun heppu irtoo maasta (koska overlapcirclen koko?) ja siks isgrounded on true ja jump vaihtuu heti falseksi..? (jos hyppii paikallaan niin vain nopeesti käy hyppyanimaatiossa)
 		if (isGrounded && isJumping){
 			isJumping = false;
 			animator.SetBool("Jump", false);
