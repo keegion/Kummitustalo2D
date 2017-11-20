@@ -32,14 +32,17 @@ public class CharController : MonoBehaviour {
 	{
 		isGrounded = Physics2D.OverlapCircle(GroundCheck.position, 0.15f, groundLayer);
 
-		if (Input.GetButtonDown("Jump") && isGrounded)
+		if (isGrounded && Input.GetButtonDown("Jump"))
 		{
 			Jump();
+			isJumping = true;
+			animator.SetBool("Jump", true);
 		}
 
+		//menee hetki kun heppu irtoo maasta (koska overlapcirclen koko?) ja siks isgrounded on true ja jump vaihtuu heti falseksi..? (jos hyppii paikallaan niin vain nopeesti käy hyppyanimaatiossa)
 		if (isGrounded && isJumping){
-			animator.SetBool("Jump", false);
 			isJumping = false;
+			animator.SetBool("Jump", false);
 		}
 
 		input_x = Input.GetAxis("Horizontal");
@@ -56,12 +59,12 @@ public class CharController : MonoBehaviour {
 			Flip();
 		}
 
-		if (input_x != 0 && !isRunning){
-			animator.SetBool("Run", true);
+		if (input_x != 0 && !isRunning && !isJumping && isGrounded){
 			isRunning = true;
+			animator.SetBool("Run", true);
 		} else if (input_x == 0 && isRunning) {
-			animator.SetBool("Run", false);
 			isRunning = false;
+			animator.SetBool("Run", false);
 		}
 
 		if (Input.GetButtonDown("Fire1"))
@@ -95,10 +98,8 @@ public class CharController : MonoBehaviour {
 
 	void Jump () 
 	{
-        animator.SetBool("Jump", true);
 		rb.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
 		isGrounded = false;
-		isJumping = true;
 	}
 
 	void Fire()
