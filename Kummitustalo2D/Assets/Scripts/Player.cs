@@ -19,15 +19,14 @@ public class Player : MonoBehaviour
 	public bool OnStairs, portalSummoned,dmgOnCD;
 	CharController charctr;
     public GameObject dmgText;
-  
-
 	Animator animator;
-
 	PortalSummon summonPortal;
+
 
 	// Use this for initialization
 	void Start()
 	{
+
 		rb = GetComponent<Rigidbody2D>();
 		charctr = GetComponent<CharController>();
 		summonPortal = GetComponent<PortalSummon>();
@@ -129,7 +128,8 @@ public class Player : MonoBehaviour
 		if (collision.collider.tag == "EnemyBullet")
 		{
 			hp -= 1;
-			float roundedHealth = hp / maxHp;
+            addDmgText();
+            float roundedHealth = hp / maxHp;
 			animator.Play("HealthBar", -1, roundedHealth);
 			animator.speed = 0;
 		}
