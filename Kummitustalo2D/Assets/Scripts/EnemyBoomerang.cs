@@ -13,7 +13,7 @@ public class EnemyBoomerang : MonoBehaviour {
 	EnemyAI enemyAI;
     Enemy enemy;
 	public float boomerangCDTime = 2;
-	bool boomerangOnCD;
+	bool boomerangOnCD, deadhorsie;
 	public float boomerangSmoothing = 10;
     Animator anim;
 
@@ -79,10 +79,13 @@ public class EnemyBoomerang : MonoBehaviour {
 
 		//// pitäiskö palautuessaan jäädä heppamiehen käteen tai "päähän"? Lerpillä esim. loppumatka?
 
-        if(enemy.dead)
+        if(enemy.dead && !deadhorsie)
         {
+            deadhorsie = true;
             anim.SetBool("dead", true);
             Debug.Log("deadhead");
+            gameObject.layer = LayerMask.NameToLayer("dead");
+         
         }
 
     }

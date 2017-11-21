@@ -37,15 +37,17 @@ public class Enemy : MonoBehaviour {
             coll.offset = new Vector2(0f, -1.7f);
             coll.size = new Vector2(0.1f, 0.1f);
             particle.SetActive(false);
-            
-            
-           // transform.position = new Vector3(transform.position.x, transform.position.y + 3f, +0);
+            gameObject.layer = LayerMask.NameToLayer("dead");
+
+
+            // transform.position = new Vector3(transform.position.x, transform.position.y + 3f, +0);
         }
         if (gameObject.tag == "HorseBoy")
         {
             anim.SetBool("dead", true);
             boxcoll.offset = new Vector2(0f, -4.7f);
             boxcoll.size = new Vector2(0.1f, 0.1f);
+            gameObject.layer = LayerMask.NameToLayer("dead");
         }
 		//if (boomerangingController){
 		//	Destroy(boomerangingController.boomerang);
