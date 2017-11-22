@@ -5,7 +5,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour {
 
     public float hp;
-    public GameObject muistisiru;
+    public GameObject hpsiru;
 	EnemyBoomeranging boomerangingController;
     Animator anim;
     public bool dead;
@@ -30,7 +30,12 @@ public class Enemy : MonoBehaviour {
     void Die()
     {
         dead = true;
-        Instantiate(muistisiru,transform.position,transform.rotation);
+        int rnd = Random.Range(0, 30);
+        if(rnd <= 10)
+        {
+            Instantiate(hpsiru, transform.position, transform.rotation);
+        }
+        
         if (gameObject.tag == "RunningSkele" || gameObject.tag == "ShootingSkele" )
         {
             anim.SetBool("dead", true);

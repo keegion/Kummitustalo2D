@@ -19,6 +19,7 @@ TagManager:
   - RunningSkele
   - ShootingSkele
   - HorseBoy
+  - HPSiru
   layers:
   - Default
   - TransparentFX

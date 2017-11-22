@@ -10,16 +10,31 @@ public class PortalSummon : MonoBehaviour {
     public GameObject portal;
     public int levels;
     public GameObject FinishMenu;
+    Player player;
+    int currentLevel;
 
     // Use this for initialization
     void Start () {
         //gm = GameObject.Find("GameManager(Clone)");
+        player = GetComponent<Player>();
     }
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
+
+        // tarkistaa onko pelaaja kosketuksessa portaaliin ja jos painaa nuolinäppäintä ylös tai w näppäintä aloittaa uuden tason.
+        if (player.portalSummoned)
+        {
+
+            if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))
+            {
+                //tähän seuraava taso(väliaikaisesti kuolee eli aloittaa tason uudelleen)
+                currentLevel = checkCurrentSceneLevel();
+                SceneManager.LoadScene("level_0"+ currentLevel+1);
+            }
+
+        }
+    }
 
     //Tarkastaa onko pelaajalla tarvittava shardimäärä, jos on niin luo portalin pelaajan koordinaatteille.
     public void CheckIfSummonPortal(int currentShards)
@@ -42,7 +57,7 @@ public class PortalSummon : MonoBehaviour {
     public bool CheckifLastLevel()
     {
        
-        if (SceneManager.GetActiveScene().name == "level_" + levels)
+        if (SceneManager.GetActiveScene().name == "level_0" + levels)
             return true;
             
       
@@ -54,6 +69,18 @@ public class PortalSummon : MonoBehaviour {
         FinishMenu.SetActive(true);
         Time.timeScale = 0;
 
+    }
+    int checkCurrentSceneLevel()
+    {
+        int currentlvl = 0;
+
+        for(int i = 0; i > levels; i++)
+        {
+            if (SceneManager.GetActiveScene().name == "level_0" + i)
+                currentlvl = i;
+        }
+
+        return currentlvl;
     }
 
 

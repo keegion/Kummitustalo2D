@@ -163,6 +163,18 @@ public class Player : MonoBehaviour
         {
             portalSummoned = true;
         }
+        if(collision.tag =="HPSiru")
+        {
+            if(hp<7)
+            {
+                hp++;
+                float roundedHealth = hp / maxHp;
+                animator.Play("HealthBar", +1, roundedHealth);
+                animator.speed = 0;
+                Destroy(collision.gameObject);
+            }
+       
+        }
       
     }
     private void OnTriggerExit2D(Collider2D collision)
