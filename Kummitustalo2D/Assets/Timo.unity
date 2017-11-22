@@ -4306,6 +4306,11 @@ Prefab:
       propertyPath: FinishMenu
       value: 
       objectReference: {fileID: 1523884349}
+    - target: {fileID: 82427294100804798, guid: 59cbb8b34abfd42a7aa4ad3a38f99d8f,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 59cbb8b34abfd42a7aa4ad3a38f99d8f, type: 2}
   m_IsPrefabParent: 0

@@ -20,6 +20,7 @@ public class Player : MonoBehaviour
 	CharController charctr;
     public GameObject dmgText,shardPic2,shardPic3,shardPic4;
 	Animator animator;
+	Animator healthMeterAnimator;
 	PortalSummon summonPortal;
     int shardcount;
     public AudioClip gettingHit;
@@ -51,9 +52,10 @@ public class Player : MonoBehaviour
 			GameManager = Instantiate(GameManagerPrefab);
 		}
 
-		animator = healthMeter.GetComponent<Animator>();
+		animator = animator = GetComponent<Animator>();
+		healthMeterAnimator = healthMeter.GetComponent<Animator>();
 		ResetHealthBarAnimation();
-		animator.speed = 0;
+		healthMeterAnimator.speed = 0;
 		shardArray = GameObject.FindGameObjectsWithTag("shardInUI");
 		// Sortataan array nimien mukaan, koska FindGameObjectsWithTag palauttaa gameobjectit "random" järjestyksessä
 		Array.Sort(shardArray, CompareObNames);
@@ -81,7 +83,7 @@ public class Player : MonoBehaviour
 
 	void ResetHealthBarAnimation ()
 	{
-		animator.Play("HealthBar", 0, 0.99f);
+		healthMeterAnimator.Play("HealthBar", 0, 0.99f);
 	}
 
 	public void Die()
@@ -142,9 +144,18 @@ public class Player : MonoBehaviour
             hp -= 1;
             addDmgText();
             float roundedHealth = hp / maxHp;
-			animator.Play("HealthBar", -1, roundedHealth);
-			animator.speed = 0;
+			healthMeterAnimator.Play("HealthBar", -1, roundedHealth);
+			healthMeterAnimator.speed = 0;
+
+			animator.SetBool("Damage", true);
+			StartCoroutine(CharDamageCD());
 		}
+	}
+
+	IEnumerator CharDamageCD()
+	{
+		yield return new WaitForSeconds(0.1f);
+		animator.SetBool("Damage", false);
 	}
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -157,8 +168,8 @@ public class Player : MonoBehaviour
             addDmgText();
             float roundedHealth = hp / maxHp;
             //Debug.Log("rounded: " + roundedHealth);
-            animator.Play("HealthBar", -1, roundedHealth);
-            animator.speed = 0;
+			healthMeterAnimator.Play("HealthBar", -1, roundedHealth);
+			healthMeterAnimator.speed = 0;
         }
         if(collision.tag =="Muistisiru")
         {
@@ -183,8 +194,8 @@ public class Player : MonoBehaviour
                 source.PlayOneShot(pickUp, 1f);
                 hp++;
                 float roundedHealth = hp / maxHp;
-                animator.Play("HealthBar", -1, roundedHealth);
-                animator.speed = 0;
+				healthMeterAnimator.Play("HealthBar", -1, roundedHealth);
+				healthMeterAnimator.speed = 0;
                 Destroy(collision.gameObject);
             }
        
@@ -214,8 +225,8 @@ public class Player : MonoBehaviour
             StartCoroutine(RunningSkeleCD());
             addDmgText();
             float roundedHealth = hp / maxHp;
-            animator.Play("HealthBar", -1, roundedHealth);
-            animator.speed = 0;
+			healthMeterAnimator.Play("HealthBar", -1, roundedHealth);
+			healthMeterAnimator.speed = 0;
         }
     }
     void addDmgText()
