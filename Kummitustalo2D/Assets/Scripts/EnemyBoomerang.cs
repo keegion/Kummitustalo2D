@@ -43,19 +43,25 @@ public class EnemyBoomerang : MonoBehaviour {
     void Update()
     {
 
+		// Sattuu sydämeen tehdä nääkin joka freimillä
+		if (horseBoy.transform.rotation.y == 0)
+		{
+			direction = -1;
+		}
+		else
+		{
+			direction = 1;
+		}
+
+		SetSpriteDirection();
+
+
 		if (enemyAI.shooting && !boomerangOnCD && !enemy.dead)
 		{
 			boomerangOnCD = true;
 			StartCoroutine(BoomerangCD());
 
 			//Debug.Log("Viskoo bumerangia");
-
-			if (horseBoy.transform.rotation.y == 0)
-			{
-				direction = -1;
-			} else {
-				direction = 1;
-			}
 
 			transform.rotation = Quaternion.Euler(0, 0, 0);
 			rb.AddForce(new Vector2(direction * speed, 0.01f * speed), ForceMode2D.Impulse);
@@ -65,7 +71,7 @@ public class EnemyBoomerang : MonoBehaviour {
 		{
 			if (boomerangOnCD)
 			{
-
+				
 				//Debug.Log("boomerangOnCD");
 
 				if ((rb.velocity.x > 0 && direction == 1) || (rb.velocity.x < 0 && direction == -1))
@@ -87,7 +93,7 @@ public class EnemyBoomerang : MonoBehaviour {
 
 				//rb.rotation = 0; // was ist das?
 				transform.rotation = Quaternion.identity; // tää pitäis tehä oikeesti vain kerran eikä joka freimillä
-														  // seuraa heppaa
+				// seuraa heppaa
 				transform.position = Vector3.Lerp(transform.position, boomerangPoint.position, boomerangSmoothing * Time.deltaTime);
 
 			}
@@ -100,7 +106,7 @@ public class EnemyBoomerang : MonoBehaviour {
 
 			//Debug.Log(distCovered); // käyttäytyy oudosti..?
 			//Debug.Log(fracJourney); // käyttäytyy oudosti..?
-			// Toimii todella oudosti, joka toisella toimii melkein oikein...
+			// Toimi todella oudosti ennen velocity zeroa (joka ei sekään pysäytä bumenragia), joka toisella toimi melkein oikein...
 			transform.position = Vector3.Lerp(transform.position, boomerangPoint.position, fracJourney);
 
 			transform.rotation = Quaternion.identity;
@@ -108,8 +114,6 @@ public class EnemyBoomerang : MonoBehaviour {
 			// Tätä käytettäessä pitäisi ilmeisesti olla rigidbodyllä kinematic ja interpolate
 			//rb.MovePosition(boomerangPoint.position);
 		}
-
-		// pään pitäis kääntyä menosuuntaan seuratessaan heppaa
 
         if(enemy.dead && !deadhorsie)
         {
@@ -133,7 +137,7 @@ public class EnemyBoomerang : MonoBehaviour {
 		//{
 
 		seekingBack = true;
-		Debug.Log("seeking back");
+		//Debug.Log("seeking back");
 
 		startTime = Time.time;
 		journeyLength = Vector3.Distance(transform.position, boomerangPoint.position);
@@ -153,6 +157,11 @@ public class EnemyBoomerang : MonoBehaviour {
 		//}
 
 		boomerangOnCD = false;
+	}
+
+	void SetSpriteDirection () {
+		Vector2 boomerangLocalScale = transform.localScale;
+		transform.localScale = new Vector2(Mathf.Abs(boomerangLocalScale.x) * -direction, boomerangLocalScale.y);
 	}
 
 }

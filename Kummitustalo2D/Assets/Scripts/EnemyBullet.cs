@@ -7,7 +7,6 @@ public class EnemyBullet : MonoBehaviour {
     public float speed;
     public GameObject particle;
 	Rigidbody2D rb;
-	//public bool isBoomerang;
 	int direction = 1;
 
 	void Start()
