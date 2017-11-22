@@ -351,6 +351,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 11
       objectReference: {fileID: 0}
+    - target: {fileID: 114343309881246184, guid: ce07b6f25fe206647b156de7e2a4209c,
+        type: 2}
+      propertyPath: canTeleport
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ce07b6f25fe206647b156de7e2a4209c, type: 2}
   m_IsPrefabParent: 0
@@ -8499,6 +8504,11 @@ Prefab:
       propertyPath: m_Name
       value: ShootingSkele (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 114603758433462292, guid: 799fb127b12cffa4190e4ce277b6094e,
+        type: 2}
+      propertyPath: right
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 799fb127b12cffa4190e4ce277b6094e, type: 2}
   m_IsPrefabParent: 0
@@ -11087,7 +11097,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -4
   m_Sprite: {fileID: 21300000, guid: 58280e4ddd8490e45a5d0f53f456f157, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -11105,7 +11115,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1420846524}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 34.834343, y: 19.657297, z: 6.2722664}
+  m_LocalPosition: {x: 40.36, y: 27.91, z: -2.4}
   m_LocalScale: {x: 4.5277267, y: 4.527725, z: 4.527725}
   m_Children: []
   m_Father: {fileID: 1779383093}
@@ -12548,7 +12558,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4450073248649682, guid: 9172877b15110214a8c740d85685c1c7, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 15
+      value: 9.15
       objectReference: {fileID: 0}
     - target: {fileID: 4450073248649682, guid: 9172877b15110214a8c740d85685c1c7, type: 2}
       propertyPath: m_LocalPosition.y
@@ -12577,6 +12587,11 @@ Prefab:
     - target: {fileID: 4450073248649682, guid: 9172877b15110214a8c740d85685c1c7, type: 2}
       propertyPath: m_RootOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114274644886660244, guid: 9172877b15110214a8c740d85685c1c7,
+        type: 2}
+      propertyPath: right
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9172877b15110214a8c740d85685c1c7, type: 2}
@@ -13885,7 +13900,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -2
+  m_SortingOrder: -5
   m_Sprite: {fileID: 21300000, guid: dc2e2cbbfb64ae34e8bbee0571a59f67, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -13903,8 +13918,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1846495088}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 17.334345, y: -34.8427, z: -4.4277344}
-  m_LocalScale: {x: 5.864428, y: 5.8644223, z: 5.8644223}
+  m_LocalPosition: {x: 17.334345, y: -34.8427, z: -0.9722662}
+  m_LocalScale: {x: 7.2322803, y: 7.2322736, z: 7.2322736}
   m_Children: []
   m_Father: {fileID: 1779383093}
   m_RootOrder: 0
@@ -14391,6 +14406,11 @@ Prefab:
     - target: {fileID: 1132013115295224, guid: 9172877b15110214a8c740d85685c1c7, type: 2}
       propertyPath: m_Name
       value: RunningSkele (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114274644886660244, guid: 9172877b15110214a8c740d85685c1c7,
+        type: 2}
+      propertyPath: right
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9172877b15110214a8c740d85685c1c7, type: 2}
