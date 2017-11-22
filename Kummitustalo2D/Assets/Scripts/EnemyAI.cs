@@ -13,7 +13,7 @@ public class EnemyAI : MonoBehaviour
     public Transform frontRayRange, backRayRange;
     public bool shooting = false;
     bool readyToTP, teleportCD, spottedBackside, atWayPoint, spotted;
-    bool right = true;
+    public bool right, canTeleport = true;
     GameObject waypoint0;
     GameObject[] waypoints, temp;
     Transform player;
@@ -147,7 +147,7 @@ public class EnemyAI : MonoBehaviour
         }
         if (collision.GetComponent<Collider2D>().gameObject.layer == 14)
         {
-            if (readyToTP)
+            if (readyToTP && canTeleport)
             {
                 readyToTP = false;
                 transform.position = waypoint0.transform.position;
