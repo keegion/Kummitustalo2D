@@ -3084,36 +3084,11 @@ Prefab:
       propertyPath: memories
       value: 
       objectReference: {fileID: 377755505}
-    - target: {fileID: 114589085749828094, guid: 59cbb8b34abfd42a7aa4ad3a38f99d8f,
-        type: 2}
-      propertyPath: MaxShards
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114181921004026662, guid: 59cbb8b34abfd42a7aa4ad3a38f99d8f,
-        type: 2}
-      propertyPath: bulletCDTime
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1683934380118680, guid: 59cbb8b34abfd42a7aa4ad3a38f99d8f, type: 2}
-      propertyPath: m_Name
-      value: Character
-      objectReference: {fileID: 0}
     - target: {fileID: 114726150381283966, guid: 59cbb8b34abfd42a7aa4ad3a38f99d8f,
         type: 2}
       propertyPath: playerSpawnPoint
       value: 
       objectReference: {fileID: 889420515}
-    - target: {fileID: 114726150381283966, guid: 59cbb8b34abfd42a7aa4ad3a38f99d8f,
-        type: 2}
-      propertyPath: dmgText
-      value: 
-      objectReference: {fileID: 1842873987862324, guid: 5b75acbee60c67944b2d642a1e5e6ba5,
-        type: 2}
-    - target: {fileID: 114589085749828094, guid: 59cbb8b34abfd42a7aa4ad3a38f99d8f,
-        type: 2}
-      propertyPath: FinishMenu
-      value: 
-      objectReference: {fileID: 1767918135}
     - target: {fileID: 114726150381283966, guid: 59cbb8b34abfd42a7aa4ad3a38f99d8f,
         type: 2}
       propertyPath: shardPic2
@@ -3129,6 +3104,11 @@ Prefab:
       propertyPath: shardPic4
       value: 
       objectReference: {fileID: 1034123737}
+    - target: {fileID: 114589085749828094, guid: 59cbb8b34abfd42a7aa4ad3a38f99d8f,
+        type: 2}
+      propertyPath: FinishMenu
+      value: 
+      objectReference: {fileID: 1767918135}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 59cbb8b34abfd42a7aa4ad3a38f99d8f, type: 2}
   m_IsPrefabParent: 0

@@ -3034,6 +3034,11 @@ Transform:
   m_PrefabParentObject: {fileID: 4448690352522848, guid: f87c1c03684cc4764bc482001ac05207,
     type: 2}
   m_PrefabInternal: {fileID: 425156763}
+--- !u!1 &447605735 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1179234336699798, guid: e733a8a441d6f4b4ca7f4e9266134f68,
+    type: 2}
+  m_PrefabInternal: {fileID: 290413407}
 --- !u!4 &454325051 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4693902574577148, guid: c315ba8dcc3174a9fbc328356625401f,
@@ -5798,6 +5803,11 @@ Transform:
   m_PrefabParentObject: {fileID: 4448690352522848, guid: f87c1c03684cc4764bc482001ac05207,
     type: 2}
   m_PrefabInternal: {fileID: 904149249}
+--- !u!1 &904357976 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1884776396083246, guid: e733a8a441d6f4b4ca7f4e9266134f68,
+    type: 2}
+  m_PrefabInternal: {fileID: 290413407}
 --- !u!4 &906687418 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4683930561986280, guid: 1cb224ea362f5894e85b0fffc9c3dc09,
@@ -6275,6 +6285,11 @@ Transform:
   m_PrefabParentObject: {fileID: 4685519643305174, guid: a563b10d4b7cf482ebc958fa7672c57e,
     type: 2}
   m_PrefabInternal: {fileID: 961262846}
+--- !u!1 &968641832 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1551779137004990, guid: e733a8a441d6f4b4ca7f4e9266134f68,
+    type: 2}
+  m_PrefabInternal: {fileID: 290413407}
 --- !u!4 &971002108 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4198557619396754, guid: 799fb127b12cffa4190e4ce277b6094e,
@@ -9067,9 +9082,34 @@ Prefab:
       value: 
       objectReference: {fileID: 1842873987862324, guid: 5b75acbee60c67944b2d642a1e5e6ba5,
         type: 2}
+    - target: {fileID: 114726150381283966, guid: 59cbb8b34abfd42a7aa4ad3a38f99d8f,
+        type: 2}
+      propertyPath: shardPic2
+      value: 
+      objectReference: {fileID: 968641832}
+    - target: {fileID: 114726150381283966, guid: 59cbb8b34abfd42a7aa4ad3a38f99d8f,
+        type: 2}
+      propertyPath: shardPic3
+      value: 
+      objectReference: {fileID: 447605735}
+    - target: {fileID: 114726150381283966, guid: 59cbb8b34abfd42a7aa4ad3a38f99d8f,
+        type: 2}
+      propertyPath: shardPic4
+      value: 
+      objectReference: {fileID: 1327317118}
+    - target: {fileID: 114589085749828094, guid: 59cbb8b34abfd42a7aa4ad3a38f99d8f,
+        type: 2}
+      propertyPath: FinishMenu
+      value: 
+      objectReference: {fileID: 904357976}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 59cbb8b34abfd42a7aa4ad3a38f99d8f, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1327317118 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1666457714351978, guid: e733a8a441d6f4b4ca7f4e9266134f68,
+    type: 2}
+  m_PrefabInternal: {fileID: 290413407}
 --- !u!4 &1328025274 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4198557619396754, guid: 799fb127b12cffa4190e4ce277b6094e,
