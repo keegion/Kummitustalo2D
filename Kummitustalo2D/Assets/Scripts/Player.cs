@@ -12,27 +12,34 @@ public class Player : MonoBehaviour
 	public GUIStyle myGUIStyle;
 	public Image healthMeter;
 	public Transform memories, playerSpawnPoint;
-	GameObject[] shardArray = new GameObject[15];
+	GameObject[] shardArray;
 	public GameObject GameManagerPrefab;
 	private GameObject GameManager;
 	Rigidbody2D rb;
 	public bool OnStairs, portalSummoned,dmgOnCD;
 	CharController charctr;
-    public GameObject dmgText;
-  
-
+    public GameObject dmgText,shardPic2,shardPic3,shardPic4;
 	Animator animator;
-
 	PortalSummon summonPortal;
+    int shardcount;
+    public AudioClip gettingHit;
+    AudioSource source;
 
-	// Use this for initialization
-	void Start()
+
+
+
+    // Use this for initialization
+    void Start()
 	{
-		rb = GetComponent<Rigidbody2D>();
+        summonPortal = GetComponent<PortalSummon>();
+        shardcount = summonPortal.MaxShards;
+        shardArray = new GameObject[shardcount-1];
+        DeactivateShards();
+        rb = GetComponent<Rigidbody2D>();
 		charctr = GetComponent<CharController>();
-		summonPortal = GetComponent<PortalSummon>();
 		myGUIStyle.fontSize = 24;
 		myGUIStyle.normal.textColor = Color.white;
+        source = GetComponent<AudioSource>();
 
         // create GameManager if one doesn't exist in scene
         GameManager = GameObject.Find("GameManager(Clone)");
@@ -128,8 +135,10 @@ public class Player : MonoBehaviour
 	{
 		if (collision.collider.tag == "EnemyBullet")
 		{
-			hp -= 1;
-			float roundedHealth = hp / maxHp;
+            source.PlayOneShot(gettingHit, 0.3f);
+            hp -= 1;
+            addDmgText();
+            float roundedHealth = hp / maxHp;
 			animator.Play("HealthBar", -1, roundedHealth);
 			animator.speed = 0;
 		}
@@ -139,6 +148,7 @@ public class Player : MonoBehaviour
     {
         if(collision.tag =="EnemyBullet")
         {
+            source.PlayOneShot(gettingHit, 0.3f);
             //Debug.Log("Health" + hp/maxHp);
             hp -= 1;
             addDmgText();
@@ -163,6 +173,18 @@ public class Player : MonoBehaviour
         {
             portalSummoned = true;
         }
+        if(collision.tag =="HPSiru")
+        {
+            if(hp<7)
+            {
+                hp++;
+                float roundedHealth = hp / maxHp;
+                animator.Play("HealthBar", -1, roundedHealth);
+                animator.speed = 0;
+                Destroy(collision.gameObject);
+            }
+       
+        }
       
     }
     private void OnTriggerExit2D(Collider2D collision)
@@ -182,6 +204,7 @@ public class Player : MonoBehaviour
     {
         if (!dmgOnCD && collision.gameObject.name == "RunningSkele" && !collision.gameObject.GetComponent<Enemy>().dead)
         {
+            source.PlayOneShot(gettingHit, 0.3f);
             dmgOnCD = true;
             hp -= 1;
             StartCoroutine(RunningSkeleCD());
@@ -201,6 +224,24 @@ public class Player : MonoBehaviour
 		GUI.Label(new Rect(215, 30, 100, 30), "Health: " + hp, myGUIStyle);
 		GUI.Label(new Rect(375, 30, 100, 30), "Lives: " + GameManager.GetComponent<GameManager>().livesLeft, myGUIStyle);
 		GUI.Label(new Rect(520, 30, 100, 30), "Shards: " + GameManager.GetComponent<GameManager>().shards, myGUIStyle);
+    }
+    void DeactivateShards()
+    {
+        if(shardcount<=4)
+        {
+            shardPic2.SetActive(false);
+            shardPic3.SetActive(false);
+            shardPic4.SetActive(false);
+        }
+         if (shardcount <9)
+        {
+            shardPic3.SetActive(false);
+            shardPic4.SetActive(false);
+        }
+        if(shardcount <13)
+        {
+            shardPic4.SetActive(false);
+        }
     }
 }
 

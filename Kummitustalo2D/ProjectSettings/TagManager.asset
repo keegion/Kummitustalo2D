@@ -19,6 +19,8 @@ TagManager:
   - RunningSkele
   - ShootingSkele
   - HorseBoy
+  - HPSiru
+  - wall
   layers:
   - Default
   - TransparentFX
@@ -36,7 +38,7 @@ TagManager:
   - Window
   - Waypoint
   - Boomerang
-  - 
+  - dead
   - 
   - 
   - 

@@ -384,7 +384,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 50
-  muistisiru: {fileID: 1990239948703530, guid: 859326b2366cf8849908a7ed6be5423b, type: 2}
+  hpsiru: {fileID: 1628915947824616, guid: 1696d7e1c18e2e645b9fc886a986be7f, type: 2}
   dead: 0
   particle: {fileID: 1884172013015284}
 --- !u!198 &198091580116498832

@@ -13,7 +13,7 @@ public class EnemyBoomerang : MonoBehaviour {
 	EnemyAI enemyAI;
     Enemy enemy;
 	public float boomerangCDTime = 2;
-	bool boomerangOnCD;
+	bool boomerangOnCD, deadhorsie;
 	public float boomerangSmoothing = 10;
     Animator anim;
 
@@ -111,10 +111,13 @@ public class EnemyBoomerang : MonoBehaviour {
 
 		// pään pitäis kääntyä menosuuntaan seuratessaan heppaa
 
-        if(enemy.dead)
+        if(enemy.dead && !deadhorsie)
         {
+            deadhorsie = true;
             anim.SetBool("dead", true);
             Debug.Log("deadhead");
+            gameObject.layer = LayerMask.NameToLayer("dead");
+         
         }
 
     }
