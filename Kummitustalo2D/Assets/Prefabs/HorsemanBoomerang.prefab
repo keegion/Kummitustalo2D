@@ -111,7 +111,7 @@ MonoBehaviour:
   EnemyBoomeranging: {fileID: 0}
   horseBoy: {fileID: 0}
   boomerangPoint: {fileID: 0}
-  boomerangCDTime: 2.4
+  boomerangCDTime: 2.2
   boomerangSmoothing: 10
 --- !u!212 &212197023648777062
 SpriteRenderer:
