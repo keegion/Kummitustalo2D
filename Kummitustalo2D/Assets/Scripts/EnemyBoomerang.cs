@@ -63,7 +63,10 @@ public class EnemyBoomerang : MonoBehaviour {
 
 			//Debug.Log("Viskoo bumerangia");
 
-			transform.rotation = Quaternion.Euler(0, 0, 0);
+			// first make sure in start point
+			transform.position = boomerangPoint.position;
+			transform.rotation = Quaternion.identity;
+
 			rb.AddForce(new Vector2(direction * speed, 0.01f * speed), ForceMode2D.Impulse);
 		}
 
@@ -146,10 +149,6 @@ public class EnemyBoomerang : MonoBehaviour {
 		yield return new WaitForSeconds(boomerangCDTime/2);
 
 		seekingBack = false;
-
-		//// palauttaa suoraan takaisin heppaan ilman animointia
-		//transform.position = boomerangPoint.position;
-		//transform.rotation = Quaternion.identity;
 
 		rb.angularVelocity = 0;
 		rb.velocity = Vector2.zero;
