@@ -14,8 +14,11 @@ public class CharController : MonoBehaviour {
 	Rigidbody2D rb;
     Player player;
 	Animator animator;
+    public AudioClip shootingSound;
+    public AudioClip jumpSound;
+    AudioSource source;
 
-	public Transform GroundCheck;
+    public Transform GroundCheck;
 	public LayerMask groundLayer;
 
 	bool isRunning;
@@ -26,7 +29,8 @@ public class CharController : MonoBehaviour {
         player = GetComponent<Player>();
 		rb = GetComponent<Rigidbody2D>();
 		animator = GetComponent<Animator>();
-	}
+        source = GetComponent<AudioSource>();
+    }
 
 	void Update()
 	{
@@ -34,6 +38,7 @@ public class CharController : MonoBehaviour {
 
 		if (isGrounded && Input.GetButtonDown("Jump"))
 		{
+            source.PlayOneShot(jumpSound, 0.3f);
 			Jump();
 			isJumping = true;
 			animator.SetBool("Jump", true);
@@ -97,7 +102,8 @@ public class CharController : MonoBehaviour {
 		if (bulletCDTimestamp <= Time.time)
 		//if (!bulletCD)
 		{
-			GameObject bullet = Instantiate(bulletPrefab, bulletSpawn.position, bulletSpawn.rotation);
+            source.PlayOneShot(shootingSound, 0.3f);
+            GameObject bullet = Instantiate(bulletPrefab, bulletSpawn.position, bulletSpawn.rotation);
 
 			Rigidbody2D bulletRB = bullet.GetComponent<Rigidbody2D>();
 			Vector3 bulletTFRight = bullet.transform.right;

@@ -22,11 +22,14 @@ public class Player : MonoBehaviour
 	Animator animator;
 	PortalSummon summonPortal;
     int shardcount;
-   
+    public AudioClip gettingHit;
+    AudioSource source;
 
 
-	// Use this for initialization
-	void Start()
+
+
+    // Use this for initialization
+    void Start()
 	{
         summonPortal = GetComponent<PortalSummon>();
         shardcount = summonPortal.MaxShards;
@@ -36,6 +39,7 @@ public class Player : MonoBehaviour
 		charctr = GetComponent<CharController>();
 		myGUIStyle.fontSize = 24;
 		myGUIStyle.normal.textColor = Color.white;
+        source = GetComponent<AudioSource>();
 
         // create GameManager if one doesn't exist in scene
         GameManager = GameObject.Find("GameManager(Clone)");
@@ -131,7 +135,8 @@ public class Player : MonoBehaviour
 	{
 		if (collision.collider.tag == "EnemyBullet")
 		{
-			hp -= 1;
+            source.PlayOneShot(gettingHit, 0.3f);
+            hp -= 1;
             addDmgText();
             float roundedHealth = hp / maxHp;
 			animator.Play("HealthBar", -1, roundedHealth);
@@ -143,6 +148,7 @@ public class Player : MonoBehaviour
     {
         if(collision.tag =="EnemyBullet")
         {
+            source.PlayOneShot(gettingHit, 0.3f);
             //Debug.Log("Health" + hp/maxHp);
             hp -= 1;
             addDmgText();
@@ -198,6 +204,7 @@ public class Player : MonoBehaviour
     {
         if (!dmgOnCD && collision.gameObject.name == "RunningSkele" && !collision.gameObject.GetComponent<Enemy>().dead)
         {
+            source.PlayOneShot(gettingHit, 0.3f);
             dmgOnCD = true;
             hp -= 1;
             StartCoroutine(RunningSkeleCD());
