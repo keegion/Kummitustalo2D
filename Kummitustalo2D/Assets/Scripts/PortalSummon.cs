@@ -30,7 +30,7 @@ public class PortalSummon : MonoBehaviour {
             {
                 //tähän seuraava taso(väliaikaisesti kuolee eli aloittaa tason uudelleen)
                 currentLevel = checkCurrentSceneLevel();
-                SceneManager.LoadScene("level_0"+ currentLevel+1);
+                SceneManager.LoadScene("level_0"+ currentLevel);
             }
 
         }
@@ -74,10 +74,10 @@ public class PortalSummon : MonoBehaviour {
     {
         int currentlvl = 0;
 
-        for(int i = 0; i > levels; i++)
+        for(int i = 1; i < levels; i++)
         {
             if (SceneManager.GetActiveScene().name == "level_0" + i)
-                currentlvl = i;
+                currentlvl = i+1;
         }
 
         return currentlvl;
