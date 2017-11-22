@@ -107,11 +107,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1509321577854259bf2bb164997c50c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 15
+  speed: 20
   EnemyBoomeranging: {fileID: 0}
   horseBoy: {fileID: 0}
   boomerangPoint: {fileID: 0}
-  boomerangCDTime: 2
+  boomerangCDTime: 2.4
   boomerangSmoothing: 10
 --- !u!212 &212197023648777062
 SpriteRenderer:

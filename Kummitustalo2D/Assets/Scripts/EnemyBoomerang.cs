@@ -17,6 +17,15 @@ public class EnemyBoomerang : MonoBehaviour {
 	public float boomerangSmoothing = 10;
     Animator anim;
 
+	bool seekingBack;
+
+	float startTime;
+	float journeyLength;
+	float distCovered;
+	float fracJourney;
+
+
+
 	void Start()
 	{
 		enemyAI = horseBoy.GetComponent<EnemyAI>();
@@ -39,7 +48,7 @@ public class EnemyBoomerang : MonoBehaviour {
 			boomerangOnCD = true;
 			StartCoroutine(BoomerangCD());
 
-			//Debug.Log("Viskoo bumerangia");
+			Debug.Log("Viskoo bumerangia");
 
 			if (horseBoy.transform.rotation.y == 0)
 			{
@@ -52,32 +61,55 @@ public class EnemyBoomerang : MonoBehaviour {
 			rb.AddForce(new Vector2(direction * speed, 0.01f * speed), ForceMode2D.Impulse);
 		}
 
-		if (boomerangOnCD) {
-
-			//Debug.Log("boomerangOnCD");
-
-			if ((rb.velocity.x > 0 && direction == 1) || (rb.velocity.x < 0 && direction == -1))
+		if (!seekingBack && !enemy.dead)
+		{
+			if (boomerangOnCD)
 			{
-				rb.AddForce(new Vector2(-1 * direction * speed * Time.deltaTime, -0.1f * speed * Time.deltaTime), ForceMode2D.Impulse);
+
+				Debug.Log("boomerangOnCD");
+
+				if ((rb.velocity.x > 0 && direction == 1) || (rb.velocity.x < 0 && direction == -1))
+				{
+					rb.AddForce(new Vector2(-1 * direction * speed * Time.deltaTime, -0.1f * speed * Time.deltaTime), ForceMode2D.Impulse);
+				}
+				else if ((rb.velocity.x < 0 && direction == 1) || (rb.velocity.x > 0 && direction == -1))
+				{
+					rb.AddForce(new Vector2(-1 * direction * speed * Time.deltaTime, 0.15f * speed * Time.deltaTime), ForceMode2D.Impulse);
+				}
+
+				//rb.transform.Rotate(0, 0, 7);
+
+			} else {
+
+				Debug.Log("else");
+
+				// Pitäiskö nollaus tehdä rigidbodyllä koska alussa siihen kohdistetaan voimaa..?
+
+				//rb.rotation = 0; // was ist das?
+				transform.rotation = Quaternion.identity; // tää pitäis tehä oikeesti vain kerran eikä joka freimillä
+														  // seuraa heppaa
+				transform.position = Vector3.Lerp(transform.position, boomerangPoint.position, boomerangSmoothing * Time.deltaTime);
+
 			}
-			else if ((rb.velocity.x < 0 && direction == 1) || (rb.velocity.x > 0 && direction == -1))
-			{
-				rb.AddForce(new Vector2(-1 * direction * speed * Time.deltaTime, 0.15f * speed * Time.deltaTime), ForceMode2D.Impulse);
-			}
-
-			//rb.transform.Rotate(0, 0, 7);
-
-		} else {
-
-			//Debug.Log("else");
-
-			//rb.rotation = 0; // was ist das?
-			transform.rotation = Quaternion.identity; // tää pitäis tehä oikeesti vain kerran eikä joka freimillä
-			transform.position = Vector3.Lerp(transform.position, boomerangPoint.position, boomerangSmoothing * Time.deltaTime);
-
 		}
 
-		//// pitäiskö palautuessaan jäädä heppamiehen käteen tai "päähän"? Lerpillä esim. loppumatka?
+		if (seekingBack)
+		{
+			distCovered = (Time.time - startTime) / 2f;
+			fracJourney = distCovered / journeyLength;
+
+			//Debug.Log(distCovered); // käyttäytyy oudosti..?
+			Debug.Log(fracJourney); // nousee reilusti yli yhden, ei pitäis..?
+			// Toimii todella oudosti, joka toisella toimii melkein oikein... PITÄISKÖ TSEKKAA HOW TO LERP LIKE A PRO TAPA..?
+			transform.position = Vector3.Lerp(transform.position, boomerangPoint.position, fracJourney);
+
+			transform.rotation = Quaternion.identity;
+
+			// Tätä käytettäessä pitäisi ilmeisesti olla rigidbodyllä kinematic ja interpolate
+			//rb.MovePosition(boomerangPoint.position);
+		}
+
+		// pään pitäis kääntyä menosuuntaan seuratessaan heppaa
 
         if(enemy.dead)
         {
@@ -91,15 +123,39 @@ public class EnemyBoomerang : MonoBehaviour {
 	{
 		//Debug.Log("IEnumerator");
 
-		yield return new WaitForSeconds(boomerangCDTime);
+		yield return new WaitForSeconds(boomerangCDTime/2);
 
 		// tarvitsee jotenkin handlauksen että palaa kotiin jos jää esim. pelaajan selän taakse, ja pitäis muutenkin palata boomerangPointin kohdalle...
 		//if (transform.position.x < horseBoy.transform.position.x)
 		//{
 
-		//Debug.Log("ET GO HOME");
-		transform.position = boomerangPoint.position;
-		transform.rotation = Quaternion.identity;
+		seekingBack = true;
+		Debug.Log("seeking back");
+
+		startTime = Time.time;
+		journeyLength = Vector3.Distance(transform.position, boomerangPoint.position);
+		//Debug.Log(journeyLength); // Tuntuis näyttävän suht oikein
+
+
+		//journeyLength = Vector3.Distance(transform.position, boomerangPoint.position);
+
+		//distCovered = (Time.time - startTime) * speed;
+		//fracJourney = distCovered / journeyLength;
+
+		//Debug.Log("Lerppaa poika lerppaa");
+
+		//// TÄN PITÄIS VARMAAN OLLA UPDATESSA, NYTHÄN TEKEE VAAN KERRAN..?!
+		//transform.position = Vector3.Lerp(transform.position, boomerangPoint.position, 1f); //fracJourney);
+
+
+		yield return new WaitForSeconds(boomerangCDTime/2);
+
+		seekingBack = false;
+
+		//// palauttaa suoraan takaisin heppaan ilman animointia
+		//transform.position = boomerangPoint.position;
+		//transform.rotation = Quaternion.identity;
+		rb.angularVelocity = 0;
 		rb.velocity = Vector2.zero;
 
 		//}

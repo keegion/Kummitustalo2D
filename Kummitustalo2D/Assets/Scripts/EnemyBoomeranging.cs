@@ -6,11 +6,11 @@ public class EnemyBoomeranging : MonoBehaviour {
     EnemyAI enemyAI;
 	public GameObject boomerangPrefab;
 	public Transform boomerangPoint;
-	public float boomerangCDTime = 1;
-    bool boomerangOnCD;
+	//public float boomerangCDTime = 1;
+    //bool boomerangOnCD;
 	internal GameObject boomerang;
 	//Rigidbody2D boomerangRB;
-	public float boomerangSmoothing = 5f;
+	//public float boomerangSmoothing = 5f;
 	EnemyBoomerang boomerangController;
 
 	void Start () {
