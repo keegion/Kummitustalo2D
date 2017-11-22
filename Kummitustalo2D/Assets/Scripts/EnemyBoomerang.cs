@@ -48,7 +48,7 @@ public class EnemyBoomerang : MonoBehaviour {
 			boomerangOnCD = true;
 			StartCoroutine(BoomerangCD());
 
-			Debug.Log("Viskoo bumerangia");
+			//Debug.Log("Viskoo bumerangia");
 
 			if (horseBoy.transform.rotation.y == 0)
 			{
@@ -66,7 +66,7 @@ public class EnemyBoomerang : MonoBehaviour {
 			if (boomerangOnCD)
 			{
 
-				Debug.Log("boomerangOnCD");
+				//Debug.Log("boomerangOnCD");
 
 				if ((rb.velocity.x > 0 && direction == 1) || (rb.velocity.x < 0 && direction == -1))
 				{
@@ -81,7 +81,7 @@ public class EnemyBoomerang : MonoBehaviour {
 
 			} else {
 
-				Debug.Log("else");
+				//Debug.Log("else");
 
 				// Pitäiskö nollaus tehdä rigidbodyllä koska alussa siihen kohdistetaan voimaa..?
 
@@ -99,8 +99,8 @@ public class EnemyBoomerang : MonoBehaviour {
 			fracJourney = distCovered / journeyLength;
 
 			//Debug.Log(distCovered); // käyttäytyy oudosti..?
-			Debug.Log(fracJourney); // nousee reilusti yli yhden, ei pitäis..?
-			// Toimii todella oudosti, joka toisella toimii melkein oikein... PITÄISKÖ TSEKKAA HOW TO LERP LIKE A PRO TAPA..?
+			//Debug.Log(fracJourney); // käyttäytyy oudosti..?
+			// Toimii todella oudosti, joka toisella toimii melkein oikein...
 			transform.position = Vector3.Lerp(transform.position, boomerangPoint.position, fracJourney);
 
 			transform.rotation = Quaternion.identity;
@@ -128,7 +128,7 @@ public class EnemyBoomerang : MonoBehaviour {
 
 		yield return new WaitForSeconds(boomerangCDTime/2);
 
-		// tarvitsee jotenkin handlauksen että palaa kotiin jos jää esim. pelaajan selän taakse, ja pitäis muutenkin palata boomerangPointin kohdalle...
+		// tarvitsee jotenkin handlauksen että palaa kotiin jos jää esim. pelaajan selän taakse...
 		//if (transform.position.x < horseBoy.transform.position.x)
 		//{
 
@@ -139,18 +139,6 @@ public class EnemyBoomerang : MonoBehaviour {
 		journeyLength = Vector3.Distance(transform.position, boomerangPoint.position);
 		//Debug.Log(journeyLength); // Tuntuis näyttävän suht oikein
 
-
-		//journeyLength = Vector3.Distance(transform.position, boomerangPoint.position);
-
-		//distCovered = (Time.time - startTime) * speed;
-		//fracJourney = distCovered / journeyLength;
-
-		//Debug.Log("Lerppaa poika lerppaa");
-
-		//// TÄN PITÄIS VARMAAN OLLA UPDATESSA, NYTHÄN TEKEE VAAN KERRAN..?!
-		//transform.position = Vector3.Lerp(transform.position, boomerangPoint.position, 1f); //fracJourney);
-
-
 		yield return new WaitForSeconds(boomerangCDTime/2);
 
 		seekingBack = false;
@@ -158,6 +146,7 @@ public class EnemyBoomerang : MonoBehaviour {
 		//// palauttaa suoraan takaisin heppaan ilman animointia
 		//transform.position = boomerangPoint.position;
 		//transform.rotation = Quaternion.identity;
+
 		rb.angularVelocity = 0;
 		rb.velocity = Vector2.zero;
 
