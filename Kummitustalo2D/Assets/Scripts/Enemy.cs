@@ -39,7 +39,7 @@ public class Enemy : MonoBehaviour {
         if (gameObject.tag == "RunningSkele" || gameObject.tag == "ShootingSkele" )
         {
             anim.SetBool("dead", true);
-            coll.offset = new Vector2(0f, -1.7f);
+            coll.offset = new Vector2(0f, -1.6f);
             coll.size = new Vector2(0.1f, 0.1f);
             particle.SetActive(false);
             gameObject.layer = LayerMask.NameToLayer("dead");

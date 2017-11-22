@@ -169,8 +169,8 @@ public class Player : MonoBehaviour
             {
                 hp++;
                 float roundedHealth = hp / maxHp;
-                animator.Play("HealthBar", +1, roundedHealth);
-                animator.speed = 0;
+                animator.Play("HealthBar", -1, roundedHealth);
+                animator.speed = -1;
                 Destroy(collision.gameObject);
             }
        

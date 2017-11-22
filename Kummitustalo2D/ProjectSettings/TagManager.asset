@@ -20,6 +20,7 @@ TagManager:
   - ShootingSkele
   - HorseBoy
   - HPSiru
+  - wall
   layers:
   - Default
   - TransparentFX
