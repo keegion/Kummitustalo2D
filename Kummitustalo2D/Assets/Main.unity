@@ -6342,6 +6342,16 @@ Prefab:
       propertyPath: gettingHit
       value: 
       objectReference: {fileID: 8300000, guid: 85d22b6008d9ac24c9a850430a0148b7, type: 3}
+    - target: {fileID: 114181921004026662, guid: 59cbb8b34abfd42a7aa4ad3a38f99d8f,
+        type: 2}
+      propertyPath: jumpSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 63b3df5fa03fb094bbe4298de8430a08, type: 3}
+    - target: {fileID: 114181921004026662, guid: 59cbb8b34abfd42a7aa4ad3a38f99d8f,
+        type: 2}
+      propertyPath: shootingSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 9ab9004650feb734eb1f280ad6943c19, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 59cbb8b34abfd42a7aa4ad3a38f99d8f, type: 2}
   m_IsPrefabParent: 0
