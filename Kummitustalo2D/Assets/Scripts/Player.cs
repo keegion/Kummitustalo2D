@@ -23,7 +23,9 @@ public class Player : MonoBehaviour
 	PortalSummon summonPortal;
     int shardcount;
     public AudioClip gettingHit;
+    public AudioClip pickUp;
     AudioSource source;
+    public float time;
 
 
 
@@ -68,7 +70,8 @@ public class Player : MonoBehaviour
 	void Update()
 	{
 		CheckHP();
-	}
+        time += Time.deltaTime;
+    }
 
 	void CheckHP()
 	{
@@ -160,7 +163,7 @@ public class Player : MonoBehaviour
         if(collision.tag =="Muistisiru")
         {
 			AddShard();
-
+            source.PlayOneShot(pickUp, 0.3f);
             summonPortal.CheckIfSummonPortal(GameManager.GetComponent<GameManager>().shards);
             Destroy(collision.gameObject);
         }
@@ -177,6 +180,7 @@ public class Player : MonoBehaviour
         {
             if(hp<7)
             {
+                source.PlayOneShot(pickUp, 1f);
                 hp++;
                 float roundedHealth = hp / maxHp;
                 animator.Play("HealthBar", -1, roundedHealth);
@@ -224,6 +228,7 @@ public class Player : MonoBehaviour
 		GUI.Label(new Rect(215, 30, 100, 30), "Health: " + hp, myGUIStyle);
 		GUI.Label(new Rect(375, 30, 100, 30), "Lives: " + GameManager.GetComponent<GameManager>().livesLeft, myGUIStyle);
 		GUI.Label(new Rect(520, 30, 100, 30), "Shards: " + GameManager.GetComponent<GameManager>().shards, myGUIStyle);
+        GUI.Label(new Rect(700, 30, 100, 30), "Time: " + Mathf.Round(time * 1f)/1f + " s", myGUIStyle);
     }
     void DeactivateShards()
     {

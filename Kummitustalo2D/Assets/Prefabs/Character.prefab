@@ -84,7 +84,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1683934380118680}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3, y: 1.577, z: 0}
+  m_LocalPosition: {x: 18.12, y: 5.21, z: 0}
   m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_Children:
   - {fileID: 4513722689374938}
@@ -375,6 +375,7 @@ MonoBehaviour:
   shardPic3: {fileID: 0}
   shardPic4: {fileID: 0}
   gettingHit: {fileID: 8300000, guid: 85d22b6008d9ac24c9a850430a0148b7, type: 3}
+  pickUp: {fileID: 8300000, guid: a7d3c7f4c4d467c4fab2b325ed527814, type: 3}
 --- !u!212 &212030398576116958
 SpriteRenderer:
   m_ObjectHideFlags: 1
