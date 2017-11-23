@@ -172,6 +172,7 @@ public class EnemyAI : MonoBehaviour
 
     }
 
+    //Check if enemy is behind obstacle
     bool PlayerHiddenByObstacles()
     {
 

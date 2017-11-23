@@ -51,8 +51,8 @@ public class Player : MonoBehaviour
 		{
 			GameManager = Instantiate(GameManagerPrefab);
 		}
-
-		animator = animator = GetComponent<Animator>();
+        GameManager.GetComponent<GameManager>().shards = 0;
+        animator = animator = GetComponent<Animator>();
 		healthMeterAnimator = healthMeter.GetComponent<Animator>();
 		ResetHealthBarAnimation();
 		healthMeterAnimator.speed = 0;
