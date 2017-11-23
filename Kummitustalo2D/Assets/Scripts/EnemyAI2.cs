@@ -127,7 +127,7 @@ public class EnemyAI2 : MonoBehaviour
     }
     IEnumerator WaypointCountDown()
     {
-        yield return new WaitForSeconds(Random.Range(1f, 3f));
+        yield return new WaitForSeconds(Random.Range(15f, 45f));
         readyToTP = true;
     }
     IEnumerator TeleportCountDown()
