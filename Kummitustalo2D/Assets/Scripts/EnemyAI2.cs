@@ -28,10 +28,9 @@ public class EnemyAI2 : MonoBehaviour
     {
 
         waypoint0 = GameObject.FindGameObjectWithTag("TempLocation");
-        temp = GameObject.FindGameObjectsWithTag("Waypoints");
+        temp = GameObject.FindGameObjectsWithTag("teleportSpot");
         waypoints = new GameObject[temp.Length];
-        waypoints = GameObject.FindGameObjectsWithTag("Waypoints");
-        Debug.Log(waypoints.Length);
+        waypoints = GameObject.FindGameObjectsWithTag("teleportSpot");
         anim = GetComponent<Animator>();
         StartCoroutine(WaypointCountDown());
         player = GameObject.FindGameObjectWithTag("Player").transform;
@@ -203,7 +202,7 @@ public class EnemyAI2 : MonoBehaviour
         foreach (RaycastHit2D hit in hits)
         {
             // ignore the enemy's own colliders (and other enemies)
-            if (hit.transform.tag == "ShootingSkele" || hit.transform.tag == "HorseBoy" || hit.transform.tag == "spot2" || hit.transform.tag == "spot1" || hit.transform.tag == "RunningSkele" || hit.transform.tag == "Waypoints" || hit.transform.tag == "Muistisiru" || hit.transform.tag == "HPSiru")
+            if (hit.transform.tag == "ShootingSkele" || hit.transform.tag == "HorseBoy" || hit.transform.tag == "spot2" || hit.transform.tag == "spot1" || hit.transform.tag == "RunningSkele" || hit.transform.tag == "teleportSpot" || hit.transform.tag == "Muistisiru" || hit.transform.tag == "HPSiru")
                 continue;
 
             if (hit.transform.tag != "Player")

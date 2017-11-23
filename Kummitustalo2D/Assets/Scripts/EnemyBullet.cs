@@ -30,8 +30,9 @@ public class EnemyBullet : MonoBehaviour {
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-		if (collision.tag != "HorseBoy" && collision.tag != "spot1" && collision.tag != "spot2" && collision.tag != "Tikkaat" && collision.tag != "Muistisiru" && collision.tag !="RunningSkele" && collision.tag != "ShootingSkele" && collision.tag != "HPSiru")
-		{
+		if (collision.tag != "HorseBoy" && collision.tag != "spot1" && collision.tag != "spot2" && collision.tag != "Tikkaat" && collision.tag != "Muistisiru" && collision.tag !="RunningSkele" && collision.tag != "ShootingSkele" && collision.tag != "HPSiru" && collision.tag!= "teleportSpot")
+
+        {
 			Destroy(gameObject);
 		}
 		

@@ -21,7 +21,7 @@ public class PlayerBullet : MonoBehaviour {
     //}
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag != "Player" && collision.tag != "spot1" && collision.tag != "spot2" && collision.tag != "Tikkaat" && collision.tag != "Muistisiru" && collision.tag != "HPSiru")
+        if (collision.tag != "Player" && collision.tag != "spot1" && collision.tag != "spot2" && collision.tag != "Tikkaat" && collision.tag != "Muistisiru" && collision.tag != "HPSiru" && collision.tag != "teleportSpot")
             Destroy(gameObject);
         // GameObject temps = (GameObject)Instantiate(particle,collision.transform.position,collision.transform.rotation);
 
