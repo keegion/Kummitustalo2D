@@ -3270,6 +3270,26 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e733a8a441d6f4b4ca7f4e9266134f68, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &290413408 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1884776396083246, guid: e733a8a441d6f4b4ca7f4e9266134f68,
+    type: 2}
+  m_PrefabInternal: {fileID: 290413407}
+--- !u!1 &290413409 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1666457714351978, guid: e733a8a441d6f4b4ca7f4e9266134f68,
+    type: 2}
+  m_PrefabInternal: {fileID: 290413407}
+--- !u!1 &290413410 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1179234336699798, guid: e733a8a441d6f4b4ca7f4e9266134f68,
+    type: 2}
+  m_PrefabInternal: {fileID: 290413407}
+--- !u!1 &290413411 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1551779137004990, guid: e733a8a441d6f4b4ca7f4e9266134f68,
+    type: 2}
+  m_PrefabInternal: {fileID: 290413407}
 --- !u!1001 &293609289
 Prefab:
   m_ObjectHideFlags: 0
@@ -15389,6 +15409,31 @@ Prefab:
       value: 
       objectReference: {fileID: 1842873987862324, guid: 5b75acbee60c67944b2d642a1e5e6ba5,
         type: 2}
+    - target: {fileID: 114589085749828094, guid: 59cbb8b34abfd42a7aa4ad3a38f99d8f,
+        type: 2}
+      propertyPath: levels
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114726150381283966, guid: 59cbb8b34abfd42a7aa4ad3a38f99d8f,
+        type: 2}
+      propertyPath: shardPic2
+      value: 
+      objectReference: {fileID: 290413411}
+    - target: {fileID: 114726150381283966, guid: 59cbb8b34abfd42a7aa4ad3a38f99d8f,
+        type: 2}
+      propertyPath: shardPic3
+      value: 
+      objectReference: {fileID: 290413410}
+    - target: {fileID: 114726150381283966, guid: 59cbb8b34abfd42a7aa4ad3a38f99d8f,
+        type: 2}
+      propertyPath: shardPic4
+      value: 
+      objectReference: {fileID: 290413409}
+    - target: {fileID: 114589085749828094, guid: 59cbb8b34abfd42a7aa4ad3a38f99d8f,
+        type: 2}
+      propertyPath: FinishMenu
+      value: 
+      objectReference: {fileID: 290413408}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 59cbb8b34abfd42a7aa4ad3a38f99d8f, type: 2}
   m_IsPrefabParent: 0
