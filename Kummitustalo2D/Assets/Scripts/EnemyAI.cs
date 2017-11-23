@@ -14,10 +14,12 @@ public class EnemyAI : MonoBehaviour
     public bool shooting = false;
     bool readyToTP, teleportCD, spottedBackside, atWayPoint, spotted;
     public bool right, canTeleport = true;
-    GameObject waypoint0;
+    GameObject waypoint0, selectedWaypoint;
     GameObject[] waypoints, temp;
     Transform player;
     Enemy enemy;
+    Animator ventanim;
+
 
 
 
@@ -29,6 +31,7 @@ public class EnemyAI : MonoBehaviour
         temp = GameObject.FindGameObjectsWithTag("Waypoints");
         waypoints = new GameObject[temp.Length];
         waypoints = GameObject.FindGameObjectsWithTag("Waypoints");
+        Debug.Log(waypoints.Length);
         anim = GetComponent<Animator>();
         StartCoroutine(WaypointCountDown());
         player = GameObject.FindGameObjectWithTag("Player").transform;
@@ -123,13 +126,23 @@ public class EnemyAI : MonoBehaviour
         
     IEnumerator WaypointCountDown()
     {
-        yield return new WaitForSeconds(Random.Range(15f, 40f));
+        yield return new WaitForSeconds(Random.Range(15f, 16f));
         readyToTP = true;
     }
     IEnumerator TeleportCountDown()
     {
         yield return new WaitForSeconds(2f);
-        transform.position = waypoints[Random.Range(0, waypoints.Length)].transform.position;
+        selectedWaypoint = waypoints[Random.Range(0, waypoints.Length)];
+        ventanim = selectedWaypoint.GetComponent<Animator>();
+        if (ventanim == null)
+        {
+
+            StartCoroutine(TeleportCountDown());
+        }
+        ventanim.SetBool("coming", true);
+        yield return new WaitForSeconds(1f);
+        transform.position = selectedWaypoint.transform.position;
+        ventanim.SetBool("coming", false);
         StartCoroutine(WaypointCountDown());
 
     }
