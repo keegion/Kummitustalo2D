@@ -21,6 +21,7 @@ TagManager:
   - HorseBoy
   - HPSiru
   - wall
+  - teleportSpot
   layers:
   - Default
   - TransparentFX
