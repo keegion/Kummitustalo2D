@@ -119,6 +119,8 @@ public class EnemyAI : MonoBehaviour
 
 
     }
+ 
+        
     IEnumerator WaypointCountDown()
     {
         yield return new WaitForSeconds(Random.Range(15f, 40f));
@@ -182,8 +184,7 @@ public class EnemyAI : MonoBehaviour
         foreach (RaycastHit2D hit in hits)
         {
             // ignore the enemy's own colliders (and other enemies)
-            //if (hit.transform.tag == "HorseBoy" || hit.transform.tag == "RunningSkele" || hit.transform.tag == "Waypoints" || hit.transform.tag == "ShootingSkele" || hit.transform.tag != "HPSiru")
-            if ( hit.transform.tag == "ShootingSkele" || hit.transform.tag == "HorseBoy")
+            if ( hit.transform.tag == "ShootingSkele" || hit.transform.tag == "HorseBoy" || hit.transform.tag == "spot2" || hit.transform.tag == "spot1" || hit.transform.tag == "RunningSkele" || hit.transform.tag == "Waypoints" || hit.transform.tag == "Muistisiru" || hit.transform.tag == "HPSiru")
                 continue;
 
             if (hit.transform.tag != "Player")
