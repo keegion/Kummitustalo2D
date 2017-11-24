@@ -34,6 +34,7 @@ public class Player : MonoBehaviour
     // Use this for initialization
     void Start()
 	{
+        Debug.Log("Startup, current best time: " + PlayerPrefs.GetFloat(SceneManager.GetActiveScene().name));
         summonPortal = GetComponent<PortalSummon>();
         shardcount = summonPortal.MaxShards;
         shardArray = new GameObject[shardcount-1];

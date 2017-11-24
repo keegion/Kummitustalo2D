@@ -12,11 +12,18 @@ public class PortalSummon : MonoBehaviour {
     public GameObject FinishMenu;
     Player player;
     int currentLevel;
+    float clearTime;
+    string sceneName;
+    int cleared;
+    float totalTime;
+    float currentBest;
 
     // Use this for initialization
     void Start () {
         //gm = GameObject.Find("GameManager(Clone)");
         player = GetComponent<Player>();
+        sceneName = SceneManager.GetActiveScene().name;
+        currentBest = PlayerPrefs.GetFloat(sceneName);
     }
 	
 	// Update is called once per frame
@@ -43,15 +50,21 @@ public class PortalSummon : MonoBehaviour {
 
         if (MaxShards <= currentShards)
         {
-
-            Debug.Log("Summon Portal");
-            if(CheckifLastLevel())
+            CheckHiscores();
+            
+            if (CheckifLastLevel())
             {
                 OpenFinishPanel();
+                TotalHiscore();
+
             }
             else
-            Instantiate(portal, transform.position, transform.rotation);
-           
+            {
+                Instantiate(portal, transform.position, transform.rotation);
+            }
+            
+
+            TotalHiscore();
         }
     }
     public bool CheckifLastLevel()
@@ -81,6 +94,54 @@ public class PortalSummon : MonoBehaviour {
         }
 
         return currentlvl;
+    }
+
+    //check if current scene cleartime is better than saved hiscore, if it is or is 0, save new score to playerprefs.
+    void CheckHiscores ()
+   
+    {
+        clearTime = player.time;
+        PlayerPrefs.SetInt(sceneName, 1);
+        Debug.Log("level clear time : " + clearTime);
+        Debug.Log("current saved time: " + currentBest);
+        if (currentBest > clearTime)
+        {
+            PlayerPrefs.SetFloat(sceneName, clearTime);
+            Debug.Log("Saved time: " + PlayerPrefs.GetFloat(sceneName));
+        }
+        else  if (currentBest == 0)
+        {
+            PlayerPrefs.SetFloat(sceneName, clearTime);
+            Debug.Log("0, Saved time: " + PlayerPrefs.GetFloat(sceneName));
+
+        }
+        PlayerPrefs.Save();
+        clearTime = 0;
+
+    }
+    void TotalHiscore()
+    {
+        
+        //check if all levels cleared
+        for(int i = 1; i < levels; i++)
+        {
+            if (PlayerPrefs.GetInt("level0_"+i) == 1)
+                cleared++;
+        }
+        //if all levels cleared calculate total time from all levels and add it to playerprefs
+        if(cleared == levels)
+        {
+            for(int i = 1; 1 < levels; i++)
+            {
+                totalTime += PlayerPrefs.GetFloat("level0_" + i);
+            }
+            PlayerPrefs.SetFloat("totalTime", totalTime);
+            Debug.Log("totaltime saved" + totalTime);
+          
+            totalTime = 0;
+            cleared = 0;
+            PlayerPrefs.Save();
+        }
     }
 
 
