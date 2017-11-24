@@ -23,7 +23,7 @@ public class PortalSummon : MonoBehaviour {
         //gm = GameObject.Find("GameManager(Clone)");
         player = GetComponent<Player>();
         sceneName = SceneManager.GetActiveScene().name;
-        currentBest = PlayerPrefs.GetFloat(sceneName);
+        currentBest = PlayerPrefs.GetFloat(sceneName,currentBest);
     }
 	
 	// Update is called once per frame
@@ -100,22 +100,25 @@ public class PortalSummon : MonoBehaviour {
     void CheckHiscores ()
    
     {
+        
         clearTime = player.time;
-        PlayerPrefs.SetInt(sceneName, 1);
+        PlayerPrefs.SetInt("level_0"+ checkCurrentSceneLevel(), 1);
         Debug.Log("level clear time : " + clearTime);
         Debug.Log("current saved time: " + currentBest);
         if (currentBest > clearTime)
         {
             PlayerPrefs.SetFloat(sceneName, clearTime);
             Debug.Log("Saved time: " + PlayerPrefs.GetFloat(sceneName));
+            PlayerPrefs.Save();
         }
         else  if (currentBest == 0)
         {
             PlayerPrefs.SetFloat(sceneName, clearTime);
             Debug.Log("0, Saved time: " + PlayerPrefs.GetFloat(sceneName));
+            PlayerPrefs.Save();
 
         }
-        PlayerPrefs.Save();
+        
         clearTime = 0;
 
     }
