@@ -70,7 +70,7 @@ public class PortalSummon : MonoBehaviour {
     public bool CheckifLastLevel()
     {
        
-        if (SceneManager.GetActiveScene().name == "level_0" + levels)
+        if (sceneName == "level_0" + levels)
             return true;
             
       
@@ -89,7 +89,7 @@ public class PortalSummon : MonoBehaviour {
 
         for(int i = 1; i < levels; i++)
         {
-            if (SceneManager.GetActiveScene().name == "level_0" + i)
+            if (sceneName == "level_0" + i)
                 currentlvl = i+1;
         }
 

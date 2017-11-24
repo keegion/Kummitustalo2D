@@ -198,7 +198,12 @@ public class Player : MonoBehaviour
 				healthMeterAnimator.Play("HealthBar", -1, roundedHealth);
 				healthMeterAnimator.speed = 0;
                 Destroy(collision.gameObject);
+                if(hp ==7)
+                {
+                    healthMeterAnimator.Play("HealthBar",-1, 0.99f);
+                }
             }
+            
        
         }
       
