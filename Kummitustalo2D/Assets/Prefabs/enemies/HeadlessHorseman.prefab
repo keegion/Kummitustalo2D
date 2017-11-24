@@ -316,6 +316,8 @@ MonoBehaviour:
   frontRayRange: {fileID: 4397518633243472}
   backRayRange: {fileID: 4802740701102904}
   shooting: 0
+  right: 0
+  canTeleport: 1
 --- !u!114 &114739463184796014
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -330,8 +332,6 @@ MonoBehaviour:
   boomerangPrefab: {fileID: 1581981321906808, guid: 97131d477248a41519e1df35aeab89a5,
     type: 2}
   boomerangPoint: {fileID: 4952853824658940}
-  boomerangCDTime: 2
-  boomerangSmoothing: 10
 --- !u!212 &212071122176171492
 SpriteRenderer:
   m_ObjectHideFlags: 1
