@@ -583,7 +583,7 @@ Transform:
   - {fileID: 2099249515}
   - {fileID: 250210280}
   m_Father: {fileID: 0}
-  m_RootOrder: 21
+  m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &307773458 stripped
 Transform:
@@ -1647,7 +1647,7 @@ Transform:
   - {fileID: 1768283822}
   - {fileID: 676036104}
   m_Father: {fileID: 0}
-  m_RootOrder: 22
+  m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &727982505
 GameObject:
@@ -3312,7 +3312,7 @@ Prefab:
     - target: {fileID: 114589085749828094, guid: 59cbb8b34abfd42a7aa4ad3a38f99d8f,
         type: 2}
       propertyPath: levels
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 59cbb8b34abfd42a7aa4ad3a38f99d8f, type: 2}
