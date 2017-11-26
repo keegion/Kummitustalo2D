@@ -17,6 +17,7 @@ public class PortalSummon : MonoBehaviour {
     int cleared;
     float totalTime;
     float currentBest;
+   
 
     // Use this for initialization
     void Start () {
@@ -24,6 +25,7 @@ public class PortalSummon : MonoBehaviour {
         player = GetComponent<Player>();
         sceneName = SceneManager.GetActiveScene().name;
         currentBest = PlayerPrefs.GetFloat(sceneName,currentBest);
+        currentLevel = checkCurrentSceneLevel();
     }
 	
 	// Update is called once per frame
@@ -36,7 +38,7 @@ public class PortalSummon : MonoBehaviour {
             if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))
             {
                 //tähän seuraava taso(väliaikaisesti kuolee eli aloittaa tason uudelleen)
-                currentLevel = checkCurrentSceneLevel();
+              
                 SceneManager.LoadScene("level_0"+ currentLevel);
             }
 
@@ -100,9 +102,10 @@ public class PortalSummon : MonoBehaviour {
     void CheckHiscores ()
    
     {
-        
+        Debug.Log("current level" + currentLevel);
+        Debug.Log("Scene name: " + sceneName);
         clearTime = player.time;
-        PlayerPrefs.SetInt("level_0"+ checkCurrentSceneLevel(), 1);
+        PlayerPrefs.SetInt("key_level_0"+ currentLevel, 1);
         Debug.Log("level clear time : " + clearTime);
         Debug.Log("current saved time: " + currentBest);
         if (currentBest > clearTime)

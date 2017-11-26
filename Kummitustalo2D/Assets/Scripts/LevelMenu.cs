@@ -69,15 +69,15 @@ public class LevelMenu : MonoBehaviour {
     public void CheckifLevelCleared()
     {
 
-        if (PlayerPrefs.GetInt("level_02") == 1)
+        if (PlayerPrefs.GetInt("key_level_02") == 1)
         {
             lvl2.interactable = true;
         }
-        if (PlayerPrefs.GetInt("level_03") == 1)
+        if (PlayerPrefs.GetInt("key_level_03") == 1)
         {
             lvl3.interactable = true;
         }
-        if (PlayerPrefs.GetInt("level_04") == 1)
+        if (PlayerPrefs.GetInt("key_level_04") == 1)
         {
             lvl4.interactable = true;
         }
