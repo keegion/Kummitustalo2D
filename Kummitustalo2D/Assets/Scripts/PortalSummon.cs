@@ -102,22 +102,16 @@ public class PortalSummon : MonoBehaviour {
     void CheckHiscores ()
    
     {
-        Debug.Log("current level" + currentLevel);
-        Debug.Log("Scene name: " + sceneName);
         clearTime = player.time;
         PlayerPrefs.SetInt("key_level_0"+ currentLevel, 1);
-        Debug.Log("level clear time : " + clearTime);
-        Debug.Log("current saved time: " + currentBest);
         if (currentBest > clearTime)
         {
             PlayerPrefs.SetFloat(sceneName, clearTime);
-            Debug.Log("Saved time: " + PlayerPrefs.GetFloat(sceneName));
             PlayerPrefs.Save();
         }
         else  if (currentBest == 0)
         {
             PlayerPrefs.SetFloat(sceneName, clearTime);
-            Debug.Log("0, Saved time: " + PlayerPrefs.GetFloat(sceneName));
             PlayerPrefs.Save();
 
         }
@@ -142,7 +136,7 @@ public class PortalSummon : MonoBehaviour {
                 totalTime += PlayerPrefs.GetFloat("level0_" + i);
             }
             PlayerPrefs.SetFloat("totalTime", totalTime);
-            Debug.Log("totaltime saved" + totalTime);
+           
           
             totalTime = 0;
             cleared = 0;
