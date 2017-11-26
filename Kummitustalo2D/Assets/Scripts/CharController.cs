@@ -17,7 +17,7 @@ public class CharController : MonoBehaviour {
     public AudioClip shootingSound;
     public AudioClip jumpSound;
     AudioSource source;
-
+    Vector3 sp, dir;
     public Transform GroundCheck;
 	public LayerMask groundLayer;
 
@@ -35,8 +35,10 @@ public class CharController : MonoBehaviour {
 	void Update()
 	{
 		isGrounded = Physics2D.OverlapCircle(GroundCheck.position, 0.15f, groundLayer);
+        sp = Camera.main.WorldToScreenPoint(transform.position);
+        dir = (Input.mousePosition - sp).normalized;
 
-		if (isGrounded && Input.GetButtonDown("Jump"))
+        if (isGrounded && Input.GetButtonDown("Jump"))
 		{
             source.PlayOneShot(jumpSound, 0.3f);
 			Jump();
@@ -96,32 +98,58 @@ public class CharController : MonoBehaviour {
 		isGrounded = false;
 	}
 
-	void Fire()
-	{
-		if (bulletCDTimestamp <= Time.time)
-		//if (!bulletCD)
-		{
+    void Fire()
+    {
+      
+
+        if (bulletCDTimestamp <= Time.time && dir.x >= 0 && facingRight)
+        //if (!bulletCD)
+        {
             source.PlayOneShot(shootingSound, 0.3f);
             GameObject bullet = Instantiate(bulletPrefab, bulletSpawn.position, bulletSpawn.rotation);
 
-			Rigidbody2D bulletRB = bullet.GetComponent<Rigidbody2D>();
-			Vector3 bulletTFRight = bullet.transform.right;
-			Vector2 bulletTFLocalScale = bullet.transform.localScale;
+            Rigidbody2D bulletRB = bullet.GetComponent<Rigidbody2D>();
+            Vector3 bulletTFRight = bullet.transform.right;
+            Vector2 bulletTFLocalScale = bullet.transform.localScale;
 
-			bullet.transform.localScale = new Vector2(bulletTFLocalScale.x * (facingRight ? -1 : 1), bulletTFLocalScale.y);
+            bullet.transform.localScale = new Vector2(bulletTFLocalScale.x * (facingRight ? -1 : 1), bulletTFLocalScale.y);
 
-			bulletRB.AddForce(bulletTFRight * bulletSpeed * (facingRight ? 1 : -1));
-			//bulletRB.velocity = bulletTFRight * bulletSpeed * (facingRight? 1 : -1 );
+            bulletRB.AddForce(dir * bulletSpeed);
+            //bulletRB.AddForce(bulletTFRight * bulletSpeed * (facingRight ? 1 : -1));
+            //bulletRB.velocity = bulletTFRight * bulletSpeed * (facingRight? 1 : -1 );
 
-			Destroy(bullet, bulletLifeTime);
+            Destroy(bullet, bulletLifeTime);
 
-			bulletCDTimestamp = Time.time + bulletCDTime;
+            bulletCDTimestamp = Time.time + bulletCDTime;
 
-		//	bulletCD = true;
-		//	StartCoroutine(BulletCDRoutine(bulletCDTime));
+            //	bulletCD = true;
+            //	StartCoroutine(BulletCDRoutine(bulletCDTime));
 
-		}
-	}
+        }
+        else if (bulletCDTimestamp <= Time.time && dir.x <= 0 && !facingRight)
+        {
+
+
+            source.PlayOneShot(shootingSound, 0.3f);
+            GameObject bullet = Instantiate(bulletPrefab, bulletSpawn.position, bulletSpawn.rotation);
+
+            Rigidbody2D bulletRB = bullet.GetComponent<Rigidbody2D>();
+            Vector3 bulletTFRight = bullet.transform.right;
+            Vector2 bulletTFLocalScale = bullet.transform.localScale;
+
+            bullet.transform.localScale = new Vector2(bulletTFLocalScale.x * (facingRight ? -1 : 1), bulletTFLocalScale.y);
+
+            bulletRB.AddForce(dir * bulletSpeed);
+
+
+            Destroy(bullet, bulletLifeTime);
+
+            bulletCDTimestamp = Time.time + bulletCDTime;
+
+
+
+        }
+    }
 
     
 
