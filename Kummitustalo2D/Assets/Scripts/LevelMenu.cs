@@ -7,31 +7,24 @@ using System;
 public class LevelMenu : MonoBehaviour {
     public GameObject levelPanel;
     public GameObject hiscorePanel;
-    public GameObject personalPanel;
-    public GameObject globalPanel;
     public Button lvl2;
     public Button lvl3;
     public Button lvl4;
     public Button global;
     public Button personal;
-    public Text personal1;
-    public Text personal2;
-    public Text personal3;
-    public Text personal4;
-    public Text global1;
-    public Text global2;
-    public Text global3;
-    public Text global4;
-    string[] items1;
-    string[] items2;
-    string[] items3;
-    string[] items4;
-    bool loaded;
+
+    public Text data;
+    string[] items;
+    string[] names;
+    float[] times;
+
+
+    
     public GameObject loadIcon;
     // Use this for initialization
     void Start () {
         CheckifLevelCleared();
-        loadPersonalData();
+        loadPersonalData(1);
         Time.timeScale = 1;
 
     }
@@ -46,37 +39,58 @@ public class LevelMenu : MonoBehaviour {
     }
     public void OpenHiscorePanel()
     {
-        loadPersonalData();
+        loadPersonalData(1);
         hiscorePanel.SetActive(true);
         personal.interactable = false;
         global.interactable = true;
-        personalPanel.SetActive(true);
     }
     public void closeHiscorePanel()
     {
         hiscorePanel.SetActive(false);
         personal.interactable = true;
-        personalPanel.SetActive(false);
-        globalPanel.SetActive(false);
        
     }
     public void openGlobalPanel()
     {
-        if(!loaded)
-        StartCoroutine(ConnectToDatabase());
-        personalPanel.SetActive(false);
-        globalPanel.SetActive(true);
+        StartCoroutine(ConnectToDatabase(1));
         global.interactable = false;
         personal.interactable = true;
     }
     public void openPersonalPanel()
     {
-        loadPersonalData();
-        globalPanel.SetActive(false);
-        personalPanel.SetActive(true);
+        loadPersonalData(1);
         personal.interactable = false;
         global.interactable = true;
     }
+   
+    public void GlobalButton(int button)
+    {
+        if(global.interactable == false)
+            StartCoroutine(ConnectToDatabase(button));
+        if (personal.interactable == false)
+            loadPersonalData(button);
+
+    }
+    public void TotalHS()
+    {
+        if (global.interactable == false)
+        {
+            data.text = "The total score is : " ;
+        }
+            
+        else if (personal.interactable == false)
+        {
+            float totalTime = CalculateTotalScore();
+            if (totalTime == 0)
+                data.text = "You have not cleared all levels yet!";
+            else
+            data.text = "Your total clear time is : " + "\r\n" + "\r\n" + totalTime.ToString("n2")+ " s";
+        }
+            
+
+    }
+
+
     public void CheckifLevelCleared()
     {
 
@@ -93,34 +107,27 @@ public class LevelMenu : MonoBehaviour {
             lvl4.interactable = true;
         }
     }
-    void loadPersonalData()
+    public void loadPersonalData(int nmbr)
     {
-        if (PlayerPrefs.GetFloat("level_01") != 0)
+        if (PlayerPrefs.GetFloat("level_0"+nmbr) != 0)
         {
-            personal1.text = PlayerPrefs.GetFloat("level_01").ToString("n2") + " s";
+            
+            data.text = "Level " + nmbr + " best clear time: " + "\r\n" + "\r\n";
+            data.text += PlayerPrefs.GetFloat("level_0"+nmbr).ToString("n2") + " s";
         }
-        if (PlayerPrefs.GetFloat("level_02") != 0)
+        else
         {
-            personal2.text = PlayerPrefs.GetFloat("level_02").ToString("n2") + " s";
-        }
-        if (PlayerPrefs.GetFloat("level_03") != 0)
-        {
-            personal3.text = PlayerPrefs.GetFloat("level_03").ToString("n2") + " s";
-        }
-        if (PlayerPrefs.GetFloat("level_04") != 0)
-        {
-            personal4.text = PlayerPrefs.GetFloat("level_04").ToString("n2") + " s";
+            data.text = "Level has not been cleared yet";
         }
 
+
     }
-    private IEnumerator ConnectToDatabase()
+    private IEnumerator ConnectToDatabase(int nmbr)
     {
-        WWW itemsData1 = new WWW("http://mihkeltanel.com/brokenmomoirs/top1.php");
-        WWW itemsData2 = new WWW("http://mihkeltanel.com/brokenmomoirs/top2.php");
-        WWW itemsData3 = new WWW("http://mihkeltanel.com/brokenmomoirs/top3.php");
-        WWW itemsData4 = new WWW("http://mihkeltanel.com/brokenmomoirs/top4.php");
+        WWW itemsData = new WWW("http://mihkeltanel.com/brokenmomoirs/top"+ nmbr + ".php");
+
         
-        while (!itemsData1.isDone && !itemsData2.isDone && !itemsData3.isDone && !itemsData4.isDone)
+        while (!itemsData.isDone)
         {
 
            // errorText.text = "";
@@ -129,12 +136,12 @@ public class LevelMenu : MonoBehaviour {
            yield return new WaitForSeconds(0.01f);
 
         }
-        if (!string.IsNullOrEmpty(itemsData1.error) && !string.IsNullOrEmpty(itemsData2.error) && !string.IsNullOrEmpty(itemsData3.error) && !string.IsNullOrEmpty(itemsData4.error))
+        if (!string.IsNullOrEmpty(itemsData.error))
         {
 
             // errorText.text = "Failed connecting to database.";
             //yield return new WaitForSeconds(3.14f);
-            Debug.Log(itemsData1.error);
+            Debug.Log(itemsData.error);
             loadIcon.SetActive(false);
         }
         else
@@ -142,59 +149,49 @@ public class LevelMenu : MonoBehaviour {
         {
            loadIcon.SetActive(false);
 
-            string itemsDataString1 = itemsData1.text;
-            string itemsDataString2 = itemsData2.text;
-            string itemsDataString3 = itemsData3.text;
-            string itemsDataString4 = itemsData4.text;
-            items1 = itemsDataString1.Split(';');
-            items2 = itemsDataString2.Split(';');
-            items3 = itemsDataString3.Split(';');
-            items4 = itemsDataString4.Split(';');
-            for (int i = 0; i <= items1.Length - 2; i++)
+            string itemsDataString = itemsData.text;
+            items = itemsDataString.Split(';');
+            names = new string[items.Length];
+            times = new float[items.Length];
+                for(int i = 0; i < items.Length-1; i++)
             {
+                names[i] = GetDataValue(items[i], "name:");
+                times[i] = float.Parse(GetDataValue(items[i], "time:"));
+            }
+
+            bool didSwap;
+            do
+            {
+                didSwap = false;
+                for (int i = 0; i < times.Length-2; i++)
+                {
+                    if (times[i] > times[i + 1])
+                    {
+                        float tempFloat = times[i + 1];
+                        string tempString = names[i + 1];
+                        times[i + 1] = times[i];
+                        names[i + 1] = names[i];
+                        times[i] = tempFloat;
+                        names[i] = tempString;
+                        didSwap = true;
+                    }
+                }
+            } while (didSwap);
+
+            data.text = "Global level " + nmbr + " best times : " + "\r\n" + "\r\n";
+            for (int i = 0; i < 10; i++)
+            {
+                
                 if(i==9)
-                global1.text += i + 1 + ". ";
+                data.text += i + 1 + ". ";
                 else
-                global1.text += i+1 +".   ";
-                global1.text += GetDataValue(items1[i], "name:")+ " - ";
-                float s = float.Parse(GetDataValue(items1[i], "time:"));
-                global1.text += s.ToString("n2") +" s" + "\r\n";
+                data.text += i+1 +".   ";
+                data.text += names[i] + " - ";
+                data.text += times[i].ToString("n2") +" s" + "\r\n";
 
             }
-            for (int i = 0; i <= items2.Length - 2; i++)
-            {
-                if (i == 9)
-                    global2.text += i + 1 + ". ";
-                else
-                global2.text += i + 1 + ".   ";
-                global2.text += GetDataValue(items2[i], "name:") + " - ";
-                float s = float.Parse(GetDataValue(items2[i], "time:"));
-                global2.text += s.ToString("n2") + " s" + "\r\n";
-
-            }
-            for (int i = 0; i <= items3.Length - 2; i++)
-            {
-                if (i == 9)
-                    global3.text += i + 1 + ". ";
-                else
-                global3.text += i + 1 + ".   ";
-                global3.text += GetDataValue(items3[i], "name:") + " - ";
-                float s = float.Parse(GetDataValue(items3[i], "time:"));
-                global3.text += s.ToString("n2") + " s" + "\r\n";
-
-            }
-            for (int i = 0; i <= items4.Length - 2; i++)
-            {
-                if (i == 9)
-                    global4.text += i + 1 + ". ";
-                else
-                global4.text += i + 1 + ".   ";
-                global4.text += GetDataValue(items4[i], "name:") + " - ";
-                float s = float.Parse(GetDataValue(items4[i], "time:"));
-                global4.text += s.ToString("n2") + " s" + "\r\n";
-
-            }
-            loaded = true;
+           
+            
 
         }
 
@@ -206,6 +203,22 @@ public class LevelMenu : MonoBehaviour {
         string value = data.Substring(data.IndexOf(index) + index.Length);
         if (value.Contains("|")) value = value.Remove(value.IndexOf("|"));
         return value;
+    }
+    float CalculateTotalScore()
+    {
+        float total = 0;
+        float notCleared = 1;
+        for (int i = 1; i < 5; i++)
+        {
+            total += PlayerPrefs.GetFloat("level_0" + i);
+            if (PlayerPrefs.GetFloat("level_0" + i) == 0)
+                notCleared = 0;
+        }
+
+
+        if (notCleared == 0)
+            total = 0;
+        return total;
     }
 }
 
