@@ -102,7 +102,9 @@ public class PortalSummon : MonoBehaviour {
     void CheckHiscores ()
    
     {
+        Debug.Log("Current Best: " + currentBest);
         clearTime = player.time;
+        Debug.Log("Clear Time " + clearTime);
         PlayerPrefs.SetInt("key_level_0"+ currentLevel, 1);
         if (currentBest > clearTime)
         {

@@ -5,19 +5,20 @@ using UnityEngine.UI;
 using System;
 
 public class LevelMenu : MonoBehaviour {
-    public GameObject levelPanel;
+    public GameObject levelPanel,namePanel;
     public GameObject hiscorePanel;
     public Button lvl2;
     public Button lvl3;
     public Button lvl4;
     public Button global;
     public Button personal;
-
-    public Text data;
+    bool syncDone;
+    public Text data,name;
+    public InputField inputName;
     string[] items;
     string[] names;
     float[] times;
-
+    
 
     
     public GameObject loadIcon;
@@ -26,7 +27,7 @@ public class LevelMenu : MonoBehaviour {
         CheckifLevelCleared();
         loadPersonalData(1);
         Time.timeScale = 1;
-
+        
     }
 	
 	// Update is called once per frame
@@ -52,6 +53,8 @@ public class LevelMenu : MonoBehaviour {
     }
     public void openGlobalPanel()
     {
+        SyncDB();
+        StartCoroutine(Load());
         StartCoroutine(ConnectToDatabase(1));
         global.interactable = false;
         personal.interactable = true;
@@ -71,20 +74,33 @@ public class LevelMenu : MonoBehaviour {
             loadPersonalData(button);
 
     }
+    public void EnterName()
+    {
+        if (inputName.text =="" || inputName.text.Length>10)
+        {
+            name.text = "Invalid name, try again, Sire.";
+        }
+        else
+        {
+            PlayerPrefs.SetString("name", inputName.text);
+            namePanel.SetActive(false);
+            SyncDB();
+        }
+    }
     public void TotalHS()
     {
         if (global.interactable == false)
         {
-            data.text = "The total score is : " ;
+            StartCoroutine(ConnectToDatabase(5));
         }
             
         else if (personal.interactable == false)
         {
-            float totalTime = CalculateTotalScore();
+            float totalTime = PlayerPrefs.GetFloat("total");
             if (totalTime == 0)
                 data.text = "You have not cleared all levels yet!";
             else
-            data.text = "Your total clear time is : " + "\r\n" + "\r\n" + totalTime.ToString("n2")+ " s";
+               data.text = "Your total clear time is : " + "\r\n" + "\r\n" + totalTime.ToString("n2")+ " s";
         }
             
 
@@ -130,7 +146,6 @@ public class LevelMenu : MonoBehaviour {
         while (!itemsData.isDone)
         {
 
-           // errorText.text = "";
            loadIcon.SetActive(true);
            loadIcon.transform.Rotate(new Vector3(0, 0, Time.deltaTime * -150));
            yield return new WaitForSeconds(0.01f);
@@ -138,9 +153,6 @@ public class LevelMenu : MonoBehaviour {
         }
         if (!string.IsNullOrEmpty(itemsData.error))
         {
-
-            // errorText.text = "Failed connecting to database.";
-            //yield return new WaitForSeconds(3.14f);
             Debug.Log(itemsData.error);
             loadIcon.SetActive(false);
         }
@@ -177,9 +189,18 @@ public class LevelMenu : MonoBehaviour {
                     }
                 }
             } while (didSwap);
-
-            data.text = "Global level " + nmbr + " best times : " + "\r\n" + "\r\n";
-            for (int i = 0; i < 10; i++)
+            if (nmbr == 5)
+            {
+                data.text = "Global total best times : " + "\r\n" + "\r\n";
+            }
+            else
+            {
+                data.text = "Global level " + nmbr + " best times : " + "\r\n" + "\r\n";
+            }
+            int totalLvls = times.Length - 1;
+            if (totalLvls > 10)
+                totalLvls = 10;
+            for (int i = 0; i < totalLvls; i++)
             {
                 
                 if(i==9)
@@ -204,22 +225,68 @@ public class LevelMenu : MonoBehaviour {
         if (value.Contains("|")) value = value.Remove(value.IndexOf("|"));
         return value;
     }
-    float CalculateTotalScore()
+
+    void SyncDB ()
     {
-        float total = 0;
-        float notCleared = 1;
-        for (int i = 1; i < 5; i++)
+        if(PlayerPrefs.GetString("name")=="")
         {
-            total += PlayerPrefs.GetFloat("level_0" + i);
-            if (PlayerPrefs.GetFloat("level_0" + i) == 0)
-                notCleared = 0;
+            namePanel.SetActive(true);
+            return;
+        }
+        for (int i = 1; i < 6; i++)
+        {
+            if(PlayerPrefs.GetFloat("level_0"+i) != PlayerPrefs.GetFloat("alevel_0"+i))
+            {
+                StartCoroutine(AddDataToDB(PlayerPrefs.GetFloat("level_0" + i),PlayerPrefs.GetString("name"),i));
+                
+            }
+        }
+        syncDone = true;
+    }
+
+    IEnumerator AddDataToDB(float enteredTime, string name, int lvl)
+    {
+        string username = "DezetoGod";
+        username = name;
+        WWWForm form = new WWWForm();
+        form.AddField("nicknamePost", username);
+        form.AddField("timePost", enteredTime.ToString());
+        form.AddField("lvl", lvl.ToString());
+        WWW www = new WWW("http://mihkeltanel.com/brokenmomoirs/addData.php", form);
+        while (!www.isDone)
+        {
+
+            yield return new WaitForSeconds(0.01f);
+
         }
 
-
-        if (notCleared == 0)
-            total = 0;
-        return total;
+        if (!string.IsNullOrEmpty(www.error))
+        {
+           
+            Debug.Log(www.error);
+        }
+        else
+        {
+     
+            Debug.Log(username + " sent to DB");
+            PlayerPrefs.SetFloat("alevel_0" + lvl, PlayerPrefs.GetFloat("level_0" + lvl));
+        
+        }
     }
+    IEnumerator Load()
+    {
+        while (!syncDone)
+        {
+
+            loadIcon.SetActive(true);
+            loadIcon.transform.Rotate(new Vector3(0, 0, Time.deltaTime * -150));
+            yield return new WaitForSeconds(0.01f);
+
+        }
+        loadIcon.SetActive(false);
+        syncDone = false;
+    }
+
 }
 
 
