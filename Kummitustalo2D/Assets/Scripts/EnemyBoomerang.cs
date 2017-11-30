@@ -17,6 +17,7 @@ public class EnemyBoomerang : MonoBehaviour {
 	public float boomerangSmoothing = 10;
     Animator anim;
 
+	bool usingAddForce;
 	bool seekingBack;
 
 	float startTime;
@@ -43,6 +44,9 @@ public class EnemyBoomerang : MonoBehaviour {
     void Update()
     {
 
+		//Debug.Log(usingAddForce);
+		//Debug.Log(seekingBack);
+
 		// Sattuu sydämeen tehdä nääkin joka freimillä
 		if (horseBoy.transform.rotation.y == 0)
 		{
@@ -65,58 +69,70 @@ public class EnemyBoomerang : MonoBehaviour {
 
 			// first make sure in start point
 			transform.position = boomerangPoint.position;
-			transform.rotation = Quaternion.identity;
+			//transform.rotation = Quaternion.identity;
+			rb.angularVelocity = 0;
+			//rb.rotation = 0;
 
+			usingAddForce = true;
 			rb.AddForce(new Vector2(direction * speed, 0.01f * speed), ForceMode2D.Impulse);
 		}
 
 		if (!seekingBack && !enemy.dead)
 		{
-			if (boomerangOnCD)
+			if (boomerangOnCD && usingAddForce)
 			{
 				
-				//Debug.Log("boomerangOnCD");
+				//Debug.Log("boomerangOnCD and using addforce");
 
 				if ((rb.velocity.x > 0 && direction == 1) || (rb.velocity.x < 0 && direction == -1))
 				{
-					rb.AddForce(new Vector2(-1 * direction * speed * Time.deltaTime, -0.1f * speed * Time.deltaTime), ForceMode2D.Impulse);
+					rb.AddForce(new Vector2(-0.6f * direction * speed * Time.deltaTime, -0.1f * speed * Time.deltaTime), ForceMode2D.Impulse);
 				}
 				else if ((rb.velocity.x < 0 && direction == 1) || (rb.velocity.x > 0 && direction == -1))
 				{
-					rb.AddForce(new Vector2(-1 * direction * speed * Time.deltaTime, 0.15f * speed * Time.deltaTime), ForceMode2D.Impulse);
+					rb.AddForce(new Vector2(-0.6f * direction * speed * Time.deltaTime, 0.15f * speed * Time.deltaTime), ForceMode2D.Impulse);
 				}
 
+				// If you want to continuously rotate a rigidbody use MoveRotation instead, which takes interpolation into account.
 				//rb.transform.Rotate(0, 0, 7);
 
-			} else {
+			} 
+			if (!boomerangOnCD) {
 
 				//Debug.Log("else");
 
-				// Pitäiskö nollaus tehdä rigidbodyllä koska alussa siihen kohdistetaan voimaa..?
+				//rb.angularVelocity = 0;
+				//rb.rotation = 0;
+				//transform.rotation = Quaternion.identity;
 
-				//rb.rotation = 0; // was ist das?
-				transform.rotation = Quaternion.identity; // tää pitäis tehä oikeesti vain kerran eikä joka freimillä
 				// seuraa heppaa
 				transform.position = Vector3.Lerp(transform.position, boomerangPoint.position, boomerangSmoothing * Time.deltaTime);
 
 			}
 		}
 
-		if (seekingBack)
+		if (seekingBack) // && !(fracJourney > 1f) // fracJourney voi mennä myös "Infinity":ksi...
 		{
-			distCovered = (Time.time - startTime) / 2f;
+			//rb.velocity = Vector2.zero;
+
+			distCovered = (Time.time - startTime) / 0.5f;
 			fracJourney = distCovered / journeyLength;
 
-			//Debug.Log(distCovered); // käyttäytyy oudosti..?
-			//Debug.Log(fracJourney); // käyttäytyy oudosti..?
-			// Toimi todella oudosti ennen velocity zeroa (joka ei sekään pysäytä bumenragia), joka toisella toimi melkein oikein...
-			transform.position = Vector3.Lerp(transform.position, boomerangPoint.position, fracJourney);
+			//Debug.Log("seekingBack");
+			//Debug.Log(distCovered);
+			//Debug.Log(fracJourney);
+			//Debug.Log(Vector3.Distance(transform.position, boomerangPoint.position));
 
+			transform.position = Vector3.Lerp(transform.position, boomerangPoint.position, fracJourney);
 			transform.rotation = Quaternion.identity;
 
 			// Tätä käytettäessä pitäisi ilmeisesti olla rigidbodyllä kinematic ja interpolate
 			//rb.MovePosition(boomerangPoint.position);
-		}
+		} 
+		//else if (seekingBack){
+		//	rb.velocity = Vector2.zero;
+		//	seekingBack = false; // jos ei ollut seekingBack niin saattoi jäädä paikalleen leijumaan vaikka heppa jatkoi matkaa
+		//}
 
         if(enemy.dead && !deadhorsie)
         {
@@ -135,27 +151,34 @@ public class EnemyBoomerang : MonoBehaviour {
 
 		yield return new WaitForSeconds(boomerangCDTime/2);
 
-		// tarvitsee jotenkin handlauksen että palaa kotiin jos jää esim. pelaajan selän taakse...
-		//if (transform.position.x < horseBoy.transform.position.x)
-		//{
-
-		seekingBack = true;
-		//Debug.Log("seeking back");
-
-		startTime = Time.time;
-		journeyLength = Vector3.Distance(transform.position, boomerangPoint.position);
-		//Debug.Log(journeyLength); // Tuntuis näyttävän suht oikein
+		if (!seekingBack) {
+			seekingBack = true;
+			usingAddForce = false;
+			rb.velocity = Vector2.zero;
+			startTime = Time.time;
+			journeyLength = Vector3.Distance(transform.position, boomerangPoint.position);
+		}
 
 		yield return new WaitForSeconds(boomerangCDTime/2);
 
-		seekingBack = false;
-
 		rb.angularVelocity = 0;
+		//rb.rotation = 0;
 		rb.velocity = Vector2.zero;
-
-		//}
-
+		fracJourney = 0;
+		seekingBack = false;
 		boomerangOnCD = false;
+	}
+
+	// go right back if hit something
+	private void OnCollisionEnter2D(Collision2D collision)
+	{
+		startTime = Time.time;
+		journeyLength = Vector3.Distance(transform.position, boomerangPoint.position);
+		rb.angularVelocity = 0;
+		//rb.rotation = 0;
+		rb.velocity = Vector2.zero;
+		seekingBack = true;
+		usingAddForce = false;
 	}
 
 	void SetSpriteDirection () {
