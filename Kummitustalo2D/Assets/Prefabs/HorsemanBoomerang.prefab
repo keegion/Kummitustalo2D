@@ -107,7 +107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1509321577854259bf2bb164997c50c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1.3
+  speed: 1.2
   EnemyBoomeranging: {fileID: 0}
   horseBoy: {fileID: 0}
   boomerangPoint: {fileID: 0}
