@@ -11,8 +11,12 @@ public class Player : MonoBehaviour
 	public float maxHp;
 	public GUIStyle myGUIStyle;
 	public Image healthMeter;
-	public Transform memories, playerSpawnPoint;
-	GameObject[] shardArray;
+	public Transform livesMeter, playerSpawnPoint;
+    Transform livesMeterMiddleBG, livesMeterRightBG;
+    GameObject livesMeterPlayerIcon1, livesMeterPlayerIcon2, livesMeterPlayerIcon3;
+    RectTransform middleRectTransform;
+    public float livesMeterStepWidth = 36;
+    GameObject[] shardArray;
 	public GameObject GameManagerPrefab;
 	private GameObject GameManager;
 	Rigidbody2D rb;
@@ -27,9 +31,7 @@ public class Player : MonoBehaviour
     public AudioClip pickUp;
     AudioSource source;
     public float time;
-
-
-
+    bool isHudInitialized;
 
     // Use this for initialization
     void Start()
@@ -61,9 +63,16 @@ public class Player : MonoBehaviour
 		Array.Sort(shardArray, CompareObNames);
 		UpdateShardsOnStart();
 
-	}
+        livesMeterMiddleBG = livesMeter.Find("middleBG");
+        livesMeterRightBG = livesMeter.Find("rightBG");
+        livesMeterPlayerIcon1 = livesMeter.Find("playerIcon1").gameObject;
+        livesMeterPlayerIcon2 = livesMeter.Find("playerIcon2").gameObject;
+        livesMeterPlayerIcon3 = livesMeter.Find("playerIcon3").gameObject;
+        middleRectTransform = livesMeterMiddleBG as RectTransform;
 
-	int CompareObNames(GameObject a, GameObject b)
+    }
+
+    int CompareObNames(GameObject a, GameObject b)
 	{
 		return string.Compare(a.name, b.name, StringComparison.CurrentCulture);
 	}
@@ -71,7 +80,27 @@ public class Player : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		CheckHP();
+        float livesMiddleWidth = livesMeterStepWidth * GameManager.GetComponent<GameManager>().livesLeft;
+
+        if (!isHudInitialized)
+        {
+            middleRectTransform.sizeDelta = new Vector2(livesMeterStepWidth * GameManager.GetComponent<GameManager>().livesLeft, middleRectTransform.sizeDelta.y);
+            //Debug.Log(livesMiddleWidth);
+
+            // Todo: taustan venyminen sen mukaan kuinka monta elämää jäljellä
+
+            // right bg:n sijainti bugaa vielä urakalla
+            //livesMeterRightBG.position = new Vector3(31 + livesMiddleWidth, 5, 100); // mittayksiköt/skaala näyttää olevan jotain paljon isompaa kuin pikseleitä
+            //Debug.Log(livesMeterRightBG.position);
+
+            // vaihtoehtoinen tapa liikuttaa kikkaretta
+            //RectTransform rightRectTransform = livesMeterRightBG as RectTransform;
+            //rightRectTransform.SetPositionAndRotation(new Vector3(32 + livesMiddleWidth, 5, 100), Quaternion.identity);
+
+            isHudInitialized = true;
+        }
+
+        CheckHP();
         time += Time.deltaTime;
     }
 
@@ -88,7 +117,7 @@ public class Player : MonoBehaviour
 
 	public void Die()
 	{
-		if (GameManager.GetComponent<GameManager>().livesLeft < 1)
+		if (GameManager.GetComponent<GameManager>().livesLeft < 2)
 		{
 			Debug.Log("Game over man");
 			SceneManager.LoadScene("Test_start_scene", LoadSceneMode.Single);
@@ -109,8 +138,16 @@ public class Player : MonoBehaviour
 			hp = maxHp;
 
 			ResetHealthBarAnimation();
-			//SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-		}
+            // The most quick and dirty way ever to do this
+            if (GameManager.GetComponent<GameManager>().livesLeft < 3 ) {
+                livesMeterPlayerIcon3.SetActive(false);
+            }
+            if (GameManager.GetComponent<GameManager>().livesLeft < 2)
+            {
+                livesMeterPlayerIcon2.SetActive(false);
+            }
+            //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
 	}
 
 	private void UpdateShardsOnStart(){

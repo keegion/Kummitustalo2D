@@ -6386,6 +6386,11 @@ Prefab:
       propertyPath: FinishMenu
       value: 
       objectReference: {fileID: 491703548}
+    - target: {fileID: 114726150381283966, guid: 59cbb8b34abfd42a7aa4ad3a38f99d8f,
+        type: 2}
+      propertyPath: livesMeter
+      value: 
+      objectReference: {fileID: 1886838258}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 59cbb8b34abfd42a7aa4ad3a38f99d8f, type: 2}
   m_IsPrefabParent: 0
@@ -8700,6 +8705,11 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!224 &1886838258 stripped
+RectTransform:
+  m_PrefabParentObject: {fileID: 224025526195869964, guid: e733a8a441d6f4b4ca7f4e9266134f68,
+    type: 2}
+  m_PrefabInternal: {fileID: 1332493245}
 --- !u!1 &1887002751
 GameObject:
   m_ObjectHideFlags: 0
