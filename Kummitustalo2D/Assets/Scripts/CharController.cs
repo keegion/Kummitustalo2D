@@ -7,8 +7,8 @@ using UnityEngine.SceneManagement;
 
 public class CharController : MonoBehaviour {
 
-	public float speed = 5f, input_x, input_y, jumpForce, bulletSpeed, bulletLifeTime, bulletCDTime = 1f, bulletCDTimestamp = 0;
-	public bool facingRight, isGrounded; //, bulletCD;
+	public float speed, input_x, input_y, jumpForce, bulletSpeed, bulletLifeTime, bulletCDTime = 1f, bulletCDTimestamp = 0, tempSpeed;
+	public bool facingRight, isGrounded, miniSized; //, bulletCD;
 	public GameObject bulletPrefab;
 	public Transform bulletSpawn;
 	Rigidbody2D rb;
@@ -80,6 +80,10 @@ public class CharController : MonoBehaviour {
         {
             transform.Translate(input_x * Time.deltaTime * speed, input_y * Time.deltaTime * speed, 0);
         }
+        if (Input.GetKeyDown(KeyCode.V) && !miniSized)
+        {
+            StartCoroutine(MiniSize());
+        }
 
      
 
@@ -126,6 +130,18 @@ public class CharController : MonoBehaviour {
 
         }
     
+    }
+
+    IEnumerator MiniSize()
+    {
+        miniSized = true;
+        tempSpeed = speed;
+        speed = 2;
+        transform.localScale = new Vector2(transform.localScale.x * 0.4f, 0.1f);
+        yield return new WaitForSeconds(2f);
+        transform.localScale = new Vector2(transform.localScale.x * 2.5f, 0.25f);
+        miniSized = false;
+        speed = tempSpeed;
     }
 
     

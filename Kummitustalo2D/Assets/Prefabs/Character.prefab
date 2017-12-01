@@ -282,6 +282,7 @@ MonoBehaviour:
   portal: {fileID: 1198815098949786, guid: 64584c665a43e89418b8d222e0c60d0e, type: 2}
   levels: 2
   FinishMenu: {fileID: 0}
+  randoms: 
 --- !u!114 &114726150381283966
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -363,8 +364,9 @@ MonoBehaviour:
     m_StretchWidth: 1
     m_StretchHeight: 0
   healthMeter: {fileID: 0}
-  memories: {fileID: 0}
+  livesMeter: {fileID: 0}
   playerSpawnPoint: {fileID: 0}
+  livesMeterStepWidth: 36
   GameManagerPrefab: {fileID: 1982315783445720, guid: b4b88e3ec87264574b7cb010ec4174f4,
     type: 2}
   OnStairs: 0
@@ -376,6 +378,7 @@ MonoBehaviour:
   shardPic4: {fileID: 0}
   gettingHit: {fileID: 8300000, guid: 85d22b6008d9ac24c9a850430a0148b7, type: 3}
   pickUp: {fileID: 8300000, guid: a7d3c7f4c4d467c4fab2b325ed527814, type: 3}
+  time: 0
 --- !u!212 &212030398576116958
 SpriteRenderer:
   m_ObjectHideFlags: 1

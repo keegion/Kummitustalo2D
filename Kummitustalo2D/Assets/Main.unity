@@ -5245,11 +5245,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
---- !u!224 &1069841239 stripped
-RectTransform:
-  m_PrefabParentObject: {fileID: 224867726546358674, guid: e733a8a441d6f4b4ca7f4e9266134f68,
-    type: 2}
-  m_PrefabInternal: {fileID: 1332493245}
 --- !u!1 &1084500087
 GameObject:
   m_ObjectHideFlags: 0
@@ -6351,6 +6346,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 114589085749828094, guid: 59cbb8b34abfd42a7aa4ad3a38f99d8f,
+        type: 2}
+      propertyPath: FinishMenu
+      value: 
+      objectReference: {fileID: 491703548}
     - target: {fileID: 114726150381283966, guid: 59cbb8b34abfd42a7aa4ad3a38f99d8f,
         type: 2}
       propertyPath: healthMeter
@@ -6358,9 +6358,9 @@ Prefab:
       objectReference: {fileID: 882951465}
     - target: {fileID: 114726150381283966, guid: 59cbb8b34abfd42a7aa4ad3a38f99d8f,
         type: 2}
-      propertyPath: memories
+      propertyPath: livesMeter
       value: 
-      objectReference: {fileID: 1069841239}
+      objectReference: {fileID: 1886838258}
     - target: {fileID: 114726150381283966, guid: 59cbb8b34abfd42a7aa4ad3a38f99d8f,
         type: 2}
       propertyPath: playerSpawnPoint
@@ -6381,16 +6381,6 @@ Prefab:
       propertyPath: shardPic4
       value: 
       objectReference: {fileID: 640533653}
-    - target: {fileID: 114589085749828094, guid: 59cbb8b34abfd42a7aa4ad3a38f99d8f,
-        type: 2}
-      propertyPath: FinishMenu
-      value: 
-      objectReference: {fileID: 491703548}
-    - target: {fileID: 114726150381283966, guid: 59cbb8b34abfd42a7aa4ad3a38f99d8f,
-        type: 2}
-      propertyPath: livesMeter
-      value: 
-      objectReference: {fileID: 1886838258}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 59cbb8b34abfd42a7aa4ad3a38f99d8f, type: 2}
   m_IsPrefabParent: 0
