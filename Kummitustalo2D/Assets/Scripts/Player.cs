@@ -270,6 +270,21 @@ public class Player : MonoBehaviour
 			healthMeterAnimator.Play("HealthBar", -1, roundedHealth);
 			healthMeterAnimator.speed = 0;
         }
+       
+    }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.name == "mimic" && !dmgOnCD)
+        {
+            dmgOnCD = true;
+            source.PlayOneShot(gettingHit, 0.3f);
+            hp -= 1;
+            StartCoroutine(RunningSkeleCD());
+            addDmgText();
+            float roundedHealth = hp / maxHp;
+            healthMeterAnimator.Play("HealthBar", -1, roundedHealth);
+            healthMeterAnimator.speed = 0;
+        }
     }
     void addDmgText()
     {

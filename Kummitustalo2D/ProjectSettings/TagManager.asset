@@ -22,6 +22,7 @@ TagManager:
   - HPSiru
   - wall
   - teleportSpot
+  - mimic
   layers:
   - Default
   - TransparentFX
