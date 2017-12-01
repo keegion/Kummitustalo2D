@@ -96,7 +96,7 @@ public class LevelMenu : MonoBehaviour {
             
         else if (personal.interactable == false)
         {
-            float totalTime = PlayerPrefs.GetFloat("total");
+            float totalTime = PlayerPrefs.GetFloat("totalTime");
             if (totalTime == 0)
                 data.text = "You have not cleared all levels yet!";
             else
@@ -235,7 +235,11 @@ public class LevelMenu : MonoBehaviour {
         }
         for (int i = 1; i < 6; i++)
         {
-            if(PlayerPrefs.GetFloat("level_0"+i) != PlayerPrefs.GetFloat("alevel_0"+i))
+            if (i == 5 && PlayerPrefs.GetFloat("totalTime") != PlayerPrefs.GetFloat("atotalTime"))
+            {
+                StartCoroutine(AddDataToDB(PlayerPrefs.GetFloat("totalTime"), PlayerPrefs.GetString("name"), i));
+            }
+            else if(PlayerPrefs.GetFloat("level_0"+i) != PlayerPrefs.GetFloat("alevel_0"+i))
             {
                 StartCoroutine(AddDataToDB(PlayerPrefs.GetFloat("level_0" + i),PlayerPrefs.GetString("name"),i));
                 
@@ -269,7 +273,10 @@ public class LevelMenu : MonoBehaviour {
         {
      
             Debug.Log(username + " sent to DB");
-            PlayerPrefs.SetFloat("alevel_0" + lvl, PlayerPrefs.GetFloat("level_0" + lvl));
+            if (lvl == 5)
+                PlayerPrefs.SetFloat("atotalTime", PlayerPrefs.GetFloat("totalTime"));
+            else
+                PlayerPrefs.SetFloat("alevel_0" + lvl, PlayerPrefs.GetFloat("level_0" + lvl));
         
         }
     }
