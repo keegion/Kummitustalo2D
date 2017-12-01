@@ -26,6 +26,7 @@ public class PortalSummon : MonoBehaviour {
         sceneName = SceneManager.GetActiveScene().name;
         currentBest = PlayerPrefs.GetFloat(sceneName,currentBest);
         currentLevel = checkCurrentSceneLevel();
+        PlayerPrefs.SetInt("key_level_01", 1);
     }
 	
 	// Update is called once per frame
@@ -53,11 +54,12 @@ public class PortalSummon : MonoBehaviour {
         if (MaxShards <= currentShards)
         {
             CheckHiscores();
-            
+            TotalHiscore();
+
             if (CheckifLastLevel())
             {
                 OpenFinishPanel();
-                TotalHiscore();
+                
 
             }
             else
@@ -66,7 +68,7 @@ public class PortalSummon : MonoBehaviour {
             }
             
 
-            TotalHiscore();
+            
         }
     }
     public bool CheckifLastLevel()
@@ -125,19 +127,24 @@ public class PortalSummon : MonoBehaviour {
     {
         
         //check if all levels cleared
-        for(int i = 1; i < levels; i++)
+        for(int i = 1; i < levels+1; i++)
         {
-            if (PlayerPrefs.GetInt("level0_"+i) == 1)
+            if (PlayerPrefs.GetInt("key_level_0"+i) == 1)
                 cleared++;
+            
         }
+
         //if all levels cleared calculate total time from all levels and add it to playerprefs
-        if(cleared == levels)
+        if (cleared == levels)
+            
         {
-            for(int i = 1; 1 < levels; i++)
+               
+           for (int i = 1; i < levels + 1; i++)
             {
-                totalTime += PlayerPrefs.GetFloat("level0_" + i);
+              totalTime += PlayerPrefs.GetFloat("level_0" + i);
             }
             PlayerPrefs.SetFloat("totalTime", totalTime);
+            Debug.Log("total time saved, " + totalTime);
            
           
             totalTime = 0;
