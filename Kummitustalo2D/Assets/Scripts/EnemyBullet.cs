@@ -9,6 +9,7 @@ public class EnemyBullet : MonoBehaviour {
 	Rigidbody2D rb;
 	int direction = 1;
 
+
 	void Start()
 	{
 		rb = GetComponent<Rigidbody2D>();
@@ -18,6 +19,7 @@ public class EnemyBullet : MonoBehaviour {
 			//speed = speed * -1;
 			direction = -1;
 		}
+     
 
 		rb.AddForce(new Vector2(direction * speed, 0), ForceMode2D.Impulse);
     }

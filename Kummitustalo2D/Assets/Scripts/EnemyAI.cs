@@ -52,7 +52,9 @@ public class EnemyAI : MonoBehaviour
         if (!shooting && !right && !enemy.dead)
             transform.position += Vector3.left * walkingSpeed * Time.deltaTime;
 
-
+        if(!shooting && gameObject.tag == "ShootingSkele")
+            anim.SetBool("shooting", false);
+        
         Raycasting();
         Behaviours();
 

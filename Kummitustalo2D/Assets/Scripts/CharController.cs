@@ -35,8 +35,7 @@ public class CharController : MonoBehaviour {
 	void Update()
 	{
 		isGrounded = Physics2D.OverlapCircle(GroundCheck.position, 0.15f, groundLayer);
-        sp = Camera.main.WorldToScreenPoint(transform.position);
-        dir = (Input.mousePosition - sp).normalized;
+
 
         if (isGrounded && Input.GetButtonDown("Jump"))
 		{
@@ -102,7 +101,7 @@ public class CharController : MonoBehaviour {
     {
       
 
-        if (bulletCDTimestamp <= Time.time && dir.x >= 0 && facingRight)
+        if (bulletCDTimestamp <= Time.time)
         //if (!bulletCD)
         {
             source.PlayOneShot(shootingSound, 0.3f);
@@ -114,8 +113,8 @@ public class CharController : MonoBehaviour {
 
             bullet.transform.localScale = new Vector2(bulletTFLocalScale.x * (facingRight ? -1 : 1), bulletTFLocalScale.y);
 
-            bulletRB.AddForce(dir * bulletSpeed);
-            //bulletRB.AddForce(bulletTFRight * bulletSpeed * (facingRight ? 1 : -1));
+
+            bulletRB.AddForce(bulletTFRight * bulletSpeed * (facingRight ? 1 : -1));
             //bulletRB.velocity = bulletTFRight * bulletSpeed * (facingRight? 1 : -1 );
 
             Destroy(bullet, bulletLifeTime);
@@ -126,29 +125,7 @@ public class CharController : MonoBehaviour {
             //	StartCoroutine(BulletCDRoutine(bulletCDTime));
 
         }
-        else if (bulletCDTimestamp <= Time.time && dir.x <= 0 && !facingRight)
-        {
-
-
-            source.PlayOneShot(shootingSound, 0.3f);
-            GameObject bullet = Instantiate(bulletPrefab, bulletSpawn.position, bulletSpawn.rotation);
-
-            Rigidbody2D bulletRB = bullet.GetComponent<Rigidbody2D>();
-            Vector3 bulletTFRight = bullet.transform.right;
-            Vector2 bulletTFLocalScale = bullet.transform.localScale;
-
-            bullet.transform.localScale = new Vector2(bulletTFLocalScale.x * (facingRight ? -1 : 1), bulletTFLocalScale.y);
-
-            bulletRB.AddForce(dir * bulletSpeed);
-
-
-            Destroy(bullet, bulletLifeTime);
-
-            bulletCDTimestamp = Time.time + bulletCDTime;
-
-
-
-        }
+    
     }
 
     

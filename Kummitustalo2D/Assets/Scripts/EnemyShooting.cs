@@ -24,7 +24,10 @@ public class EnemyShooting : MonoBehaviour {
         {
             if(gameObject.tag=="Enemy")
             anim.SetBool("Attack", true);
+            if (gameObject.tag == "ShootingSkele")
+                anim.SetBool("shooting", true);
 
+                
             bulletOnCD = true;
 			GameObject temps = (GameObject)Instantiate(enemyBullet, bulletSpawn.position, transform.rotation);
             Destroy(temps, 5f);
@@ -33,8 +36,8 @@ public class EnemyShooting : MonoBehaviour {
 	}
     IEnumerator BulletCD()
     {
-
-		yield return new WaitForSeconds(bulletCDTime);
+        
+        yield return new WaitForSeconds(bulletCDTime);
         bulletOnCD = false;
     }
     

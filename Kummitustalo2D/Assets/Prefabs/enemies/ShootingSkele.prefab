@@ -150,7 +150,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1331172027118736}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.3167162, y: -0.74, z: 0}
+  m_LocalPosition: {x: 14.05, y: 4.94, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4746606168273970}
@@ -217,7 +217,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1254245141642390}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.74, y: 0, z: 0}
   m_LocalScale: {x: 0.6, y: 0.6, z: 1}
   m_Children:
   - {fileID: 4327321591774816}
@@ -353,7 +353,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8769208289e0ce41b8e48a257a75453, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyBullet: {fileID: 1443276908489178, guid: c9991cc1d66ce7345a342edd4d61f31f,
+  enemyBullet: {fileID: 1329567992454984, guid: 79ff3c599fbd6ef48b39c1008da9f53a,
     type: 2}
   bulletSpawn: {fileID: 4947390568695606}
   bulletCDTime: 1
@@ -449,7 +449,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
-  randomSeed: -1408244645
+  randomSeed: -1298714334
   InitialModule:
     serializedVersion: 3
     enabled: 1
