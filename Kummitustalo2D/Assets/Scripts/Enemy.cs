@@ -12,9 +12,11 @@ public class Enemy : MonoBehaviour {
     CapsuleCollider2D coll;
     BoxCollider2D boxcoll;
     public GameObject particle;
+    
+    
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 		boomerangingController = GetComponent<EnemyBoomeranging>();
         anim = GetComponent<Animator>();
         coll = GetComponent<CapsuleCollider2D>();

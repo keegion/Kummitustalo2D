@@ -19,14 +19,14 @@ public class EnemyAI2 : MonoBehaviour
     Transform player;
     Enemy enemy;
     Animator ventanim;
-
+    GameObject listContainer;
 
 
 
 
     void Start()
     {
-
+        listContainer = GameObject.FindGameObjectWithTag("Player");
         waypoint0 = GameObject.FindGameObjectWithTag("TempLocation");
         temp = GameObject.FindGameObjectsWithTag("teleportSpot");
         waypoints = new GameObject[temp.Length];
@@ -131,19 +131,39 @@ public class EnemyAI2 : MonoBehaviour
     }
     IEnumerator TeleportCountDown()
     {
-        yield return new WaitForSeconds(2f);
-        selectedWaypoint = waypoints[Random.Range(0, waypoints.Length)];
-        ventanim = selectedWaypoint.GetComponent<Animator>();
-        if(ventanim == null)
+        int randomNmbr = Random.Range(0, waypoints.Length);
+        if (listContainer.GetComponent<PortalSummon>().randoms.Contains(randomNmbr))
         {
-
+            yield return new WaitForSeconds(5f);
             StartCoroutine(TeleportCountDown());
+
         }
-        ventanim.SetBool("coming", true);
-        yield return new WaitForSeconds(1f);
-        transform.position = selectedWaypoint.transform.position;
-        ventanim.SetBool("coming", false);
-        StartCoroutine(WaypointCountDown());
+        else
+        {
+            StartCoroutine(RandomNumberCD(randomNmbr));
+            yield return new WaitForSeconds(2f);
+            selectedWaypoint = waypoints[randomNmbr];
+            ventanim = selectedWaypoint.GetComponent<Animator>();
+            if (ventanim == null)
+            {
+
+                StartCoroutine(TeleportCountDown());
+            }
+            ventanim.SetBool("coming", true);
+            yield return new WaitForSeconds(1f);
+            transform.position = selectedWaypoint.transform.position;
+            ventanim.SetBool("coming", false);
+            StartCoroutine(WaypointCountDown());
+        }
+
+
+    }
+
+    IEnumerator RandomNumberCD(int random)
+    {
+        listContainer.GetComponent<PortalSummon>().randoms.Add(random);
+        yield return new WaitForSeconds(10f);
+        listContainer.GetComponent<PortalSummon>().randoms.Remove(random);
 
     }
     IEnumerator ChangingDirectionCD()

@@ -19,6 +19,9 @@ public class EnemyAI : MonoBehaviour
     Transform player;
     Enemy enemy;
     Animator ventanim;
+    GameObject listContainer;
+    
+
 
 
 
@@ -26,7 +29,8 @@ public class EnemyAI : MonoBehaviour
 
     void Start()
     {
-
+        listContainer = GameObject.FindGameObjectWithTag("Player");
+       
         waypoint0 = GameObject.FindGameObjectWithTag("TempLocation");
         temp = GameObject.FindGameObjectsWithTag("teleportSpot");
         waypoints = new GameObject[temp.Length];
@@ -52,9 +56,9 @@ public class EnemyAI : MonoBehaviour
         if (!shooting && !right && !enemy.dead)
             transform.position += Vector3.left * walkingSpeed * Time.deltaTime;
 
-        if(!shooting && gameObject.tag == "ShootingSkele")
+        if (!shooting && gameObject.tag == "ShootingSkele")
             anim.SetBool("shooting", false);
-        
+
         Raycasting();
         Behaviours();
 
@@ -123,8 +127,8 @@ public class EnemyAI : MonoBehaviour
 
 
     }
- 
-        
+
+
     IEnumerator WaypointCountDown()
     {
         yield return new WaitForSeconds(Random.Range(15f, 45f));
@@ -132,8 +136,18 @@ public class EnemyAI : MonoBehaviour
     }
     IEnumerator TeleportCountDown()
     {
+        int randomNmbr = Random.Range(0, waypoints.Length);
+        if(listContainer.GetComponent<PortalSummon>().randoms.Contains(randomNmbr))
+        {
+            yield return new WaitForSeconds(5f);
+            StartCoroutine(TeleportCountDown());
+            
+        }
+        else
+        {
+        StartCoroutine(RandomNumberCD(randomNmbr));
         yield return new WaitForSeconds(2f);
-        selectedWaypoint = waypoints[Random.Range(0, waypoints.Length)];
+        selectedWaypoint = waypoints[randomNmbr];
         ventanim = selectedWaypoint.GetComponent<Animator>();
         if (ventanim == null)
         {
@@ -145,6 +159,16 @@ public class EnemyAI : MonoBehaviour
         transform.position = selectedWaypoint.transform.position;
         ventanim.SetBool("coming", false);
         StartCoroutine(WaypointCountDown());
+        }
+   
+
+    }
+
+    IEnumerator RandomNumberCD(int random)
+        {
+        listContainer.GetComponent<PortalSummon>().randoms.Add(random);
+        yield return new WaitForSeconds(10f);
+        listContainer.GetComponent<PortalSummon>().randoms.Remove(random);
 
     }
 

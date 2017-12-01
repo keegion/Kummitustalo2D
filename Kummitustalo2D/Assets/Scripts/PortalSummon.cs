@@ -17,7 +17,8 @@ public class PortalSummon : MonoBehaviour {
     int cleared;
     float totalTime;
     float currentBest;
-   
+    public List<int> randoms = new List<int>();
+
 
     // Use this for initialization
     void Start () {
