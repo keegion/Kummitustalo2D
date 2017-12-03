@@ -31015,11 +31015,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4015970458556786, guid: 4b8d13f1920e9f24b94b5b9b8b024b0c, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 41.08
+      value: 3.18
       objectReference: {fileID: 0}
     - target: {fileID: 4015970458556786, guid: 4b8d13f1920e9f24b94b5b9b8b024b0c, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 37.88
+      value: 30.34
       objectReference: {fileID: 0}
     - target: {fileID: 4015970458556786, guid: 4b8d13f1920e9f24b94b5b9b8b024b0c, type: 2}
       propertyPath: m_LocalPosition.z
