@@ -997,6 +997,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 93b5aaa09016e46fc980ac5ce600595f, type: 2}
   m_IsPrefabParent: 0
+--- !u!224 &346338373 stripped
+RectTransform:
+  m_PrefabParentObject: {fileID: 224025526195869964, guid: e733a8a441d6f4b4ca7f4e9266134f68,
+    type: 2}
+  m_PrefabInternal: {fileID: 290413407}
 --- !u!1001 &352245191
 Prefab:
   m_ObjectHideFlags: 0
@@ -4875,6 +4880,11 @@ Prefab:
       propertyPath: levels
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 114726150381283966, guid: 59cbb8b34abfd42a7aa4ad3a38f99d8f,
+        type: 2}
+      propertyPath: livesMeter
+      value: 
+      objectReference: {fileID: 346338373}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 59cbb8b34abfd42a7aa4ad3a38f99d8f, type: 2}
   m_IsPrefabParent: 0
