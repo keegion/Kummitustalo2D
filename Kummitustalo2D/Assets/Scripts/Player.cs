@@ -15,7 +15,6 @@ public class Player : MonoBehaviour
     Transform livesMeterMiddleBG, livesMeterRightBG;
     GameObject livesMeterPlayerIcon1, livesMeterPlayerIcon2, livesMeterPlayerIcon3;
     RectTransform middleRectTransform;
-    public float livesMeterStepWidth = 36;
     GameObject[] shardArray;
 	public GameObject GameManagerPrefab;
 	private GameObject GameManager;
@@ -80,23 +79,9 @@ public class Player : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-        float livesMiddleWidth = livesMeterStepWidth * GameManager.GetComponent<GameManager>().livesLeft;
-
         if (!isHudInitialized)
         {
-            middleRectTransform.sizeDelta = new Vector2(livesMeterStepWidth * GameManager.GetComponent<GameManager>().livesLeft, middleRectTransform.sizeDelta.y);
-            //Debug.Log(livesMiddleWidth);
-
-            // Todo: taustan venyminen sen mukaan kuinka monta elämää jäljellä
-
-            // right bg:n sijainti bugaa vielä urakalla
-            //livesMeterRightBG.position = new Vector3(31 + livesMiddleWidth, 5, 100); // mittayksiköt/skaala näyttää olevan jotain paljon isompaa kuin pikseleitä
-            //Debug.Log(livesMeterRightBG.position);
-
-            // vaihtoehtoinen tapa liikuttaa kikkaretta
-            //RectTransform rightRectTransform = livesMeterRightBG as RectTransform;
-            //rightRectTransform.SetPositionAndRotation(new Vector3(32 + livesMiddleWidth, 5, 100), Quaternion.identity);
-
+			UpdateLivesMeter();
             isHudInitialized = true;
         }
 
@@ -113,6 +98,32 @@ public class Player : MonoBehaviour
 	void ResetHealthBarAnimation ()
 	{
 		healthMeterAnimator.Play("HealthBar", 0, 0.99f);
+	}
+
+	void UpdateLivesMeter ()
+	{
+		float livesMeterStepWidth = 46;
+		float livesMiddleWidth = livesMeterStepWidth * GameManager.GetComponent<GameManager>().livesLeft;
+
+		middleRectTransform.sizeDelta = new Vector2((livesMeterStepWidth * GameManager.GetComponent<GameManager>().livesLeft) - 30f, middleRectTransform.sizeDelta.y);
+
+		livesMeterRightBG.position = new Vector3(141.92f + (0.32f * GameManager.GetComponent<GameManager>().livesLeft), 5f, 1f);
+		//livesMeterRightBG.position = new Vector3(34.88f + livesMiddleWidth, 5f, 100f); // mittayksiköt/skaala näyttää olevan jotain paljon isompaa kuin pikseleitä
+		//Debug.Log(livesMeterRightBG.position);
+
+		// vaihtoehtoinen tapa liikuttaa kikkaretta
+		//RectTransform rightRectTransform = livesMeterRightBG as RectTransform;
+		//rightRectTransform.SetPositionAndRotation(new Vector3(32 + livesMiddleWidth, 5, 100), Quaternion.identity);
+
+		// The most quick and dirty way ever to do this
+		if (GameManager.GetComponent<GameManager>().livesLeft < 3)
+		{
+			livesMeterPlayerIcon3.SetActive(false);
+		}
+		if (GameManager.GetComponent<GameManager>().livesLeft < 2)
+		{
+			livesMeterPlayerIcon2.SetActive(false);
+		}
 	}
 
 	public void Die()
@@ -136,16 +147,8 @@ public class Player : MonoBehaviour
 				transform.position = new Vector3(1f, 1.5f, 0);
 			}
 			hp = maxHp;
-
 			ResetHealthBarAnimation();
-            // The most quick and dirty way ever to do this
-            if (GameManager.GetComponent<GameManager>().livesLeft < 3 ) {
-                livesMeterPlayerIcon3.SetActive(false);
-            }
-            if (GameManager.GetComponent<GameManager>().livesLeft < 2)
-            {
-                livesMeterPlayerIcon2.SetActive(false);
-            }
+			UpdateLivesMeter();
             //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 	}

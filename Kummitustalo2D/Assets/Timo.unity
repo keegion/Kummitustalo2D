@@ -1180,12 +1180,12 @@ Prefab:
     - target: {fileID: 224157851841943922, guid: e733a8a441d6f4b4ca7f4e9266134f68,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: -1221.184
+      value: -960
       objectReference: {fileID: 0}
     - target: {fileID: 224157851841943922, guid: e733a8a441d6f4b4ca7f4e9266134f68,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 409.8267
+      value: 540
       objectReference: {fileID: 0}
     - target: {fileID: 224341665281885894, guid: e733a8a441d6f4b4ca7f4e9266134f68,
         type: 2}
@@ -1205,6 +1205,16 @@ Prefab:
         type: 2}
       propertyPath: m_SizeDelta.x
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 20520817732237176, guid: e733a8a441d6f4b4ca7f4e9266134f68,
+        type: 2}
+      propertyPath: orthographic
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 20520817732237176, guid: e733a8a441d6f4b4ca7f4e9266134f68,
+        type: 2}
+      propertyPath: orthographic size
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e733a8a441d6f4b4ca7f4e9266134f68, type: 2}
@@ -2460,7 +2470,7 @@ SpriteRenderer:
   m_Size: {x: 4.62, y: 4.96}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
 --- !u!1 &518336972 stripped
 GameObject:
@@ -3686,7 +3696,7 @@ SpriteRenderer:
   m_Size: {x: 4.62, y: 4.96}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
 --- !u!1001 &818988502
 Prefab:
@@ -4374,6 +4384,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114589085749828094, guid: 59cbb8b34abfd42a7aa4ad3a38f99d8f,
+        type: 2}
+      propertyPath: FinishMenu
+      value: 
+      objectReference: {fileID: 1523884349}
     - target: {fileID: 114726150381283966, guid: 59cbb8b34abfd42a7aa4ad3a38f99d8f,
         type: 2}
       propertyPath: healthMeter
@@ -4381,9 +4396,9 @@ Prefab:
       objectReference: {fileID: 1648481342}
     - target: {fileID: 114726150381283966, guid: 59cbb8b34abfd42a7aa4ad3a38f99d8f,
         type: 2}
-      propertyPath: memories
+      propertyPath: livesMeter
       value: 
-      objectReference: {fileID: 1953776029}
+      objectReference: {fileID: 1153649467}
     - target: {fileID: 114726150381283966, guid: 59cbb8b34abfd42a7aa4ad3a38f99d8f,
         type: 2}
       propertyPath: playerSpawnPoint
@@ -4404,26 +4419,6 @@ Prefab:
       propertyPath: shardPic4
       value: 
       objectReference: {fileID: 2122277915}
-    - target: {fileID: 114589085749828094, guid: 59cbb8b34abfd42a7aa4ad3a38f99d8f,
-        type: 2}
-      propertyPath: FinishMenu
-      value: 
-      objectReference: {fileID: 1523884349}
-    - target: {fileID: 82427294100804798, guid: 59cbb8b34abfd42a7aa4ad3a38f99d8f,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114181921004026662, guid: 59cbb8b34abfd42a7aa4ad3a38f99d8f,
-        type: 2}
-      propertyPath: speed
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114726150381283966, guid: 59cbb8b34abfd42a7aa4ad3a38f99d8f,
-        type: 2}
-      propertyPath: livesMeter
-      value: 
-      objectReference: {fileID: 1153649467}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 59cbb8b34abfd42a7aa4ad3a38f99d8f, type: 2}
   m_IsPrefabParent: 0
@@ -7418,7 +7413,7 @@ SpriteRenderer:
   m_Size: {x: 4.87, y: 5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
 --- !u!1 &1777471569
 GameObject:
@@ -7946,11 +7941,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4448690352522848, guid: f87c1c03684cc4764bc482001ac05207,
     type: 2}
   m_PrefabInternal: {fileID: 1297695433}
---- !u!224 &1953776029 stripped
-RectTransform:
-  m_PrefabParentObject: {fileID: 224867726546358674, guid: e733a8a441d6f4b4ca7f4e9266134f68,
-    type: 2}
-  m_PrefabInternal: {fileID: 330535780}
 --- !u!1 &1955419573
 GameObject:
   m_ObjectHideFlags: 0
