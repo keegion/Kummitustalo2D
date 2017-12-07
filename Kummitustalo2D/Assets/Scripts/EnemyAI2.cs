@@ -121,7 +121,7 @@ public class EnemyAI2 : MonoBehaviour
             StartCoroutine(ChangingDirectionCD());
         }
 
-
+        
 
     }
     IEnumerator WaypointCountDown()

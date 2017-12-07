@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4315375373126086}
   - component: {fileID: 212400254212177264}
-  - component: {fileID: 60481839235395130}
+  - component: {fileID: 70619152018628830}
   m_Layer: 0
   m_Name: Muistisiru
   m_TagString: Muistisiru
@@ -35,14 +35,14 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1990239948703530}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.3785067, y: 1.531401, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalPosition: {x: 18.59, y: 1.5, z: 0}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!60 &60481839235395130
-PolygonCollider2D:
+--- !u!70 &70619152018628830
+CapsuleCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -53,62 +53,9 @@ PolygonCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 10.31, y: 13.860001}
-    newSize: {x: 10.31, y: 13.860001}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: -1.8106056, y: -3.833301}
-      - {x: -1.7080666, y: -3.7454104}
-      - {x: -1.5762306, y: -3.628223}
-      - {x: -1.253965, y: -3.3499026}
-      - {x: -0.7998634, y: -2.9543948}
-      - {x: -0.5654884, y: -2.7493167}
-      - {x: -0.4629493, y: -2.661426}
-      - {x: -0.24322273, y: -2.4709964}
-      - {x: 0.108339794, y: -2.1633792}
-      - {x: 0.21087886, y: -2.0754886}
-      - {x: 0.43060544, y: -1.8850589}
-      - {x: 0.782168, y: -1.5774417}
-      - {x: 0.8700586, y: -1.5041995}
-      - {x: 1.1190821, y: -1.2844728}
-      - {x: 1.2216212, y: -1.1965822}
-      - {x: 1.4413477, y: -1.0061525}
-      - {x: 1.7929102, y: -0.6985353}
-      - {x: 2.012637, y: -0.50810564}
-      - {x: 2.320254, y: -0.24443375}
-      - {x: 2.5692775, y: -0.03935561}
-      - {x: 2.715762, y: 0.09248034}
-      - {x: 2.715762, y: 0.16572253}
-      - {x: 2.6132228, y: 0.25361317}
-      - {x: 2.4227931, y: 0.40009755}
-      - {x: 1.5292383, y: 1.1471679}
-      - {x: 1.1776758, y: 1.4401367}
-      - {x: 0.53314453, y: 1.9821289}
-      - {x: -0.096738346, y: 2.5094726}
-      - {x: -1.1807228, y: 3.417676}
-      - {x: -2.088926, y: 4.1793947}
-      - {x: -2.2061136, y: 4.281934}
-      - {x: -2.3818948, y: 4.428418}
-      - {x: -2.484434, y: 4.516309}
-      - {x: -2.6455667, y: 4.6481447}
-      - {x: -2.6748636, y: 4.6481447}
-      - {x: -2.7041605, y: 4.618848}
-      - {x: -2.7041605, y: 0.32685536}
-      - {x: -2.689512, y: 0.31220692}
-      - {x: -2.689512, y: -3.7600589}
-      - {x: -2.7041605, y: -3.7747073}
-      - {x: -2.7041605, y: -4.536426}
-      - {x: -2.6748636, y: -4.565723}
-      - {x: -2.6162698, y: -4.5510745}
-      - {x: -2.5137308, y: -4.4485354}
+  m_Offset: {x: 0.1970609, y: -0.00000019868214}
+  m_Size: {x: 1.2076313, y: 2.3246467}
+  m_Direction: 0
 --- !u!212 &212400254212177264
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -143,7 +90,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300038, guid: e461cb283c9123b4e84bf3ffeb9d0b4e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 73e1dcf72f42f414986ebbeb2f088e19, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
