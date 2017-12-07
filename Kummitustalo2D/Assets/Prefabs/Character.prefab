@@ -84,7 +84,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1683934380118680}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.609, z: 0}
+  m_LocalPosition: {x: 46.71, y: 1.6069994, z: 0}
   m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_Children:
   - {fileID: 4513722689374938}
@@ -252,9 +252,9 @@ MonoBehaviour:
   input_x: 0
   input_y: 0
   jumpForce: 14.5
-  bulletSpeed: 500
+  bulletSpeed: 600
   bulletLifeTime: 5
-  bulletCDTime: 0.1
+  bulletCDTime: 0.2
   bulletCDTimestamp: 0
   tempSpeed: 0
   facingRight: 1
@@ -280,9 +280,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70272eb0c5d8f604d9772b56a7f64fed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxShards: 1
+  MaxShards: 16
   portal: {fileID: 1198815098949786, guid: 64584c665a43e89418b8d222e0c60d0e, type: 2}
-  levels: 2
+  levels: 4
   FinishMenu: {fileID: 0}
   randoms: 
 --- !u!114 &114726150381283966
@@ -368,7 +368,6 @@ MonoBehaviour:
   healthMeter: {fileID: 0}
   livesMeter: {fileID: 0}
   playerSpawnPoint: {fileID: 0}
-  livesMeterStepWidth: 49
   GameManagerPrefab: {fileID: 1982315783445720, guid: b4b88e3ec87264574b7cb010ec4174f4,
     type: 2}
   OnStairs: 0
