@@ -7454,7 +7454,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1646852419671416, guid: c4708b4c58374e84cb561bd1c6c75604, type: 2}
       propertyPath: m_Name
-      value: mimic (2)
+      value: mimic
       objectReference: {fileID: 0}
     - target: {fileID: 4610918209572010, guid: c4708b4c58374e84cb561bd1c6c75604, type: 2}
       propertyPath: m_LocalScale.x
@@ -21835,7 +21835,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1646852419671416, guid: c4708b4c58374e84cb561bd1c6c75604, type: 2}
       propertyPath: m_Name
-      value: mimic (1)
+      value: mimic
       objectReference: {fileID: 0}
     - target: {fileID: 4610918209572010, guid: c4708b4c58374e84cb561bd1c6c75604, type: 2}
       propertyPath: m_LocalScale.x
@@ -27449,7 +27449,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1646852419671416, guid: c4708b4c58374e84cb561bd1c6c75604, type: 2}
       propertyPath: m_Name
-      value: mimic (5)
+      value: mimic
       objectReference: {fileID: 0}
     - target: {fileID: 4610918209572010, guid: c4708b4c58374e84cb561bd1c6c75604, type: 2}
       propertyPath: m_LocalScale.x
@@ -36278,7 +36278,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1646852419671416, guid: c4708b4c58374e84cb561bd1c6c75604, type: 2}
       propertyPath: m_Name
-      value: mimic (3)
+      value: mimic
       objectReference: {fileID: 0}
     - target: {fileID: 4610918209572010, guid: c4708b4c58374e84cb561bd1c6c75604, type: 2}
       propertyPath: m_LocalScale.x
@@ -36948,7 +36948,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1646852419671416, guid: c4708b4c58374e84cb561bd1c6c75604, type: 2}
       propertyPath: m_Name
-      value: mimic (4)
+      value: mimic
       objectReference: {fileID: 0}
     - target: {fileID: 4610918209572010, guid: c4708b4c58374e84cb561bd1c6c75604, type: 2}
       propertyPath: m_LocalScale.x
