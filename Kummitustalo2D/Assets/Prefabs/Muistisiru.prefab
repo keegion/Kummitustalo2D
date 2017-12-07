@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 212429633695645992}
   - component: {fileID: 70894407405907848}
   m_Layer: 0
-  m_Name: Muistisiru 1
+  m_Name: Muistisiru
   m_TagString: Muistisiru
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
