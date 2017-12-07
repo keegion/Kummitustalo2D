@@ -16525,6 +16525,11 @@ Prefab:
       propertyPath: m_Name
       value: wall_wood_C (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 212548098835431902, guid: f87c1c03684cc4764bc482001ac05207,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f87c1c03684cc4764bc482001ac05207, type: 2}
   m_IsPrefabParent: 0
@@ -17255,6 +17260,11 @@ Prefab:
     - target: {fileID: 1200563646441134, guid: f87c1c03684cc4764bc482001ac05207, type: 2}
       propertyPath: m_Name
       value: wall_wood_C (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 212548098835431902, guid: f87c1c03684cc4764bc482001ac05207,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f87c1c03684cc4764bc482001ac05207, type: 2}
