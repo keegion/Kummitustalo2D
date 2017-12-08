@@ -295,10 +295,10 @@ public class Player : MonoBehaviour
     }
     void OnGUI()
 	{
-		GUI.Label(new Rect(215, 30, 100, 30), "Health: " + hp, myGUIStyle);
-		GUI.Label(new Rect(375, 30, 100, 30), "Lives: " + GameManager.GetComponent<GameManager>().livesLeft, myGUIStyle);
-		GUI.Label(new Rect(520, 30, 100, 30), "Shards: " + GameManager.GetComponent<GameManager>().shards, myGUIStyle);
-        GUI.Label(new Rect(700, 30, 100, 30), "Time: " + Mathf.Round(time * 1f)/1f + " s", myGUIStyle);
+		//GUI.Label(new Rect(215, 30, 100, 30), "Health: " + hp, myGUIStyle);
+		//GUI.Label(new Rect(375, 30, 100, 30), "Lives: " + GameManager.GetComponent<GameManager>().livesLeft, myGUIStyle);
+		//GUI.Label(new Rect(520, 30, 100, 30), "Shards: " + GameManager.GetComponent<GameManager>().shards, myGUIStyle);
+        GUI.Label(new Rect(330, 20, 100, 30), "Time: " + Mathf.Round(time * 1f)/1f + " s", myGUIStyle);
     }
     void DeactivateShards()
     {
