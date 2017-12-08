@@ -103,13 +103,12 @@ public class Player : MonoBehaviour
 	void UpdateLivesMeter ()
 	{
 		float livesMeterStepWidth = 46;
-		float livesMiddleWidth = livesMeterStepWidth * GameManager.GetComponent<GameManager>().livesLeft;
+		//float livesMiddleWidth = livesMeterStepWidth * GameManager.GetComponent<GameManager>().livesLeft;
 
-		middleRectTransform.sizeDelta = new Vector2((livesMeterStepWidth * GameManager.GetComponent<GameManager>().livesLeft) - 30f, middleRectTransform.sizeDelta.y);
+		//middleRectTransform.sizeDelta = new Vector2((livesMeterStepWidth * GameManager.GetComponent<GameManager>().livesLeft) - 30f, middleRectTransform.sizeDelta.y);
+		middleRectTransform.sizeDelta = new Vector2((livesMeterStepWidth * 3) - 30f, middleRectTransform.sizeDelta.y); // fixed for now
 
-		livesMeterRightBG.position = new Vector3(141.92f + (0.32f * GameManager.GetComponent<GameManager>().livesLeft), 5f, 1f);
-		//livesMeterRightBG.position = new Vector3(34.88f + livesMiddleWidth, 5f, 100f); // mittayksiköt/skaala näyttää olevan jotain paljon isompaa kuin pikseleitä
-		//Debug.Log(livesMeterRightBG.position);
+		//livesMeterRightBG.position = new Vector3(141.92f + (0.32f * GameManager.GetComponent<GameManager>().livesLeft), 5f, 1f);
 
 		// vaihtoehtoinen tapa liikuttaa kikkaretta
 		//RectTransform rightRectTransform = livesMeterRightBG as RectTransform;
