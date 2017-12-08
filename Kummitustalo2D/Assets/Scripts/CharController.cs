@@ -37,7 +37,7 @@ public class CharController : MonoBehaviour {
 		isGrounded = Physics2D.OverlapCircle(GroundCheck.position, 0.15f, groundLayer);
 
 
-        if (isGrounded && Input.GetButtonDown("Jump"))
+        if (isGrounded && Input.GetButtonDown("Jump") && !player.dead)
 		{
             source.PlayOneShot(jumpSound, 0.3f);
 			Jump();
@@ -52,14 +52,14 @@ public class CharController : MonoBehaviour {
 
 		input_x = Input.GetAxis("Horizontal");
 		input_y = Input.GetAxis("Vertical");
-
+        if(!player.dead)
 		transform.Translate(input_x * Time.deltaTime * speed, 0, 0);
 
-		if (input_x < 0 && facingRight)
+		if (input_x < 0 && facingRight && !player.dead)
 		{
 			Flip();
 		}
-		else if (input_x > 0 && !facingRight)
+		else if (input_x > 0 && !facingRight && !player.dead)
 		{
 			Flip();
 		}
@@ -72,7 +72,7 @@ public class CharController : MonoBehaviour {
 			animator.SetBool("Run", false);
 		}
 
-		if (Input.GetButtonDown("Fire1"))
+		if (Input.GetButtonDown("Fire1") && !player.dead)
 		{
 			Fire();
 		}
@@ -80,7 +80,7 @@ public class CharController : MonoBehaviour {
         {
             transform.Translate(input_x * Time.deltaTime * speed, input_y * Time.deltaTime * speed, 0);
         }
-        if (Input.GetKeyDown(KeyCode.V) && !miniSized)
+        if (Input.GetKeyDown(KeyCode.V) && !miniSized && !player.dead)
         {
             StartCoroutine(MiniSize());
         }

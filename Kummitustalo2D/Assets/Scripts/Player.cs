@@ -19,7 +19,7 @@ public class Player : MonoBehaviour
 	public GameObject GameManagerPrefab;
 	private GameObject GameManager;
 	Rigidbody2D rb;
-	public bool OnStairs, portalSummoned,dmgOnCD;
+	public bool OnStairs, portalSummoned,dmgOnCD, dead;
 	CharController charctr;
     public GameObject dmgText,shardPic2,shardPic3,shardPic4;
 	Animator animator;
@@ -31,10 +31,12 @@ public class Player : MonoBehaviour
     AudioSource source;
     public float time;
     bool isHudInitialized;
+    CapsuleCollider2D coll;
 
     // Use this for initialization
     void Start()
 	{
+        coll = GetComponent<CapsuleCollider2D>();
         summonPortal = GetComponent<PortalSummon>();
         shardcount = summonPortal.MaxShards;
         shardArray = new GameObject[shardcount-1];
@@ -91,8 +93,9 @@ public class Player : MonoBehaviour
 
 	void CheckHP()
 	{
-		if (hp <= 0)
-			Die();
+        if (hp <= 0 && !dead)
+            StartCoroutine(Die());
+		
 	}
 
 	void ResetHealthBarAnimation ()
@@ -126,12 +129,22 @@ public class Player : MonoBehaviour
 		}
 	}
 
-	public void Die()
+	 IEnumerator Die()
 	{
-		if (GameManager.GetComponent<GameManager>().livesLeft < 2)
+        dead = true;
+        gameObject.tag = "Enemy";
+        gameObject.layer = 8;
+        animator.SetBool("dead", true);
+        coll.offset = new Vector2(-0.2f, -1.6f);
+        yield return new WaitForSeconds(5f);
+        coll.offset = new Vector2(-0.2f, 0f);
+        gameObject.tag = "Player";
+        gameObject.layer = 9;
+        animator.SetBool("dead", false);
+        if (GameManager.GetComponent<GameManager>().livesLeft == 0)
 		{
 			Debug.Log("Game over man");
-			SceneManager.LoadScene("Test_start_scene", LoadSceneMode.Single);
+			SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
 		}
 		else
 		{
@@ -149,6 +162,7 @@ public class Player : MonoBehaviour
 			hp = maxHp;
 			ResetHealthBarAnimation();
 			UpdateLivesMeter();
+            dead = false;
             //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 	}
