@@ -6508,6 +6508,21 @@ Prefab:
       propertyPath: m_Offset.x
       value: -0.2
       objectReference: {fileID: 0}
+    - target: {fileID: 212030398576116958, guid: 59cbb8b34abfd42a7aa4ad3a38f99d8f,
+        type: 2}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 212030398576116958, guid: 59cbb8b34abfd42a7aa4ad3a38f99d8f,
+        type: 2}
+      propertyPath: m_Size.x
+      value: 5.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 212030398576116958, guid: 59cbb8b34abfd42a7aa4ad3a38f99d8f,
+        type: 2}
+      propertyPath: m_Size.y
+      value: 7.96
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 59cbb8b34abfd42a7aa4ad3a38f99d8f, type: 2}
   m_IsPrefabParent: 0
