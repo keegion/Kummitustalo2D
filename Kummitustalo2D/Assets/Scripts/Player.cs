@@ -134,9 +134,7 @@ public class Player : MonoBehaviour
         gameObject.tag = "Enemy";
         gameObject.layer = 8;
         animator.SetBool("dead", true);
-        coll.offset = new Vector2(-0.2f, -1.6f);
         yield return new WaitForSeconds(5f);
-        coll.offset = new Vector2(-0.2f, 0f);
         gameObject.tag = "Player";
         gameObject.layer = 9;
         animator.SetBool("dead", false);
