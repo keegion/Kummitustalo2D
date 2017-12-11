@@ -15,7 +15,7 @@ public class StartGame : MonoBehaviour {
 	void Update () {
 		if (Input.anyKey) {
             //GameManager.GetComponent<GameManager>().livesLeft = GameManager.GetComponent<GameManager>().lives;
-            SceneManager.LoadScene("Main");
+            SceneManager.LoadScene("MainMenu");
 		}
 	}
 }

@@ -138,10 +138,10 @@ public class Player : MonoBehaviour
         gameObject.tag = "Player";
         gameObject.layer = 9;
         animator.SetBool("dead", false);
-        if (GameManager.GetComponent<GameManager>().livesLeft == 0)
+        if (GameManager.GetComponent<GameManager>().livesLeft <= 1)
 		{
 			Debug.Log("Game over man");
-			SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
+			SceneManager.LoadScene("GameOver", LoadSceneMode.Single);
 		}
 		else
 		{
