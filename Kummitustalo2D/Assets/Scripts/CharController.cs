@@ -80,7 +80,7 @@ public class CharController : MonoBehaviour {
         {
             transform.Translate(input_x * Time.deltaTime * speed, input_y * Time.deltaTime * speed, 0);
         }
-        if (Input.GetKeyDown(KeyCode.V) && !miniSized && !player.dead)
+		if ( (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S) ) && !miniSized && !player.dead)
         {
             StartCoroutine(MiniSize());
         }
