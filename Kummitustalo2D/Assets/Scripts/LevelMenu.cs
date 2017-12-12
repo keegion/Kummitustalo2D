@@ -38,6 +38,10 @@ public class LevelMenu : MonoBehaviour {
     {
         levelPanel.SetActive(true);
     }
+	public void CloseLevelMenu()
+	{
+		levelPanel.SetActive(false);
+	}
     public void OpenHiscorePanel()
     {
         loadPersonalData(1);
