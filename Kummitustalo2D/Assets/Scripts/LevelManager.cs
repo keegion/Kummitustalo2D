@@ -9,8 +9,9 @@ public class LevelManager : MonoBehaviour {
     public Text leveltxt;
 	// Use this for initialization
 	void Start () {
-       leveltxt.text = SceneManager.GetActiveScene().name;
-        StartCoroutine(TextCD());
+		// Tehty omana skriptinään erilliseen canvakseen (levelin nimi omana graffana per leveli...)
+       //leveltxt.text = SceneManager.GetActiveScene().name;
+        //StartCoroutine(TextCD());
 	}
 	
 	// Update is called once per frame
