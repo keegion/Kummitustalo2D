@@ -13139,8 +13139,13 @@ Prefab:
     - target: {fileID: 82427294100804798, guid: 59cbb8b34abfd42a7aa4ad3a38f99d8f,
         type: 2}
       propertyPath: m_Volume
-      value: 0.194
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 82427294100804798, guid: 59cbb8b34abfd42a7aa4ad3a38f99d8f,
+        type: 2}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 9a4069f50aa294e53bf5b4681e526343, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 59cbb8b34abfd42a7aa4ad3a38f99d8f, type: 2}
   m_IsPrefabParent: 0
