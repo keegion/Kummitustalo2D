@@ -25,7 +25,8 @@ public class EnemyBoomerang : MonoBehaviour {
 	float distCovered;
 	float fracJourney;
 
-
+	public AudioClip boomerangSound;
+	AudioSource source;
 
 	void Start()
 	{
@@ -38,6 +39,8 @@ public class EnemyBoomerang : MonoBehaviour {
 		//Debug.Log(EnemyBoomeranging);
 
 		rb = GetComponent<Rigidbody2D>();
+
+		source = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -75,6 +78,7 @@ public class EnemyBoomerang : MonoBehaviour {
 
 			usingAddForce = true;
 			rb.AddForce(new Vector2(direction * speed, 0.01f * speed), ForceMode2D.Impulse);
+			source.PlayOneShot(boomerangSound, 0.3f);
 		}
 
 		if (!seekingBack && !enemy.dead)
