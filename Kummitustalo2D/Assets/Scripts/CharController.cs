@@ -16,6 +16,7 @@ public class CharController : MonoBehaviour {
 	Animator animator;
     public AudioClip shootingSound;
     public AudioClip jumpSound;
+	public AudioClip crouch;
     AudioSource source;
     Vector3 sp, dir;
     public Transform GroundCheck;
@@ -39,7 +40,6 @@ public class CharController : MonoBehaviour {
 
         if (isGrounded && Input.GetButtonDown("Jump") && !player.dead)
 		{
-            source.PlayOneShot(jumpSound, 0.2f);
 			Jump();
 			isJumping = true;
 			animator.SetBool("Jump", true);
@@ -99,6 +99,7 @@ public class CharController : MonoBehaviour {
 	{
 		rb.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
 		isGrounded = false;
+		source.PlayOneShot(jumpSound, 0.2f);
 	}
 
     void Fire()
@@ -138,6 +139,7 @@ public class CharController : MonoBehaviour {
         tempSpeed = speed;
         speed = 2;
         transform.localScale = new Vector2(transform.localScale.x * 0.4f, 0.1f);
+		source.PlayOneShot(crouch, 0.3f);
         yield return new WaitForSeconds(2f);
         transform.localScale = new Vector2(transform.localScale.x * 2.5f, 0.25f);
         miniSized = false;

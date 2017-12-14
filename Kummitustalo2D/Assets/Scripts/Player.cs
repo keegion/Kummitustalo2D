@@ -28,6 +28,7 @@ public class Player : MonoBehaviour
     int shardcount;
     public AudioClip gettingHit;
     public AudioClip pickUp;
+	public AudioClip death;
     AudioSource source;
     public float time;
     bool isHudInitialized;
@@ -134,10 +135,12 @@ public class Player : MonoBehaviour
         gameObject.tag = "Enemy";
         gameObject.layer = 8;
         animator.SetBool("dead", true);
+		source.PlayOneShot(death, 0.3f);
         yield return new WaitForSeconds(5f);
         gameObject.tag = "Player";
         gameObject.layer = 9;
         animator.SetBool("dead", false);
+
         if (GameManager.GetComponent<GameManager>().livesLeft <= 1)
 		{
 			Debug.Log("Game over man");
