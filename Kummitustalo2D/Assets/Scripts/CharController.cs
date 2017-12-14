@@ -39,7 +39,7 @@ public class CharController : MonoBehaviour {
 
         if (isGrounded && Input.GetButtonDown("Jump") && !player.dead)
 		{
-            source.PlayOneShot(jumpSound, 0.3f);
+            source.PlayOneShot(jumpSound, 0.2f);
 			Jump();
 			isJumping = true;
 			animator.SetBool("Jump", true);

@@ -32336,7 +32336,7 @@ Prefab:
         type: 2}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: 9a4069f50aa294e53bf5b4681e526343, type: 3}
+      objectReference: {fileID: 8300000, guid: 0967b0822e9294f5fa818bdbc0ae8b80, type: 3}
     - target: {fileID: 82427294100804798, guid: 59cbb8b34abfd42a7aa4ad3a38f99d8f,
         type: 2}
       propertyPath: BypassEffects
