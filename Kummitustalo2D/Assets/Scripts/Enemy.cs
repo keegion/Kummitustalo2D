@@ -12,8 +12,8 @@ public class Enemy : MonoBehaviour {
     CapsuleCollider2D coll;
     BoxCollider2D boxcoll;
     public GameObject particle;
-    
-    
+	public AudioClip death;
+	AudioSource source;
 
     // Use this for initialization
     void Start () {
@@ -21,6 +21,7 @@ public class Enemy : MonoBehaviour {
         anim = GetComponent<Animator>();
         coll = GetComponent<CapsuleCollider2D>();
         boxcoll = GetComponent<BoxCollider2D>();
+		source = GetComponent<AudioSource>();
 	}
 	
 	// Update is called once per frame
@@ -56,6 +57,9 @@ public class Enemy : MonoBehaviour {
             boxcoll.size = new Vector2(0.1f, 0.1f);
             gameObject.layer = LayerMask.NameToLayer("dead");
         }
+
+		source.PlayOneShot(death, 0.3f);
+
 		//if (boomerangingController){
 		//	Destroy(boomerangingController.boomerang);
 		//}
