@@ -10,11 +10,15 @@ public class EnemyShooting : MonoBehaviour {
     bool bulletOnCD;
     Enemy enemy;
     Animator anim;
+	public AudioClip shootingSound;
+	AudioSource source;
+
 	// Use this for initialization
 	void Start () {
         enemyAI = GetComponent<EnemyAI>();
         enemy = GetComponent<Enemy>();
         anim = GetComponent<Animator>();
+		source = GetComponent<AudioSource>();
 	}
 	
 	// Update is called once per frame
@@ -29,6 +33,7 @@ public class EnemyShooting : MonoBehaviour {
 
                 
             bulletOnCD = true;
+			source.PlayOneShot(shootingSound, 0.3f);
 			GameObject temps = (GameObject)Instantiate(enemyBullet, bulletSpawn.position, transform.rotation);
             Destroy(temps, 5f);
             StartCoroutine(BulletCD());

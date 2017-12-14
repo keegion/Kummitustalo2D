@@ -264,7 +264,7 @@ MonoBehaviour:
     type: 2}
   bulletSpawn: {fileID: 4513722689374938}
   shootingSound: {fileID: 8300000, guid: 9ab9004650feb734eb1f280ad6943c19, type: 3}
-  jumpSound: {fileID: 8300000, guid: 63b3df5fa03fb094bbe4298de8430a08, type: 3}
+  jumpSound: {fileID: 8300000, guid: 1225da239b0cb4f578f61db6b6391875, type: 3}
   GroundCheck: {fileID: 4960448461892970}
   groundLayer:
     serializedVersion: 2
@@ -373,11 +373,12 @@ MonoBehaviour:
   OnStairs: 0
   portalSummoned: 0
   dmgOnCD: 0
+  dead: 0
   dmgText: {fileID: 1842873987862324, guid: 5b75acbee60c67944b2d642a1e5e6ba5, type: 2}
   shardPic2: {fileID: 0}
   shardPic3: {fileID: 0}
   shardPic4: {fileID: 0}
-  gettingHit: {fileID: 8300000, guid: 85d22b6008d9ac24c9a850430a0148b7, type: 3}
+  gettingHit: {fileID: 8300000, guid: be4b6056725ca460fad1fbb83096cde7, type: 3}
   pickUp: {fileID: 8300000, guid: a7d3c7f4c4d467c4fab2b325ed527814, type: 3}
   time: 0
 --- !u!212 &212030398576116958
