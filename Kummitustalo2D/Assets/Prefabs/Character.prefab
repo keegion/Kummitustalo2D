@@ -381,7 +381,7 @@ MonoBehaviour:
   shardPic4: {fileID: 0}
   gettingHit: {fileID: 8300000, guid: be4b6056725ca460fad1fbb83096cde7, type: 3}
   pickUp: {fileID: 8300000, guid: a7d3c7f4c4d467c4fab2b325ed527814, type: 3}
-  death: {fileID: 8300000, guid: 51dd93cb2da8341ce8a943f9e73bccf7, type: 3}
+  death: {fileID: 8300000, guid: 5f65471a073dc4f42a395dceb58495ba, type: 3}
   time: 0
 --- !u!212 &212030398576116958
 SpriteRenderer:

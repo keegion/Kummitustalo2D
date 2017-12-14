@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class Mimic : MonoBehaviour {
     Animator anim;
-    // Use this for initialization
+	public AudioClip attack;
+	AudioSource source;
 
+    // Use this for initialization
     void Start () {
         anim = GetComponent<Animator>();
+		source = GetComponent<AudioSource>();
     }
 	
 	// Update is called once per frame
@@ -16,8 +19,11 @@ public class Mimic : MonoBehaviour {
 	}
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Player")
-            anim.SetBool("attack", true);
+		if (collision.tag == "Player")
+		{
+			anim.SetBool("attack", true);
+			source.PlayOneShot(attack, 0.3f);
+		}
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
