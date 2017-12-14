@@ -25,7 +25,8 @@ public class PlayerBullet : MonoBehaviour {
         if (collision.tag != "Player" && collision.tag != "spot1" && collision.tag != "spot2" && collision.tag != "Tikkaat" && collision.tag != "Muistisiru" && collision.tag != "HPSiru" && collision.tag != "teleportSpot" && collision.tag != "EnemyBullet")
         {
             Destroy(gameObject);
-            Instantiate(bulletEffect, transform.position, transform.rotation);
+            GameObject effectInstance = Instantiate(bulletEffect, transform.position, transform.rotation);
+			Destroy(effectInstance, 1.5f);
         }
             
            
