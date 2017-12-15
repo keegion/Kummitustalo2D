@@ -5354,6 +5354,11 @@ Prefab:
       propertyPath: m_Name
       value: SwingingLamp (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 114122283636415302, guid: 4c16d584b45ab1e47b42089bee6b6ddb,
+        type: 2}
+      propertyPath: speed
+      value: 1.75
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4c16d584b45ab1e47b42089bee6b6ddb, type: 2}
   m_IsPrefabParent: 0
@@ -13760,6 +13765,11 @@ Prefab:
       propertyPath: m_Name
       value: SwingingLamp (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 114122283636415302, guid: 4c16d584b45ab1e47b42089bee6b6ddb,
+        type: 2}
+      propertyPath: speed
+      value: 1.95
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4c16d584b45ab1e47b42089bee6b6ddb, type: 2}
   m_IsPrefabParent: 0
@@ -19772,6 +19782,11 @@ Prefab:
         type: 2}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114122283636415302, guid: 4c16d584b45ab1e47b42089bee6b6ddb,
+        type: 2}
+      propertyPath: speed
+      value: 1.9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4c16d584b45ab1e47b42089bee6b6ddb, type: 2}
@@ -30821,7 +30836,7 @@ Prefab:
     - target: {fileID: 114122283636415302, guid: 4c16d584b45ab1e47b42089bee6b6ddb,
         type: 2}
       propertyPath: speed
-      value: 1.9
+      value: 1.85
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4c16d584b45ab1e47b42089bee6b6ddb, type: 2}
@@ -51130,7 +51145,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2134783984}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 500.5, y: 237, z: 0}
+  m_LocalPosition: {x: 666, y: 471.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1248811340}
